@@ -1,219 +1,215 @@
 # KiokdeFezes.github.io
 
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz Interativo - Geografia Econômica</title>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz - Sistemas Digestório e Respiratório</title>
+  <style>
     body {
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-        display: flex;
-        justify-content: center;
-        padding: 50px 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
     }
     .quiz-container {
-        background-color: #fff;
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        width: 600px;
-        max-width: 90%;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 800px;
+      width: 100%;
+      padding: 20px;
     }
-    h2 {
-        text-align: center;
+    h2 { margin-bottom: 15px; }
+    .options { display: flex; flex-direction: column; }
+    button.option {
+      margin: 6px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f9f9f9;
+      cursor: pointer;
+      transition: background 0.3s;
     }
-    .progress-container {
-        background-color: #e0e0e0;
-        border-radius: 8px;
-        overflow: hidden;
-        margin-bottom: 20px;
+    button.option:hover { background: #eee; }
+    button.correct { background: #b2f2bb; border-color: #2b8a3e; }
+    button.incorrect { background: #ffa8a8; border-color: #c92a2a; }
+    #next-btn {
+      margin-top: 15px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      background: #4dabf7;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      display: none;
     }
-    .progress-bar {
-        height: 20px;
-        width: 0%;
-        background-color: #3498db;
-        text-align: center;
-        color: white;
-        line-height: 20px;
-        transition: width 0.3s;
+    #progress {
+      width: 100%;
+      background: #ddd;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      overflow: hidden;
     }
-    .question {
-        margin-bottom: 20px;
+    #progress-bar {
+      height: 20px;
+      width: 0%;
+      background: #4dabf7;
+      text-align: center;
+      color: white;
+      font-size: 12px;
+      line-height: 20px;
+      transition: width 0.3s;
     }
-    .answers {
-        display: flex;
-        flex-direction: column;
-    }
-    button.answer-btn {
-        background-color: #3498db;
-        color: white;
-        border: none;
-        padding: 10px;
-        margin: 5px 0;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-    button.answer-btn.correct {
-        background-color: #2ecc71 !important;
-    }
-    button.answer-btn.wrong {
-        background-color: #e74c3c !important;
-    }
-    button#next-btn {
-        margin-top: 20px;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 6px;
-        background-color: #f39c12;
-        color: white;
-        cursor: pointer;
-        display: none;
-    }
-    .explanation {
-        margin-top: 10px;
-        font-style: italic;
-    }
-    .summary {
-        margin-top: 20px;
-    }
-    .summary-item {
-        margin: 5px 0;
-    }
-</style>
+    #results { display: none; }
+    #results ul { list-style: none; padding: 0; }
+    #results li { margin: 6px 0; }
+  </style>
 </head>
 <body>
-<div class="quiz-container">
-    <h2>Quiz Interativo - Geografia Econômica</h2>
-
-    <div class="progress-container">
-        <div id="progress-bar" class="progress-bar">0%</div>
-    </div>
-
+  <div class="quiz-container">
+    <div id="progress"><div id="progress-bar">0%</div></div>
     <div id="quiz"></div>
-    <button id="next-btn" onclick="nextQuestion()">Próxima</button>
-    <div id="summary" class="summary"></div>
-</div>
+    <button id="next-btn">Próxima</button>
+    <div id="results">
+      <h2>Resultado Final</h2>
+      <p id="score"></p>
+      <ul id="summary"></ul>
+    </div>
+  </div>
 
 <script>
-const quizData = [
-    {question:"O que é economia em uma sociedade?", type:"mc", answers:["Organização para produção e distribuição de bens e serviços","Estudo das plantas e animais","Conjunto de regras de trânsito","Apenas a fabricação de máquinas"], correct:0, explanation:"Economia se refere à forma como uma sociedade organiza produção e distribuição de bens e serviços."},
-    {question:"Bens e serviços podem ser classificados como essenciais e não essenciais.", type:"tf", answers:["Verdadeiro","Falso"], correct:0, explanation:"Bens e serviços podem ser essenciais (alimento, saúde) ou não essenciais (lazer), dependendo da necessidade da sociedade."},
-    {question:"O setor primário da economia envolve:", type:"mc", answers:["Indústrias de transformação","Comércio e serviços","Produção de matérias-primas","Educação e saúde"], correct:2, explanation:"O setor primário se ocupa da extração e produção de matérias-primas como agricultura, pesca e mineração."},
-    {question:"O setor secundário é responsável por transformar matérias-primas em produtos.", type:"tf", answers:["Verdadeiro","Falso"], correct:0, explanation:"O setor secundário compreende a indústria e transformação de matérias-primas em bens de consumo ou equipamentos."},
-    {question:"Os fatores de produção incluem terra, trabalho e capital.", type:"mc", answers:["Verdadeiro","Falso","Apenas terra e capital","Apenas trabalho e terra"], correct:0, explanation:"Os fatores de produção são terra (recursos naturais), trabalho (esforço humano) e capital (máquinas, equipamentos)."},
-    {question:"Escassez significa que há recursos suficientes para todas as necessidades.", type:"tf", answers:["Verdadeiro","Falso"], correct:1, explanation:"Escassez indica que os recursos são limitados e não atendem todas as necessidades da sociedade."},
-    {question:"O capital inclui máquinas, estradas e usinas.", type:"mc", answers:["Verdadeiro","Falso","Apenas máquinas","Apenas recursos naturais"], correct:0, explanation:"Capital engloba bens produzidos pelo trabalho para gerar novos bens e serviços."},
-    {question:"O espaço geográfico é formado pela interação de terra, trabalho e capital.", type:"tf", answers:["Verdadeiro","Falso"], correct:0, explanation:"O espaço geográfico resulta da combinação desses fatores e das transformações humanas sobre eles."},
-    {question:"O meio técnico refere-se a:", type:"mc", answers:["Conjunto de objetos técnicos que formam infraestrutura","A quantidade de capital financeiro","O trabalho humano não especializado","A natureza sem intervenção humana"], correct:0, explanation:"Meio técnico é o conjunto de objetos e técnicas que facilitam a produção e organização do espaço."},
-    {question:"O homem se diferencia por produzir e aprimorar ferramentas.", type:"tf", answers:["Verdadeiro","Falso"], correct:0, explanation:"A capacidade de criar, modificar e aprimorar ferramentas é uma característica distintiva da humanidade."},
-    {question:"O capitalismo busca lucro e envolve propriedade privada.", type:"mc", answers:["Verdadeiro","Falso","Busca apenas produção","Só existe no setor primário"], correct:0, explanation:"O capitalismo é caracterizado por produção visando lucro e propriedade privada dos meios de produção."},
-    {question:"O capitalismo industrial surgiu entre 1750 e 1950.", type:"tf", answers:["Verdadeiro","Falso"], correct:0, explanation:"O capitalismo industrial ocorreu com a Revolução Industrial, mecanização e uso de mão de obra assalariada."},
-    {question:"O capitalismo financeiro integra capital industrial e financeiro.", type:"mc", answers:["Verdadeiro","Falso","Apenas comércio","Apenas agricultura"], correct:0, explanation:"Na fase financeira, empresas usam capital industrial e financeiro (ações, títulos) de forma integrada."},
-    {question:"A Revolução Industrial provocou êxodo rural.", type:"tf", answers:["Verdadeiro","Falso"], correct:0, explanation:"O crescimento das indústrias nas cidades atraiu pessoas do campo, caracterizando o êxodo rural."},
-    {question:"Indústrias de bens de capital produzem máquinas e equipamentos para outras indústrias.", type:"mc", answers:["Verdadeiro","Falso","Produzem alimentos","Fornecem serviços"], correct:0, explanation:"Bens de capital são usados para produzir outros bens e serviços dentro do sistema industrial."},
-    {question:"Indústrias de bens de consumo duráveis são usadas por anos.", type:"tf", answers:["Verdadeiro","Falso"], correct:0, explanation:"Bens duráveis, como carros e eletrodomésticos, têm vida útil prolongada."},
-    {question:"Indústrias de bens de consumo não duráveis incluem alimentos e roupas.", type:"mc", answers:["Verdadeiro","Falso","Apenas máquinas","Apenas veículos"], correct:0, explanation:"Bens não duráveis são consumidos rapidamente, como alimentos e roupas."},
-    {question:"A técnica permite modificar o meio e aumentar produtividade.", type:"tf", answers:["Verdadeiro","Falso"], correct:0, explanation:"A aplicação de conhecimento técnico permite transformar o meio natural e produzir mais."},
-    {question:"O espaço geográfico combina sistemas de objetos e de ação.", type:"mc", answers:["Verdadeiro","Falso","Apenas objetos","Apenas ações"], correct:0, explanation:"Espaço geográfico é a combinação de objetos técnicos e das ações humanas sobre eles."},
-    {question:"A industrialização altera comportamento e organização do espaço.", type:"tf", answers:["Verdadeiro","Falso"], correct:0, explanation:"A urbanização, divisão do trabalho e consumo mudam a forma de vida e ocupação do território."}
+const questions = [
+  // SISTEMA DIGESTÓRIO
+  { type: "mc", question: "Qual é a principal função do sistema digestório?", options: ["Produzir hormônios", "Transportar oxigênio", "Transformar os alimentos em nutrientes", "Bombear o sangue"], answer: 2, explanation: "O sistema digestório transforma os alimentos em nutrientes para serem absorvidos pelo corpo." },
+  { type: "tf", question: "A digestão começa no estômago.", answer: false, explanation: "A digestão começa na boca, com a mastigação e a ação da saliva." },
+  { type: "mc", question: "Qual é o nome da enzima da saliva que inicia a digestão do amido?", options: ["Pepsina", "Amilase salivar", "Lipase", "Tripsina"], answer: 1, explanation: "A amilase salivar inicia a digestão do amido na boca." },
+  { type: "tf", question: "O fígado participa da digestão produzindo a bile.", answer: true, explanation: "A bile, produzida pelo fígado, emulsifica gorduras facilitando a digestão." },
+  { type: "mc", question: "Qual órgão é responsável pela absorção de nutrientes?", options: ["Esôfago", "Intestino delgado", "Intestino grosso", "Estômago"], answer: 1, explanation: "O intestino delgado é o principal local de absorção de nutrientes." },
+  { type: "tf", question: "O estômago libera ácido clorídrico para ajudar na digestão.", answer: true, explanation: "O HCl ajuda a quebrar proteínas e ativar enzimas digestivas." },
+  { type: "mc", question: "Qual é a função do intestino grosso?", options: ["Produzir bile", "Absorver água e formar fezes", "Quebrar proteínas", "Secretar insulina"], answer: 1, explanation: "O intestino grosso absorve água e forma as fezes." },
+  { type: "tf", question: "A mastigação não influencia na digestão.", answer: false, explanation: "A mastigação tritura os alimentos e aumenta a superfície de contato para as enzimas." },
+  { type: "mc", question: "Onde ocorre a maior parte da digestão química?", options: ["Boca", "Estômago", "Intestino delgado", "Intestino grosso"], answer: 2, explanation: "A maior parte da digestão química ocorre no intestino delgado." },
+  { type: "tf", question: "O pâncreas produz enzimas digestivas.", answer: true, explanation: "O pâncreas produz enzimas que auxiliam na digestão no intestino delgado." },
+
+  // SISTEMA RESPIRATÓRIO
+  { type: "mc", question: "Qual é a principal função do sistema respiratório?", options: ["Produzir hormônios", "Fazer trocas gasosas", "Bombear o sangue", "Produzir bile"], answer: 1, explanation: "O sistema respiratório realiza a troca de oxigênio e gás carbônico." },
+  { type: "tf", question: "A traqueia conecta a laringe aos brônquios.", answer: true, explanation: "A traqueia leva o ar da laringe até os brônquios." },
+  { type: "mc", question: "Nos pulmões, as trocas gasosas ocorrem em estruturas chamadas:", options: ["Bronquíolos", "Alvéolos", "Traqueia", "Pleura"], answer: 1, explanation: "As trocas gasosas acontecem nos alvéolos." },
+  { type: "tf", question: "O diafragma é o principal músculo da respiração.", answer: true, explanation: "O diafragma se contrai e relaxa para permitir a entrada e saída de ar." },
+  { type: "mc", question: "Qual dessas doenças está relacionada ao sistema respiratório?", options: ["Diabetes", "Asma", "Gastrite", "Artrite"], answer: 1, explanation: "A asma é uma inflamação crônica das vias respiratórias." },
+  { type: "tf", question: "A pleura é uma membrana que recobre os pulmões.", answer: true, explanation: "A pleura é uma dupla membrana que envolve e protege os pulmões." },
+  { type: "mc", question: "O ar inspirado passa nesta ordem:", options: ["Nariz → Traqueia → Brônquios → Bronquíolos → Alvéolos", "Nariz → Brônquios → Traqueia → Alvéolos", "Traqueia → Nariz → Brônquios → Alvéolos", "Nariz → Alvéolos → Bronquíolos → Brônquios"], answer: 0, explanation: "O caminho correto é: nariz, traqueia, brônquios, bronquíolos e alvéolos." },
+  { type: "tf", question: "A hematose é o processo de troca gasosa nos alvéolos.", answer: true, explanation: "Na hematose o oxigênio entra no sangue e o gás carbônico sai." },
+  { type: "mc", question: "Qual estrutura impede a entrada de alimentos na traqueia durante a deglutição?", options: ["Diafragma", "Epiglote", "Pleura", "Laringe"], answer: 1, explanation: "A epiglote fecha a traqueia durante a deglutição." },
+  { type: "tf", question: "A gripe e o resfriado são doenças respiratórias causadas por vírus.", answer: true, explanation: "Tanto a gripe (influenza) quanto o resfriado comum são causados por vírus." }
 ];
 
 let currentQuestion = 0;
 let score = 0;
-let userAnswers = [];
+let answers = [];
+let shuffledOptions = []; // guarda opções embaralhadas
 
-function loadQuestion() {
-    const quiz = document.getElementById('quiz');
-    quiz.innerHTML = '';
-    if(currentQuestion < quizData.length){
-        const q = quizData[currentQuestion];
+const quizEl = document.getElementById("quiz");
+const nextBtn = document.getElementById("next-btn");
+const progressBar = document.getElementById("progress-bar");
+const resultsEl = document.getElementById("results");
+const scoreEl = document.getElementById("score");
+const summaryEl = document.getElementById("summary");
 
-        // Embaralhar respostas mantendo referência ao índice original
-        const shuffledAnswers = q.answers.map((text, index) => ({text, index}))
-                                         .sort(() => Math.random() - 0.5);
-        q.shuffledAnswers = shuffledAnswers;
-        q.shuffledCorrect = shuffledAnswers.findIndex(a => a.index === q.correct);
-
-        const questionEl = document.createElement('div');
-        questionEl.classList.add('question');
-        questionEl.innerHTML = `<strong>Pergunta ${currentQuestion + 1}:</strong> ${q.question}`;
-        quiz.appendChild(questionEl);
-
-        const answersEl = document.createElement('div');
-        answersEl.classList.add('answers');
-
-        shuffledAnswers.forEach((ans, index) => {
-            const btn = document.createElement('button');
-            btn.classList.add('answer-btn');
-            btn.innerText = ans.text;
-            btn.onclick = () => selectAnswer(index, btn);
-            answersEl.appendChild(btn);
-        });
-
-        quiz.appendChild(answersEl);
-        updateProgress();
-    } else {
-        showSummary();
-    }
-    document.getElementById('next-btn').style.display = 'none';
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
 }
 
-function selectAnswer(index, btn) {
-    const q = quizData[currentQuestion];
-    const buttons = document.querySelectorAll('.answer-btn');
+function showQuestion() {
+  const q = questions[currentQuestion];
+  quizEl.innerHTML = `<h2>${q.question}</h2>`;
 
-    buttons.forEach(b => b.disabled = true);
+  if (q.type === "mc") {
+    const optionsWithIndex = q.options.map((opt, i) => ({ opt, originalIndex: i }));
+    shuffledOptions = shuffleArray(optionsWithIndex); // salva embaralhado
+    const optionsHtml = shuffledOptions
+      .map((o, i) => `<button class='option' onclick='selectAnswer(${i})'>${o.opt}</button>`)
+      .join("");
+    quizEl.innerHTML += `<div class='options'>${optionsHtml}</div>`;
+  } else if (q.type === "tf") {
+    quizEl.innerHTML += `<div class='options'>
+      <button class='option' onclick='selectAnswer(true)'>Verdadeiro</button>
+      <button class='option' onclick='selectAnswer(false)'>Falso</button>
+    </div>`;
+  }
 
-    if(index === q.shuffledCorrect){
-        btn.classList.add('correct');
-        score++;
-        userAnswers.push(true);
-    } else {
-        btn.classList.add('wrong');
-        buttons[q.shuffledCorrect].classList.add('correct');
-        userAnswers.push(false);
-    }
-
-    const explanationEl = document.createElement('div');
-    explanationEl.classList.add('explanation');
-    explanationEl.innerText = q.explanation;
-    document.getElementById('quiz').appendChild(explanationEl);
-
-    document.getElementById('next-btn').style.display = 'inline-block';
+  updateProgress();
 }
 
-function nextQuestion() {
-    currentQuestion++;
-    loadQuestion();
-}
+function selectAnswer(answer) {
+  const q = questions[currentQuestion];
+  const optionButtons = document.querySelectorAll(".option");
 
-function showSummary() {
-    const quiz = document.getElementById('quiz');
-    quiz.innerHTML = `<h3>Quiz concluído!</h3><p>Sua pontuação: ${score} / ${quizData.length}</p>`;
-    document.getElementById('progress-bar').style.width = '100%';
-    document.getElementById('progress-bar').innerText = '100%';
-
-    const summaryEl = document.getElementById('summary');
-    summaryEl.innerHTML = '<h4>Resumo:</h4>';
-    quizData.forEach((q, index) => {
-        const item = document.createElement('div');
-        item.classList.add('summary-item');
-        item.innerHTML = `Pergunta ${index+1}: ${userAnswers[index] ? '✔' : '✖'} - ${q.question}<br><em>${q.explanation}</em>`;
-        summaryEl.appendChild(item);
+  if (q.type === "mc") {
+    optionButtons.forEach((btn, i) => {
+      const originalIndex = shuffledOptions[i].originalIndex;
+      if (originalIndex === q.answer) btn.classList.add("correct");
+      if (i === answer && originalIndex !== q.answer) btn.classList.add("incorrect");
+      btn.disabled = true;
     });
+    if (shuffledOptions[answer].originalIndex === q.answer) score++;
+    answers.push(shuffledOptions[answer].originalIndex === q.answer);
+  } else if (q.type === "tf") {
+    optionButtons.forEach(btn => {
+      const val = btn.textContent === "Verdadeiro";
+      if (val === q.answer) btn.classList.add("correct");
+      if (val === answer && val !== q.answer) btn.classList.add("incorrect");
+      btn.disabled = true;
+    });
+    if (answer === q.answer) score++;
+    answers.push(answer === q.answer);
+  }
+
+  nextBtn.style.display = "block";
 }
 
 function updateProgress() {
-    const progress = (currentQuestion / quizData.length) * 100;
-    const progressBar = document.getElementById('progress-bar');
-    progressBar.style.width = progress + '%';
-    progressBar.innerText = Math.round(progress) + '%';
+  const percent = Math.round((currentQuestion / questions.length) * 100);
+  progressBar.style.width = percent + "%";
+  progressBar.textContent = percent + "%";
 }
 
-window.onload = loadQuestion;
+nextBtn.addEventListener("click", () => {
+  currentQuestion++;
+  if (currentQuestion < questions.length) {
+    showQuestion();
+    nextBtn.style.display = "none";
+  } else {
+    showResults();
+  }
+});
+
+function showResults() {
+  quizEl.style.display = "none";
+  nextBtn.style.display = "none";
+  resultsEl.style.display = "block";
+
+  const percent = Math.round((score / questions.length) * 100);
+  scoreEl.textContent = `Você acertou ${score} de ${questions.length} questões (${percent}%).`;
+
+  summaryEl.innerHTML = questions.map((q, i) => {
+    const result = answers[i] ? "✔" : "✖";
+    return `<li>${result} ${q.question} <br><small>${q.explanation}</small></li>`;
+  }).join("");
+}
+
+showQuestion();
 </script>
 </body>
 </html>
