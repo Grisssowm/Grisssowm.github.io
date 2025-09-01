@@ -1,214 +1,169 @@
 # KiokdeFezes.github.io
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz - Sistemas Digestório e Respiratório</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 20px;
-    }
-    .quiz-container {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      max-width: 800px;
-      width: 100%;
-      padding: 20px;
-    }
-    h2 { margin-bottom: 15px; }
-    .options { display: flex; flex-direction: column; }
-    button.option {
-      margin: 6px 0;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      background: #f9f9f9;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    button.option:hover { background: #eee; }
-    button.correct { background: #b2f2bb; border-color: #2b8a3e; }
-    button.incorrect { background: #ffa8a8; border-color: #c92a2a; }
-    #next-btn {
-      margin-top: 15px;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 8px;
-      background: #4dabf7;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-      display: none;
-    }
-    #progress {
-      width: 100%;
-      background: #ddd;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      overflow: hidden;
-    }
-    #progress-bar {
-      height: 20px;
-      width: 0%;
-      background: #4dabf7;
-      text-align: center;
-      color: white;
-      font-size: 12px;
-      line-height: 20px;
-      transition: width 0.3s;
-    }
-    #results { display: none; }
-    #results ul { list-style: none; padding: 0; }
-    #results li { margin: 6px 0; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz - Artes Gráficas</title>
+<style>
+    body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; display: flex; justify-content: center; }
+    .quiz-container { background: white; padding: 20px; border-radius: 10px; max-width: 600px; width: 100%; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h2 { color: #333; }
+    .answers { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 15px; }
+    button.answer-btn { padding: 10px 20px; min-width: 250px; border: none; border-radius: 5px; cursor: pointer; background: #007bff; color: white; }
+    button.answer-btn:hover { background: #0056b3; }
+    #nextBtn { margin-top: 30px; padding: 10px 20px; border: none; border-radius: 5px; background: #28a745; color: white; cursor: pointer; }
+    #nextBtn:hover { background: #1e7e34; }
+    .hidden { display: none; }
+    .result { font-size: 20px; font-weight: bold; margin-top: 20px; }
+    input[type="text"] { padding: 8px; width: 60%; border-radius: 5px; border: 1px solid #ccc; margin-top: 10px; }
+    .feedback { margin-top: 10px; font-weight: bold; }
+</style>
 </head>
 <body>
-  <div class="quiz-container">
-    <div id="progress"><div id="progress-bar">0%</div></div>
-    <div id="quiz"></div>
-    <button id="next-btn">Próxima</button>
-    <div id="results">
-      <h2>Resultado Final</h2>
-      <p id="score"></p>
-      <ul id="summary"></ul>
-    </div>
-  </div>
+
+<div class="quiz-container">
+    <h2 id="question"></h2>
+    <div id="answers" class="answers"></div>
+    <button id="nextBtn" class="hidden">Próxima</button>
+    <div id="result" class="result"></div>
+</div>
 
 <script>
-const questions = [
-  // SISTEMA DIGESTÓRIO
-  { type: "mc", question: "Qual é a principal função do sistema digestório?", options: ["Produzir hormônios", "Transportar oxigênio", "Transformar os alimentos em nutrientes", "Bombear o sangue"], answer: 2, explanation: "O sistema digestório transforma os alimentos em nutrientes para serem absorvidos pelo corpo." },
-  { type: "tf", question: "A digestão começa no estômago.", answer: false, explanation: "A digestão começa na boca, com a mastigação e a ação da saliva." },
-  { type: "mc", question: "Qual é o nome da enzima da saliva que inicia a digestão do amido?", options: ["Pepsina", "Amilase salivar", "Lipase", "Tripsina"], answer: 1, explanation: "A amilase salivar inicia a digestão do amido na boca." },
-  { type: "tf", question: "O fígado participa da digestão produzindo a bile.", answer: true, explanation: "A bile, produzida pelo fígado, emulsifica gorduras facilitando a digestão." },
-  { type: "mc", question: "Qual órgão é responsável pela absorção de nutrientes?", options: ["Esôfago", "Intestino delgado", "Intestino grosso", "Estômago"], answer: 1, explanation: "O intestino delgado é o principal local de absorção de nutrientes." },
-  { type: "tf", question: "O estômago libera ácido clorídrico para ajudar na digestão.", answer: true, explanation: "O HCl ajuda a quebrar proteínas e ativar enzimas digestivas." },
-  { type: "mc", question: "Qual é a função do intestino grosso?", options: ["Produzir bile", "Absorver água e formar fezes", "Quebrar proteínas", "Secretar insulina"], answer: 1, explanation: "O intestino grosso absorve água e forma as fezes." },
-  { type: "tf", question: "A mastigação não influencia na digestão.", answer: false, explanation: "A mastigação tritura os alimentos e aumenta a superfície de contato para as enzimas." },
-  { type: "mc", question: "Onde ocorre a maior parte da digestão química?", options: ["Boca", "Estômago", "Intestino delgado", "Intestino grosso"], answer: 2, explanation: "A maior parte da digestão química ocorre no intestino delgado." },
-  { type: "tf", question: "O pâncreas produz enzimas digestivas.", answer: true, explanation: "O pâncreas produz enzimas que auxiliam na digestão no intestino delgado." },
+function normalize(text) {
+    return text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+}
 
-  // SISTEMA RESPIRATÓRIO
-  { type: "mc", question: "Qual é a principal função do sistema respiratório?", options: ["Produzir hormônios", "Fazer trocas gasosas", "Bombear o sangue", "Produzir bile"], answer: 1, explanation: "O sistema respiratório realiza a troca de oxigênio e gás carbônico." },
-  { type: "tf", question: "A traqueia conecta a laringe aos brônquios.", answer: true, explanation: "A traqueia leva o ar da laringe até os brônquios." },
-  { type: "mc", question: "Nos pulmões, as trocas gasosas ocorrem em estruturas chamadas:", options: ["Bronquíolos", "Alvéolos", "Traqueia", "Pleura"], answer: 1, explanation: "As trocas gasosas acontecem nos alvéolos." },
-  { type: "tf", question: "O diafragma é o principal músculo da respiração.", answer: true, explanation: "O diafragma se contrai e relaxa para permitir a entrada e saída de ar." },
-  { type: "mc", question: "Qual dessas doenças está relacionada ao sistema respiratório?", options: ["Diabetes", "Asma", "Gastrite", "Artrite"], answer: 1, explanation: "A asma é uma inflamação crônica das vias respiratórias." },
-  { type: "tf", question: "A pleura é uma membrana que recobre os pulmões.", answer: true, explanation: "A pleura é uma dupla membrana que envolve e protege os pulmões." },
-  { type: "mc", question: "O ar inspirado passa nesta ordem:", options: ["Nariz → Traqueia → Brônquios → Bronquíolos → Alvéolos", "Nariz → Brônquios → Traqueia → Alvéolos", "Traqueia → Nariz → Brônquios → Alvéolos", "Nariz → Alvéolos → Bronquíolos → Brônquios"], answer: 0, explanation: "O caminho correto é: nariz, traqueia, brônquios, bronquíolos e alvéolos." },
-  { type: "tf", question: "A hematose é o processo de troca gasosa nos alvéolos.", answer: true, explanation: "Na hematose o oxigênio entra no sangue e o gás carbônico sai." },
-  { type: "mc", question: "Qual estrutura impede a entrada de alimentos na traqueia durante a deglutição?", options: ["Diafragma", "Epiglote", "Pleura", "Laringe"], answer: 1, explanation: "A epiglote fecha a traqueia durante a deglutição." },
-  { type: "tf", question: "A gripe e o resfriado são doenças respiratórias causadas por vírus.", answer: true, explanation: "Tanto a gripe (influenza) quanto o resfriado comum são causados por vírus." }
+function similarity(s1, s2) {
+    s1 = normalize(s1);
+    s2 = normalize(s2);
+    let matches = 0;
+    const len = Math.max(s1.length, s2.length);
+    for (let i = 0; i < Math.min(s1.length, s2.length); i++) {
+        if (s1[i] === s2[i]) matches++;
+    }
+    return matches / len;
+}
+
+const quizData = [
+    {type: "mc", q: "O que é arte gráfica?", a: ["Tipo de pintura a óleo", "Tipo de arte que usa fontes, cores e imagens para comunicação", "Somente desenho digital", "Escultura moderna"], c: 1},
+    {type: "mc", q: "Qual habilidade é importante para o designer gráfico?", a: ["Apenas programação", "Somente pintura", "Desenhar e lidar com cores e fontes", "Esculpir"], c: 2},
+    {type: "tf", q: "Fontes são desenhos das letras.", c: true},
+    {type: "tf", q: "Lettering é a criação de esculturas.", c: false},
+    {type: "open", q: "Quem usou fotografia primeiramente para transmitir ideias?", c: "designers russos"},
+    {type: "mc", q: "O que é diagramação?", a: ["Processo de cortar imagens", "Organizar elementos gráficos com harmonia", "Ajustar o volume do áudio", "Criar animações"], c: 1},
+    {type: "open", q: "Qual é o objetivo principal dos designers ao criar fontes?", c: "criar novas fontes"},
+    {type: "tf", q: "Cores podem ser usadas para atrair a atenção do público.", c: true},
+    {type: "mc", q: "O que é comunicação visual?", a: ["Escrita de textos", "Uso de ícones e símbolos para comunicação", "Som de anúncios", "Design de som"], c: 1},
+    {type: "open", q: "O que é logo?", c: "ícone ou figura que identifica"}
 ];
 
 let currentQuestion = 0;
 let score = 0;
-let answers = [];
-let shuffledOptions = []; // guarda opções embaralhadas
 
-const quizEl = document.getElementById("quiz");
-const nextBtn = document.getElementById("next-btn");
-const progressBar = document.getElementById("progress-bar");
-const resultsEl = document.getElementById("results");
-const scoreEl = document.getElementById("score");
-const summaryEl = document.getElementById("summary");
+const questionEl = document.getElementById("question");
+const answersEl = document.getElementById("answers");
+const nextBtn = document.getElementById("nextBtn");
+const resultEl = document.getElementById("result");
 
-function shuffleArray(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
+function loadQuestion() {
+    const q = quizData[currentQuestion];
+    questionEl.textContent = q.q;
+    answersEl.innerHTML = "";
+    nextBtn.classList.add("hidden");
+
+    if (q.type === "mc") {
+        q.a.forEach((answer, index) => {
+            const btn = document.createElement("button");
+            btn.textContent = answer;
+            btn.classList.add("answer-btn");
+            btn.onclick = () => checkAnswer(index);
+            answersEl.appendChild(btn);
+        });
+    } else if (q.type === "tf") {
+        ["Verdadeiro", "Falso"].forEach((val, index) => {
+            const btn = document.createElement("button");
+            btn.textContent = val;
+            btn.classList.add("answer-btn");
+            btn.onclick = () => checkAnswer(index === 0);
+            answersEl.appendChild(btn);
+        });
+    } else if (q.type === "open") {
+        const input = document.createElement("input");
+        input.type = "text";
+        input.placeholder = "Digite sua resposta...";
+        answersEl.appendChild(input);
+
+        const feedback = document.createElement("div");
+        feedback.className = "feedback";
+        answersEl.appendChild(feedback);
+
+        const btn = document.createElement("button");
+        btn.textContent = "Confirmar";
+        btn.classList.add("answer-btn");
+        btn.onclick = () => {
+            const userAnswer = input.value;
+            const sim = similarity(userAnswer, q.c);
+            if(sim >= 0.6){
+                score++;
+                input.style.borderColor = "green";
+                feedback.textContent = "Correto!";
+                feedback.style.color = "green";
+            } else {
+                input.style.borderColor = "red";
+                feedback.textContent = "Incorreto! Resposta correta: " + q.c;
+                feedback.style.color = "red";
+            }
+            Array.from(answersEl.querySelectorAll("button")).forEach(b => b.disabled = true);
+            nextBtn.classList.remove("hidden");
+        };
+        answersEl.appendChild(btn);
+    }
 }
 
-function showQuestion() {
-  const q = questions[currentQuestion];
-  quizEl.innerHTML = `<h2>${q.question}</h2>`;
+function checkAnswer(isCorrect) {
+    const q = quizData[currentQuestion];
+    let correct = false;
+    if (typeof isCorrect === "boolean") {
+        correct = isCorrect === q.c;
+    } else if (typeof isCorrect === "number") {
+        correct = isCorrect === q.c;
+    }
 
-  if (q.type === "mc") {
-    const optionsWithIndex = q.options.map((opt, i) => ({ opt, originalIndex: i }));
-    shuffledOptions = shuffleArray(optionsWithIndex); // salva embaralhado
-    const optionsHtml = shuffledOptions
-      .map((o, i) => `<button class='option' onclick='selectAnswer(${i})'>${o.opt}</button>`)
-      .join("");
-    quizEl.innerHTML += `<div class='options'>${optionsHtml}</div>`;
-  } else if (q.type === "tf") {
-    quizEl.innerHTML += `<div class='options'>
-      <button class='option' onclick='selectAnswer(true)'>Verdadeiro</button>
-      <button class='option' onclick='selectAnswer(false)'>Falso</button>
-    </div>`;
-  }
+    if (correct) score++;
 
-  updateProgress();
+    nextBtn.classList.remove("hidden");
+
+    if (q.type === "mc" || q.type === "tf") {
+        Array.from(answersEl.children).forEach((btn, index) => {
+            btn.disabled = true;
+            if ((q.type === "mc" && index === q.c) || (q.type === "tf" && ((q.c && index === 0) || (!q.c && index === 1)))) {
+                btn.style.backgroundColor = "green";
+            } else {
+                btn.style.backgroundColor = "red";
+            }
+        });
+    }
 }
 
-function selectAnswer(answer) {
-  const q = questions[currentQuestion];
-  const optionButtons = document.querySelectorAll(".option");
+nextBtn.onclick = () => {
+    currentQuestion++;
+    if (currentQuestion < quizData.length) {
+        loadQuestion();
+    } else {
+        showResult();
+    }
+};
 
-  if (q.type === "mc") {
-    optionButtons.forEach((btn, i) => {
-      const originalIndex = shuffledOptions[i].originalIndex;
-      if (originalIndex === q.answer) btn.classList.add("correct");
-      if (i === answer && originalIndex !== q.answer) btn.classList.add("incorrect");
-      btn.disabled = true;
-    });
-    if (shuffledOptions[answer].originalIndex === q.answer) score++;
-    answers.push(shuffledOptions[answer].originalIndex === q.answer);
-  } else if (q.type === "tf") {
-    optionButtons.forEach(btn => {
-      const val = btn.textContent === "Verdadeiro";
-      if (val === q.answer) btn.classList.add("correct");
-      if (val === answer && val !== q.answer) btn.classList.add("incorrect");
-      btn.disabled = true;
-    });
-    if (answer === q.answer) score++;
-    answers.push(answer === q.answer);
-  }
-
-  nextBtn.style.display = "block";
+function showResult() {
+    questionEl.classList.add("hidden");
+    answersEl.classList.add("hidden");
+    nextBtn.classList.add("hidden");
+    resultEl.textContent = `Você acertou ${score} de ${quizData.length} perguntas!`;
 }
 
-function updateProgress() {
-  const percent = Math.round((currentQuestion / questions.length) * 100);
-  progressBar.style.width = percent + "%";
-  progressBar.textContent = percent + "%";
-}
-
-nextBtn.addEventListener("click", () => {
-  currentQuestion++;
-  if (currentQuestion < questions.length) {
-    showQuestion();
-    nextBtn.style.display = "none";
-  } else {
-    showResults();
-  }
-});
-
-function showResults() {
-  quizEl.style.display = "none";
-  nextBtn.style.display = "none";
-  resultsEl.style.display = "block";
-
-  const percent = Math.round((score / questions.length) * 100);
-  scoreEl.textContent = `Você acertou ${score} de ${questions.length} questões (${percent}%).`;
-
-  summaryEl.innerHTML = questions.map((q, i) => {
-    const result = answers[i] ? "✔" : "✖";
-    return `<li>${result} ${q.question} <br><small>${q.explanation}</small></li>`;
-  }).join("");
-}
-
-showQuestion();
+loadQuestion();
 </script>
+
 </body>
 </html>
-
