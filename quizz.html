@@ -1,171 +1,339 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz - Artes Gráficas</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Quiz — Trabalho e Exploração na América Espanhola</title>
 <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; display: flex; justify-content: center; }
-    .quiz-container { background: white; padding: 20px; border-radius: 10px; max-width: 600px; width: 100%; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    h2 { color: #333; }
-    .answers { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 15px; }
-    button.answer-btn { padding: 10px 20px; min-width: 250px; border: none; border-radius: 5px; cursor: pointer; background: #007bff; color: white; }
-    button.answer-btn:hover { background: #0056b3; }
-    #nextBtn { margin-top: 30px; padding: 10px 20px; border: none; border-radius: 5px; background: #28a745; color: white; cursor: pointer; }
-    #nextBtn:hover { background: #1e7e34; }
-    .hidden { display: none; }
-    .result { font-size: 20px; font-weight: bold; margin-top: 20px; }
-    input[type="text"] { padding: 8px; width: 60%; border-radius: 5px; border: 1px solid #ccc; margin-top: 10px; }
-    .feedback { margin-top: 10px; font-weight: bold; }
+  :root{
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --accent:#4a90e2;
+    --correct:#4caf50;
+    --wrong:#e74c3c;
+    --text:#333333;
+  }
+  body{
+    font-family: Arial, sans-serif;
+    background:var(--bg);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    margin:0;
+    padding:20px;
+  }
+  .quiz-card{
+    background:var(--card);
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    width:100%;
+    max-width:700px;
+  }
+  h1{
+    text-align:center;
+    color:var(--text);
+  }
+  .question{
+    font-size:18px;
+    margin-bottom:15px;
+  }
+  .options button{
+    display:block;
+    width:100%;
+    margin:8px 0;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    background:#f0f0f0;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.3s;
+  }
+  .options button:hover{background:#e0e0e0;}
+  .options button.correct{background:var(--correct);color:#fff;}
+  .options button.wrong{background:var(--wrong);color:#fff;}
+  .explanation{
+    margin-top:15px;
+    font-size:15px;
+    color:#555;
+    padding:10px;
+    background:#f9f9f9;
+    border-left:4px solid var(--accent);
+  }
+  .next-btn{
+    margin-top:15px;
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    background:var(--accent);
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+  }
+  .progress-container{
+    width:100%;
+    background:#ddd;
+    border-radius:8px;
+    margin:20px 0;
+    height:20px;
+    overflow:hidden;
+  }
+  .progress-bar{
+    height:100%;
+    width:0;
+    background:var(--accent);
+    transition:width 0.3s ease;
+  }
 </style>
 </head>
 <body>
-
-<div class="quiz-container">
-    <h2 id="question"></h2>
-    <div id="answers" class="answers"></div>
-    <button id="nextBtn" class="hidden">Próxima</button>
-    <div id="result" class="result"></div>
-</div>
-
+  <div class="quiz-card">
+    <h1>Quiz — Trabalho e Exploração</h1>
+    <div class="progress-container"><div class="progress-bar"></div></div>
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div class="explanation" id="explanation" style="display:none;"></div>
+    <button class="next-btn" id="nextBtn" style="display:none;">Próxima</button>
+  </div>
 <script>
-function normalize(text) {
-    return text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
-}
-
-function similarity(s1, s2) {
-    s1 = normalize(s1);
-    s2 = normalize(s2);
-    let matches = 0;
-    const len = Math.max(s1.length, s2.length);
-    for (let i = 0; i < Math.min(s1.length, s2.length); i++) {
-        if (s1[i] === s2[i]) matches++;
-    }
-    return matches / len;
-}
-
-const quizData = [
-    {type: "mc", q: "O que é arte gráfica?", a: ["Tipo de pintura a óleo", "Tipo de arte que usa fontes, cores e imagens para comunicação", "Somente desenho digital", "Escultura moderna"], c: 1},
-    {type: "mc", q: "Qual habilidade é importante para o designer gráfico?", a: ["Apenas programação", "Somente pintura", "Desenhar e lidar com cores e fontes", "Esculpir"], c: 2},
-    {type: "tf", q: "Fontes são desenhos das letras.", c: true},
-    {type: "tf", q: "Lettering é a criação de esculturas.", c: false},
-    {type: "open", q: "Quem usou fotografia primeiramente para transmitir ideias?", c: "designers russos"},
-    {type: "mc", q: "O que é diagramação?", a: ["Processo de cortar imagens", "Organizar elementos gráficos com harmonia", "Ajustar o volume do áudio", "Criar animações"], c: 1},
-    {type: "open", q: "Qual é o objetivo principal dos designers ao criar fontes?", c: "criar novas fontes"},
-    {type: "tf", q: "Cores podem ser usadas para atrair a atenção do público.", c: true},
-    {type: "mc", q: "O que é comunicação visual?", a: ["Escrita de textos", "Uso de ícones e símbolos para comunicação", "Som de anúncios", "Design de som"], c: 1},
-    {type: "open", q: "O que é logo?", c: "ícone ou figura que identifica"}
+const QUESTIONS = [
+  {
+    type: "mcq",
+    question: "Na hierarquia social da América espanhola, os chapetones ocupavam o topo. Quem eles eram?",
+    options: [
+      "Filhos de espanhóis nascidos na colônia, com prestígio limitado.",
+      "Espanhóis vindos da metrópole, controlando cargos e comércio.",
+      "Mestiços com acesso ao clero e à administração.",
+      "Africanos libertos que ascenderam na sociedade."
+    ],
+    correctIndex: 1,
+    explanation: "Chapetones eram peninsulares, nascidos na Espanha, enviados à América para ocupar os cargos mais altos."
+  },
+  {
+    type: "mcq",
+    question: "Os criollos se diferenciavam dos chapetones principalmente por:",
+    options: [
+      "Defenderem o monopólio da metrópole.",
+      "Serem descendentes de espanhóis nascidos na colônia, excluídos de altos cargos.",
+      "Estarem sempre em condições iguais às elites da metrópole.",
+      "Serem indígenas aliados da Coroa espanhola."
+    ],
+    correctIndex: 1,
+    explanation: "Criollos eram descendentes de espanhóis nascidos na colônia; ricos, mas com menos prestígio que os chapetones."
+  },
+  {
+    type: "tf",
+    question: "Indígenas e africanos compunham as camadas mais exploradas da sociedade colonial.",
+    correct: true,
+    explanation: "Esses grupos eram submetidos a trabalho compulsório, tanto em minas como em haciendas."
+  },
+  {
+    type: "mcq",
+    question: "A Revolta de Túpac Amaru II (1780) expressou:",
+    options: [
+      "A defesa do monopólio comercial espanhol.",
+      "A luta indígena e mestiça contra abusos coloniais.",
+      "A tentativa dos chapetones de obter mais autonomia.",
+      "O apoio dos criollos ao absolutismo europeu."
+    ],
+    correctIndex: 1,
+    explanation: "Túpac Amaru II liderou uma grande revolta contra a exploração colonial no Peru."
+  },
+  {
+    type: "mcq",
+    question: "O monopólio comercial espanhol implicava que:",
+    options: [
+      "As colônias só podiam negociar com a Espanha.",
+      "Criollos podiam comercializar livremente com ingleses.",
+      "Indígenas tinham autonomia para exportar.",
+      "Produtos só podiam ser vendidos em feiras locais."
+    ],
+    correctIndex: 0,
+    explanation: "O mercantilismo impunha que as colônias só comerciassem com a metrópole."
+  },
+  {
+    type: "mcq",
+    question: "O que era a mita no sistema colonial espanhol?",
+    options: [
+      "Imposto pago em ouro pelos indígenas.",
+      "Sistema de trabalho forçado nas minas, adaptado de práticas indígenas.",
+      "Regra de sucessão política entre criollos.",
+      "Troca de produtos agrícolas entre comunidades."
+    ],
+    correctIndex: 1,
+    explanation: "A mita era o regime em que indígenas eram sorteados para trabalhar nas minas em turnos forçados."
+  },
+  {
+    type: "mcq",
+    question: "As haciendas eram propriedades coloniais que:",
+    options: [
+      "Funcionavam como centros urbanos de comércio europeu.",
+      "Produziam bens agrícolas e pecuários, mas em condições precárias de trabalho.",
+      "Serviam como locais de descanso para os chapetones.",
+      "Foram criadas apenas após a independência."
+    ],
+    correctIndex: 1,
+    explanation: "As haciendas produziam para abastecer as cidades e as minas, com salários baixos e exploração de trabalhadores."
+  },
+  {
+    type: "tf",
+    question: "Os trabalhadores das haciendas recebiam salários altos e tinham liberdade para mudar de emprego.",
+    correct: false,
+    explanation: "Eles recebiam salários baixos, muitas vezes pagos em produtos, ficando endividados e presos às haciendas."
+  },
+  {
+    type: "mcq",
+    question: "O texto de Eduardo Galeano descreve que, mesmo proibido oficialmente, o trabalho forçado:",
+    options: [
+      "Era totalmente eliminado nas colônias.",
+      "Continuava na prática para manter a produção.",
+      "Só existia em fazendas de criollos.",
+      "Foi substituído por pleno emprego assalariado."
+    ],
+    correctIndex: 1,
+    explanation: "Havia leis que proibiam, mas secretamente ordenava-se que o trabalho forçado continuasse para não cair a produção."
+  },
+  {
+    type: "mcq",
+    question: "O que significa a frase 'O metal brotava sem cessar dos filões americanos'?",
+    options: [
+      "A abundância de metais preciosos extraídos nas colônias.",
+      "O crescimento espontâneo das minas.",
+      "A produção agrícola voltada para exportação.",
+      "A riqueza cultural dos povos indígenas."
+    ],
+    correctIndex: 0,
+    explanation: "A frase faz referência à exploração contínua de metais, como ouro e prata, que sustentavam a Coroa espanhola."
+  },
+  {
+    type: "tf",
+    question: "A Coroa espanhola, apesar de publicar leis de proteção, dependia da exploração indígena para manter seu império.",
+    correct: true,
+    explanation: "As leis eram muitas vezes 'de papel', enquanto na prática a exploração continuava."
+  },
+  {
+    type: "mcq",
+    question: "Durante o período colonial, os movimentos de contestação social surgiram principalmente devido a:",
+    options: [
+      "Acesso igualitário à terra.",
+      "Excesso de privilégios aos indígenas.",
+      "Exploração do trabalho compulsório e discriminação.",
+      "Fortalecimento dos criollos no governo colonial."
+    ],
+    correctIndex: 2,
+    explanation: "A exploração e as desigualdades levaram a revoltas como a de Túpac Amaru II."
+  },
+  {
+    type: "mcq",
+    question: "O que o 'Dia da Resistência Indígena' (12 de outubro) busca relembrar?",
+    options: [
+      "O início do comércio livre entre América e Europa.",
+      "As conquistas militares dos espanhóis.",
+      "A luta contra o racismo e exclusão dos povos indígenas.",
+      "A assinatura dos tratados de independência."
+    ],
+    correctIndex: 2,
+    explanation: "Esse dia é usado por movimentos indígenas para protestar contra o racismo e refletir sobre os impactos da colonização."
+  },
+  {
+    type: "mcq",
+    question: "Quais ideias influenciaram os criollos a se oporem ao domínio espanhol no fim do período colonial?",
+    options: [
+      "O absolutismo monárquico e o feudalismo.",
+      "As ideias iluministas e a independência das Treze Colônias.",
+      "O retorno às tradições incas.",
+      "As missões jesuíticas e a mita."
+    ],
+    correctIndex: 1,
+    explanation: "O Iluminismo e a independência dos EUA inspiraram os criollos a lutar contra o monopólio espanhol."
+  },
+  {
+    type: "tf",
+    question: "Chapetones e criollos exerciam juntos o controle sobre os grupos mais pobres, como indígenas, mestiços e africanos escravizados.",
+    correct: true,
+    explanation: "Mesmo em conflito entre si, ambos exploravam os grupos sociais mais vulneráveis."
+  }
 ];
 
 let currentQuestion = 0;
-let score = 0;
-
 const questionEl = document.getElementById("question");
-const answersEl = document.getElementById("answers");
+const optionsEl = document.getElementById("options");
+const explanationEl = document.getElementById("explanation");
 const nextBtn = document.getElementById("nextBtn");
-const resultEl = document.getElementById("result");
+const progressBar = document.querySelector(".progress-bar");
 
-function loadQuestion() {
-    const q = quizData[currentQuestion];
-    questionEl.textContent = q.q;
-    answersEl.innerHTML = "";
-    nextBtn.classList.add("hidden");
+function loadQuestion(){
+  const q = QUESTIONS[currentQuestion];
+  questionEl.textContent = q.question;
+  optionsEl.innerHTML = "";
+  explanationEl.style.display = "none";
+  nextBtn.style.display = "none";
 
-    if (q.type === "mc") {
-        q.a.forEach((answer, index) => {
-            const btn = document.createElement("button");
-            btn.textContent = answer;
-            btn.classList.add("answer-btn");
-            btn.onclick = () => checkAnswer(index);
-            answersEl.appendChild(btn);
-        });
-    } else if (q.type === "tf") {
-        ["Verdadeiro", "Falso"].forEach((val, index) => {
-            const btn = document.createElement("button");
-            btn.textContent = val;
-            btn.classList.add("answer-btn");
-            btn.onclick = () => checkAnswer(index === 0);
-            answersEl.appendChild(btn);
-        });
-    } else if (q.type === "open") {
-        const input = document.createElement("input");
-        input.type = "text";
-        input.placeholder = "Digite sua resposta...";
-        answersEl.appendChild(input);
-
-        const feedback = document.createElement("div");
-        feedback.className = "feedback";
-        answersEl.appendChild(feedback);
-
-        const btn = document.createElement("button");
-        btn.textContent = "Confirmar";
-        btn.classList.add("answer-btn");
-        btn.onclick = () => {
-            const userAnswer = input.value;
-            const sim = similarity(userAnswer, q.c);
-            if(sim >= 0.6){
-                score++;
-                input.style.borderColor = "green";
-                feedback.textContent = "Correto!";
-                feedback.style.color = "green";
-            } else {
-                input.style.borderColor = "red";
-                feedback.textContent = "Incorreto! Resposta correta: " + q.c;
-                feedback.style.color = "red";
-            }
-            Array.from(answersEl.querySelectorAll("button")).forEach(b => b.disabled = true);
-            nextBtn.classList.remove("hidden");
-        };
-        answersEl.appendChild(btn);
-    }
+  if(q.type === "mcq"){
+    q.options.forEach((opt,i)=>{
+      const btn = document.createElement("button");
+      btn.textContent = opt;
+      btn.onclick = ()=> selectOption(btn,i);
+      optionsEl.appendChild(btn);
+    });
+  } else if(q.type === "tf"){
+    ["Verdadeiro","Falso"].forEach((opt,i)=>{
+      const btn = document.createElement("button");
+      btn.textContent = opt;
+      btn.onclick = ()=> selectOption(btn,i===0);
+      optionsEl.appendChild(btn);
+    });
+  }
+  updateProgress();
 }
 
-function checkAnswer(isCorrect) {
-    const q = quizData[currentQuestion];
-    let correct = false;
-    if (typeof isCorrect === "boolean") {
-        correct = isCorrect === q.c;
-    } else if (typeof isCorrect === "number") {
-        correct = isCorrect === q.c;
-    }
+function selectOption(button,choice){
+  const q = QUESTIONS[currentQuestion];
+  const buttons = optionsEl.querySelectorAll("button");
+  buttons.forEach(b=>b.disabled=true);
 
-    if (correct) score++;
-
-    nextBtn.classList.remove("hidden");
-
-    if (q.type === "mc" || q.type === "tf") {
-        Array.from(answersEl.children).forEach((btn, index) => {
-            btn.disabled = true;
-            if ((q.type === "mc" && index === q.c) || (q.type === "tf" && ((q.c && index === 0) || (!q.c && index === 1)))) {
-                btn.style.backgroundColor = "green";
-            } else {
-                btn.style.backgroundColor = "red";
-            }
-        });
-    }
-}
-
-nextBtn.onclick = () => {
-    currentQuestion++;
-    if (currentQuestion < quizData.length) {
-        loadQuestion();
+  if(q.type === "mcq"){
+    if(choice === q.correctIndex){
+      button.classList.add("correct");
     } else {
-        showResult();
+      button.classList.add("wrong");
+      buttons[q.correctIndex].classList.add("correct");
     }
-};
+  } else if(q.type === "tf"){
+    if(choice === q.correct){
+      button.classList.add("correct");
+    } else {
+      button.classList.add("wrong");
+      buttons[q.correct ? 0:1].classList.add("correct");
+    }
+  }
 
-function showResult() {
-    questionEl.classList.add("hidden");
-    answersEl.classList.add("hidden");
-    nextBtn.classList.add("hidden");
-    resultEl.textContent = `Você acertou ${score} de ${quizData.length} perguntas!`;
+  explanationEl.textContent = q.explanation;
+  explanationEl.style.display = "block";
+  nextBtn.style.display = "inline-block";
+}
+
+nextBtn.addEventListener("click",()=>{
+  currentQuestion++;
+  if(currentQuestion < QUESTIONS.length){
+    loadQuestion();
+  } else {
+    questionEl.textContent = "Fim do quiz!";
+    optionsEl.innerHTML = "";
+    explanationEl.style.display = "none";
+    nextBtn.style.display = "none";
+    progressBar.style.width = "100%";
+  }
+});
+
+function updateProgress(){
+  const progress = ((currentQuestion)/QUESTIONS.length)*100;
+  progressBar.style.width = progress+"%";
 }
 
 loadQuestion();
 </script>
-
 </body>
 </html>
-
-
-
-
