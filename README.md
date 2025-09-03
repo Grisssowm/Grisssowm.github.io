@@ -129,8 +129,133 @@ const QUESTIONS = [
     question: "Indígenas e africanos compunham as camadas mais exploradas da sociedade colonial.",
     correct: true,
     explanation: "Esses grupos eram submetidos a trabalho compulsório, tanto em minas como em haciendas."
+  },
+  {
+    type: "mcq",
+    question: "A Revolta de Túpac Amaru II (1780) expressou:",
+    options: [
+      "A defesa do monopólio comercial espanhol.",
+      "A luta indígena e mestiça contra abusos coloniais.",
+      "A tentativa dos chapetones de obter mais autonomia.",
+      "O apoio dos criollos ao absolutismo europeu."
+    ],
+    correctIndex: 1,
+    explanation: "Túpac Amaru II liderou uma grande revolta contra a exploração colonial no Peru."
+  },
+  {
+    type: "mcq",
+    question: "O monopólio comercial espanhol implicava que:",
+    options: [
+      "As colônias só podiam negociar com a Espanha.",
+      "Criollos podiam comercializar livremente com ingleses.",
+      "Indígenas tinham autonomia para exportar.",
+      "Produtos só podiam ser vendidos em feiras locais."
+    ],
+    correctIndex: 0,
+    explanation: "O mercantilismo impunha que as colônias só comerciassem com a metrópole."
+  },
+  {
+    type: "mcq",
+    question: "O que era a mita no sistema colonial espanhol?",
+    options: [
+      "Imposto pago em ouro pelos indígenas.",
+      "Sistema de trabalho forçado nas minas, adaptado de práticas indígenas.",
+      "Regra de sucessão política entre criollos.",
+      "Troca de produtos agrícolas entre comunidades."
+    ],
+    correctIndex: 1,
+    explanation: "A mita era o regime em que indígenas eram sorteados para trabalhar nas minas em turnos forçados."
+  },
+  {
+    type: "mcq",
+    question: "As haciendas eram propriedades coloniais que:",
+    options: [
+      "Funcionavam como centros urbanos de comércio europeu.",
+      "Produziam bens agrícolas e pecuários, mas em condições precárias de trabalho.",
+      "Serviam como locais de descanso para os chapetones.",
+      "Foram criadas apenas após a independência."
+    ],
+    correctIndex: 1,
+    explanation: "As haciendas produziam para abastecer as cidades e as minas, com salários baixos e exploração de trabalhadores."
+  },
+  {
+    type: "tf",
+    question: "Os trabalhadores das haciendas recebiam salários altos e tinham liberdade para mudar de emprego.",
+    correct: false,
+    explanation: "Eles recebiam salários baixos, muitas vezes pagos em produtos, ficando endividados e presos às haciendas."
+  },
+  {
+    type: "mcq",
+    question: "O texto de Eduardo Galeano descreve que, mesmo proibido oficialmente, o trabalho forçado:",
+    options: [
+      "Era totalmente eliminado nas colônias.",
+      "Continuava na prática para manter a produção.",
+      "Só existia em fazendas de criollos.",
+      "Foi substituído por pleno emprego assalariado."
+    ],
+    correctIndex: 1,
+    explanation: "Havia leis que proibiam, mas secretamente ordenava-se que o trabalho forçado continuasse para não cair a produção."
+  },
+  {
+    type: "mcq",
+    question: "O que significa a frase 'O metal brotava sem cessar dos filões americanos'?",
+    options: [
+      "A abundância de metais preciosos extraídos nas colônias.",
+      "O crescimento espontâneo das minas.",
+      "A produção agrícola voltada para exportação.",
+      "A riqueza cultural dos povos indígenas."
+    ],
+    correctIndex: 0,
+    explanation: "A frase faz referência à exploração contínua de metais, como ouro e prata, que sustentavam a Coroa espanhola."
+  },
+  {
+    type: "tf",
+    question: "A Coroa espanhola, apesar de publicar leis de proteção, dependia da exploração indígena para manter seu império.",
+    correct: true,
+    explanation: "As leis eram muitas vezes 'de papel', enquanto na prática a exploração continuava."
+  },
+  {
+    type: "mcq",
+    question: "Durante o período colonial, os movimentos de contestação social surgiram principalmente devido a:",
+    options: [
+      "Acesso igualitário à terra.",
+      "Excesso de privilégios aos indígenas.",
+      "Exploração do trabalho compulsório e discriminação.",
+      "Fortalecimento dos criollos no governo colonial."
+    ],
+    correctIndex: 2,
+    explanation: "A exploração e as desigualdades levaram a revoltas como a de Túpac Amaru II."
+  },
+  {
+    type: "mcq",
+    question: "O que o 'Dia da Resistência Indígena' (12 de outubro) busca relembrar?",
+    options: [
+      "O início do comércio livre entre América e Europa.",
+      "As conquistas militares dos espanhóis.",
+      "A luta contra o racismo e exclusão dos povos indígenas.",
+      "A assinatura dos tratados de independência."
+    ],
+    correctIndex: 2,
+    explanation: "Esse dia é usado por movimentos indígenas para protestar contra o racismo e refletir sobre os impactos da colonização."
+  },
+  {
+    type: "mcq",
+    question: "Quais ideias influenciaram os criollos a se oporem ao domínio espanhol no fim do período colonial?",
+    options: [
+      "O absolutismo monárquico e o feudalismo.",
+      "As ideias iluministas e a independência das Treze Colônias.",
+      "O retorno às tradições incas.",
+      "As missões jesuíticas e a mita."
+    ],
+    correctIndex: 1,
+    explanation: "O Iluminismo e a independência dos EUA inspiraram os criollos a lutar contra o monopólio espanhol."
+  },
+  {
+    type: "tf",
+    question: "Chapetones e criollos exerciam juntos o controle sobre os grupos mais pobres, como indígenas, mestiços e africanos escravizados.",
+    correct: true,
+    explanation: "Mesmo em conflito entre si, ambos exploravam os grupos sociais mais vulneráveis."
   }
-  // ... (restante das perguntas que você já tinha)
 ];
 
 let currentQuestion = 0;
@@ -140,7 +265,6 @@ const explanationEl = document.getElementById("explanation");
 const nextBtn = document.getElementById("nextBtn");
 const progressBar = document.querySelector(".progress-bar");
 
-// Função para embaralhar array
 function shuffleArray(array){
   for(let i = array.length -1; i > 0; i--){
     const j = Math.floor(Math.random() * (i+1));
@@ -184,7 +308,6 @@ function selectOption(button,isCorrect,opts){
     button.classList.add("correct");
   } else {
     button.classList.add("wrong");
-    // Marca a correta
     const correctBtn = Array.from(buttons).find((b,i)=>opts[i].correct);
     if(correctBtn) correctBtn.classList.add("correct");
   }
