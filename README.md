@@ -1,613 +1,507 @@
 # Grisssowm.github.io
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Quiz — Pop Art (interativo)</title>
-  <style>
-    :root{
-      --bg: #f4f7fb;
-      --card: #ffffff;
-      --accent: #2b6cb0;
-      --correct: #2e7d32;
-      --wrong: #c62828;
-      --muted: #6b7280;
-      --radius: 12px;
-      --gap: 12px;
-      font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:var(--bg);
-      padding:28px;
-    }
-
-    .wrap{
-      width:100%;
-      max-width:920px;
-      background:var(--card);
-      border-radius:16px;
-      padding:22px;
-      box-shadow:0 8px 28px rgba(20,30,60,0.08);
-    }
-
-    header{ text-align:center; margin-bottom:8px; }
-    header h1{ margin:0; color:var(--accent); font-size:1.4rem; }
-    header p{ margin:6px 0 0 0; color:var(--muted); font-size:0.95rem; }
-
-    .progress-wrap{ margin:18px 0; }
-    .progress{
-      height:18px;
-      background:#e9f0fb;
-      border-radius:999px;
-      overflow:hidden;
-    }
-    .progress > i{
-      display:block;
-      height:100%;
-      width:0%;
-      background:linear-gradient(90deg,var(--accent),#4aa3ff);
-      transition:width .25s ease;
-      text-align:center;
-      color:white;
-      font-weight:700;
-      line-height:18px;
-      font-size:12px;
-    }
-
-    .card{
-      padding:18px;
-      border-radius:12px;
-      background:linear-gradient(180deg,#ffffff,#fcfdff);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
-    }
-
-    .meta{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:12px;
-      color:var(--muted);
-      font-size:0.95rem;
-    }
-
-    .question{
-      font-weight:700;
-      margin-bottom:14px;
-      text-align:center;
-      font-size:1.05rem;
-    }
-
-    .options{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      align-items:center; /* botões centralizados */
-      margin-bottom:14px;
-    }
-
-    .option-btn{
-      width:100%;
-      max-width:720px;
-      padding:12px 16px;
-      border-radius:10px;
-      border:1px solid rgba(20,40,80,0.06);
-      background:#fff;
-      cursor:pointer;
-      font-size:0.98rem;
-      text-align:center;
-      box-shadow:0 10px 22px rgba(20,30,60,0.04);
-      transition:transform .08s ease, box-shadow .12s ease;
-      user-select:none;
-    }
-    .option-btn:hover{ transform:translateY(-3px); }
-    .option-btn.disabled{ pointer-events:none; opacity:0.96; transform:none; box-shadow:none; }
-
-    .option-btn.correct{
-      background: rgba(46,125,50,0.12);
-      border-color: rgba(46,125,50,0.25);
-      color: var(--correct);
-      font-weight:700;
-    }
-    .option-btn.wrong{
-      background: rgba(198,40,40,0.08);
-      border-color: rgba(198,40,40,0.18);
-      color: var(--wrong);
-      font-weight:700;
-    }
-
-    .controls{
-      display:flex;
-      justify-content:center;
-      gap:12px;
-      margin-top:6px;
-      align-items:center;
-    }
-
-    .btn{
-      padding:10px 18px;
-      border-radius:10px;
-      border:0;
-      cursor:pointer;
-      font-weight:700;
-      font-size:0.95rem;
-    }
-    .btn.primary{ background:var(--accent); color:white; box-shadow:0 8px 18px rgba(40,60,120,0.08); }
-    .btn.primary:disabled{ opacity:0.6; cursor:not-allowed; }
-
-    /* resultado / resumo */
-    #summary{ display:none; margin-top:18px; }
-    #summary h2{ margin:8px 0; color:var(--accent); }
-    .summary-list{ display:flex; flex-direction:column; gap:10px; margin-top:8px; }
-    .summary-item{
-      padding:12px;
-      border-radius:10px;
-      background:#fbfdff;
-      border:1px solid #eef6ff;
-    }
-    .summary-item .qtitle{ font-weight:800; }
-    .summary-item .explain{ margin-top:6px; color:var(--muted) }
-
-    @media (max-width:600px){
-      .option-btn{ padding:10px; font-size:0.95rem; }
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Quiz — Revoluções Industriais e Meio Técnico-Científico-Informacional</title>
+<style>
+  :root{
+    --bg: #f6f8fb;
+    --card: #ffffff;
+    --accent: #2563eb;
+    --success: #16a34a;
+    --danger: #dc2626;
+    --muted: #6b7280;
+    --btn-padding: 12px 18px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--bg);
+    padding:24px;
+    color:#0b1220;
+  }
+  .wrap{
+    width:100%;
+    max-width:980px;
+  }
+  .card{
+    background:var(--card);
+    border-radius:14px;
+    padding:26px;
+    box-shadow: 0 10px 30px rgba(16,24,40,0.08);
+  }
+  header{
+    display:flex;
+    gap:14px;
+    align-items:center;
+    margin-bottom:10px;
+  }
+  header h1{ margin:0; font-size:20px; }
+  header p{ margin:0; color:var(--muted); font-size:14px; }
+  .progress-wrap{ margin-top:12px; display:flex; align-items:center; gap:12px; }
+  .progress{
+    flex:1;
+    height:12px;
+    background:#e6eefc;
+    border-radius:999px;
+    overflow:hidden;
+  }
+  .progress > i{
+    display:block;
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,var(--accent),#60a5fa);
+    transition:width .35s ease;
+  }
+  .progress-label{ min-width:68px; text-align:right; font-size:13px; color:var(--muted); }
+  .question-area{ margin-top:18px; }
+  .q-number{ color:var(--muted); font-size:13px; margin-bottom:8px; }
+  .q-text{ font-size:18px; margin-bottom:18px; line-height:1.45; }
+  .choices{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    align-items:center;
+  }
+  .choice-btn{
+    width:100%;
+    max-width:820px;
+    padding:var(--btn-padding);
+    border-radius:12px;
+    border:1px solid rgba(2,6,23,0.06);
+    background:#fff;
+    cursor:pointer;
+    font-size:15px;
+    text-align:center;
+    transition: transform .06s ease, box-shadow .06s ease;
+    outline:none;
+  }
+  .choice-btn:hover{ transform:translateY(-3px); box-shadow:0 8px 20px rgba(2,6,23,0.06); }
+  .choice-btn[disabled]{ cursor:default; opacity:0.96; transform:none; box-shadow:none; }
+  .choice-correct{
+    background:var(--success) !important;
+    color:#fff !important;
+    border-color: rgba(16,185,129,0.9) !important;
+    box-shadow:0 8px 20px rgba(16,185,129,0.12);
+  }
+  .choice-wrong{
+    background:var(--danger) !important;
+    color:#fff !important;
+    border-color: rgba(220,38,38,0.9) !important;
+    box-shadow:0 8px 20px rgba(220,38,38,0.12);
+  }
+  .btn-row{ display:flex; justify-content:center; margin-top:18px; gap:12px; }
+  .btn-next{
+    padding:10px 18px;
+    border-radius:10px;
+    background:var(--accent);
+    color:white;
+    border:0;
+    cursor:pointer;
+    font-weight:600;
+    display:inline-block;
+  }
+  .btn-next.hidden{ display:none; }
+  .meta{ margin-top:12px; color:var(--muted); font-size:14px; text-align:center; }
+  .summary{
+    margin-top:18px;
+  }
+  .final-card{
+    background:#fff;
+    border-radius:12px;
+    padding:18px;
+    border:1px solid rgba(2,6,23,0.04);
+  }
+  .summary-list{ list-style:none; margin:12px 0 0 0; padding:0; display:grid; gap:12px; }
+  .summary-item{ padding:12px; border-radius:10px; border:1px solid rgba(2,6,23,0.04); background:#fcfeff; }
+  .summary-item strong{ display:block; margin-bottom:6px; }
+  .explain{ color:var(--muted); font-size:14px; margin-top:8px; }
+  .small{ font-size:13px; color:var(--muted); }
+  footer{ margin-top:18px; text-align:center; color:var(--muted); font-size:13px; }
+  @media (max-width:720px){
+    .q-text{ font-size:16px; }
+    .choice-btn{ font-size:15px; }
+    header{ flex-direction:column; align-items:flex-start; gap:6px; }
+  }
+</style>
 </head>
 <body>
-  <main class="wrap" id="app" aria-live="polite">
-    <header>
-      <h1>Quiz — Pop Art e Arte Contemporânea</h1>
-      <p>Selecione uma opção — verá o feedback visual; depois clique em "Próxima pergunta".</p>
-    </header>
+  <div class="wrap">
+    <div class="card" id="card">
+      <header>
+        <div>
+          <h1>Quiz — Revoluções Industriais & Meio Técnico-Científico-Informacional</h1>
+          <p>20 questões (múltipla escolha + verdadeiro/falso). Responda e veja feedback imediato. Alternativas embaralhadas.</p>
+        </div>
+      </header>
 
-    <div class="progress-wrap">
-      <div class="progress" aria-hidden="true"><i id="progressBar">0%</i></div>
+      <div class="progress-wrap" aria-hidden="false">
+        <div class="progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <i id="progress-bar"></i>
+        </div>
+        <div class="progress-label" id="progress-label">0%</div>
+      </div>
+
+      <div class="question-area" id="question-area"></div>
+      <div class="meta" id="meta">Questão <span id="current">1</span> de <span id="total">20</span></div>
+
+      <div class="summary" id="summary-container" style="display:none;">
+        <div class="final-card">
+          <h2>Resumo final</h2>
+          <p id="score" style="font-weight:700; margin:6px 0;"></p>
+          <ul class="summary-list" id="summary-list"></ul>
+          <div style="margin-top:12px; text-align:center;">
+            <button id="restart" class="btn-next" style="background:#374151">Refazer quiz</button>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        Fonte: texto fornecido sobre Segunda Revolução Industrial, imperialismo, Terceira Revolução Industrial, tecnociência, eletrônica e meio técnico-científico-informacional.
+      </footer>
     </div>
+  </div>
 
-    <section class="card" id="card">
-      <div class="meta">
-        <div id="qIndex">Pergunta 1 / 20</div>
-        <div id="score">Acertos: 0</div>
-      </div>
+<script>
+/*
+Quiz gerado a partir do texto fornecido.
+- 20 perguntas (mix MCQ e TF)
+- Alternativas embaralhadas a cada render
+- Próxima aparece só após responder
+- Barra de progresso (porcentagem)
+- Resumo final com ✔ / ✖ e explicação
+*/
 
-      <div class="question" id="question">Carregando...</div>
+const questions = [
+  {
+    text: "Qual invenção e uso impulsionaram a Segunda Revolução Industrial, conforme o texto?",
+    type: "mcq",
+    choices: ["Máquina a vapor e carvão", "Eletricidade e motor a combustão interna", "Energia nuclear", "Internet"],
+    correct: "Eletricidade e motor a combustão interna",
+    explanation: "O texto destaca a utilização da eletricidade e do motor a combustão interna como marca da Segunda Revolução Industrial."
+  },
+  {
+    text: "Durante a Segunda Revolução Industrial, qual material tornou-se central para a indústria?",
+    type: "mcq",
+    choices: ["Plástico", "Aço", "Madeira", "Cobre"],
+    correct: "Aço",
+    explanation: "O desenvolvimento de novos processos para a produção de aço o tornou um dos materiais mais importantes na indústria."
+  },
+  {
+    text: "O surgimento do taylorismo visava principalmente:",
+    type: "mcq",
+    choices: ["Aumentar a produtividade organizando o trabalho em tarefas simples", "Diminuir o controle sobre os operários", "Eliminar máquinas das fábricas", "Promover férias mais longas"],
+    correct: "Aumentar a produtividade organizando o trabalho em tarefas simples",
+    explanation: "O método de Taylor dividia o processo em etapas simples para aumentar eficiência e produtividade."
+  },
+  {
+    text: "O taylorismo procurava reduzir a força de trabalho através da eficiência.",
+    type: "tf",
+    choices: ["Verdadeiro","Falso"],
+    correct: "Verdadeiro",
+    explanation: "Taylor buscava produzir mais com menos tempo, energia e matéria-prima, reduzindo a necessidade de mão de obra."
+  },
+  {
+    text: "Uma consequência econômica da Segunda Revolução Industrial, apontada no texto, foi:",
+    type: "mcq",
+    choices: ["Menor necessidade de matérias-primas", "A ampliação do mercado consumidor para absorver maior produção", "Fim do comércio internacional", "Redução da produção industrial"],
+    correct: "A ampliação do mercado consumidor para absorver maior produção",
+    explanation: "Com o aumento da produção havia a necessidade de expandir mercados consumidores para comprar os produtos."
+  },
+  {
+    text: "Qual país foi o primeiro a reunir condições para iniciar a industrialização, segundo o texto?",
+    type: "mcq",
+    choices: ["Estados Unidos", "França", "Reino Unido", "Alemanha"],
+    correct: "Reino Unido",
+    explanation: "No final do século XVIII, o Reino Unido era o único país que reunia condições para iniciar a industrialização."
+  },
+  {
+    text: "O imperialismo (neocolonialismo) é descrito como:",
+    type: "mcq",
+    choices: ["Uma expansão para garantir matérias-primas e mercados", "Uma forma de comércio igualitário entre países", "Uma política de isolamento cultural", "A distribuição de tecnologia gratuitamente"],
+    correct: "Uma expansão para garantir matérias-primas e mercados",
+    explanation: "As potências industriais expandiram-se à África e Ásia para garantir matérias-primas e mercados, dando origem ao imperialismo."
+  },
+  {
+    text: "As potências imperialistas citadas incluem Inglaterra, França, Alemanha e Japão.",
+    type: "tf",
+    choices: ["Verdadeiro","Falso"],
+    correct: "Verdadeiro",
+    explanation: "O texto cita Inglaterra, França, Alemanha, Bélgica, Japão e Estados Unidos como principais potências imperialistas."
+  },
+  {
+    text: "O texto relaciona o imperialismo com práticas violentas e genocídios em algumas regiões.",
+    type: "tf",
+    choices: ["Verdadeiro","Falso"],
+    correct: "Verdadeiro",
+    explanation: "Relatos no texto mencionam violência na África Subsaariana e registros de genocídios na história contemporânea."
+  },
+  {
+    text: "A Terceira Revolução Industrial é caracterizada, segundo o texto, por:",
+    type: "mcq",
+    choices: ["A invenção da máquina a vapor", "A junção entre técnica e ciência e o avanço da eletrônica e indústria química", "O fim da produção industrial", "A adoção do motor a combustão interna"],
+    correct: "A junção entre técnica e ciência e o avanço da eletrônica e indústria química",
+    explanation: "O texto define a Terceira Revolução como o período em que ciência e técnica se unem, com avanços em eletrônica e indústria química."
+  },
+  {
+    text: "A energia nuclear foi usada no final da Segunda Guerra Mundial e depois aplicada para geração elétrica.",
+    type: "tf",
+    choices: ["Verdadeiro","Falso"],
+    correct: "Verdadeiro",
+    explanation: "O texto menciona as bombas atômicas lançadas em agosto de 1945 e o posterior uso da energia nuclear para eletricidade."
+  },
+  {
+    text: "O termo 'tecnociência' refere-se a:",
+    type: "mcq",
+    choices: ["Estudos científicos sem financiamento", "A pesquisa científica financiada e orientada para produzir tecnologias", "A técnica manual sem ciência", "Um tipo de indústria agrícola"],
+    correct: "A pesquisa científica financiada e orientada para produzir tecnologias",
+    explanation: "Tecnociência descreve estudos científicos com financiamento de empresas/Estado e infraestrutura, com intenção de criar tecnologias."
+  },
+  {
+    text: "As tecnologias, diferentemente dos saberes tradicionais, costumam ser propriedade registrada por patentes.",
+    type: "tf",
+    choices: ["Verdadeiro","Falso"],
+    correct: "Verdadeiro",
+    explanation: "O texto explica que tecnologias são tratadas como propriedades e registradas por meio de patentes."
+  },
+  {
+    text: "O crescimento de registros de patentes no século XIX ocorreu por causa de:",
+    type: "mcq",
+    choices: ["Menor investimento em pesquisa", "Aumento de investimentos científicos e ampliação de universidades", "Redução das invenções", "Proibição de indústria química"],
+    correct: "Aumento de investimentos científicos e ampliação de universidades",
+    explanation: "Mais investimentos em ciência e mais centros de pesquisa levaram ao aumento de registros de patentes."
+  },
+  {
+    text: "Segundo o texto, a eletrônica permitiu evoluções como rádio, televisão e computadores.",
+    type: "tf",
+    choices: ["Verdadeiro","Falso"],
+    correct: "Verdadeiro",
+    explanation: "A eletrônica expandiu o uso da eletricidade e possibilitou invenções como rádio, TV e computadores."
+  },
+  {
+    text: "O primeiro computador eletrônico surgiu em 1946, conforme o texto.",
+    type: "tf",
+    choices: ["Verdadeiro","Falso"],
+    correct: "Verdadeiro",
+    explanation: "O texto indica que, nesse contexto, em 1946 surgiu o primeiro computador eletrônico."
+  },
+  {
+    text: "A biotecnologia, mencionada no texto, está associada a avanços em:",
+    type: "mcq",
+    choices: ["Televisão e rádio", "Engenharia genética aplicada à medicina e agropecuária", "Motor a combustão", "Máquina a vapor"],
+    correct: "Engenharia genética aplicada à medicina e agropecuária",
+    explanation: "O texto relaciona a biotecnologia a aplicações da engenharia genética, como OGMs e clonagem."
+  },
+  {
+    text: "A informação torna-se variável-chave do período porque empresas e governos precisam organizar e processar grandes volumes de dados.",
+    type: "tf",
+    choices: ["Verdadeiro","Falso"],
+    correct: "Verdadeiro",
+    explanation: "O texto destaca a necessidade de organizar estoques, contabilidade e gestão de grandes volumes de informação."
+  },
+  {
+    text: "IBM foi citada como exemplo de empresa que surgiu para organizar processamento de dados.",
+    type: "mcq",
+    choices: ["Apple", "IBM", "Microsoft", "Oracle"],
+    correct: "IBM",
+    explanation: "O texto cita a IBM, criada em 1924 pela junção de empresas que produziam relógios de ponto, balanças e máquinas de contabilizar."
+  },
+  {
+    text: "As tecnologias do meio técnico-científico-informacional funcionam de forma interdependente — se uma falhar, o sistema pode paralisar.",
+    type: "tf",
+    choices: ["Verdadeiro","Falso"],
+    correct: "Verdadeiro",
+    explanation: "O texto exemplifica que tecnologias dependem umas das outras (ex.: celular depende de antenas e eletricidade)."
+  }
+];
 
-      <div class="options" id="options"></div>
+// --- estado ---
+const total = questions.length;
+document.getElementById('total').innerText = total;
+let currentIndex = 0;
+let score = 0;
+const userAnswers = []; // {questionIndex, selected, correct, isCorrect}
 
-      <div class="controls">
-        <button class="btn primary" id="nextBtn" style="display:none">Próxima pergunta</button>
-      </div>
-    </section>
+// util shuffle
+function shuffleArray(arr){
+  for(let i = arr.length -1; i>0; i--){
+    const j = Math.floor(Math.random() * (i+1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
 
-    <section id="summary">
-      <h2>Resultado final</h2>
-      <div id="finalScore" style="font-weight:800; margin-bottom:8px"></div>
-      <div class="summary-list" id="summaryList"></div>
-      <div style="text-align:center; margin-top:14px;">
-        <button class="btn primary" id="restartBtn">Refazer quiz</button>
-      </div>
-    </section>
-  </main>
+// render
+function renderQuestion(){
+  const q = questions[currentIndex];
+  const area = document.getElementById('question-area');
+  area.innerHTML = '';
 
-  <script>
-    // --- Dados (a resposta correta está na posição 0 em cada "options" original) ---
-    const quizData = [
-      {
-        question: "O que significa o termo 'Pop Art'?",
-        options: [
-          "Arte popular ligada ao consumo e à mídia",
-          "Arte clássica com influência barroca",
-          "Arte abstrata sem ligação com a realidade",
-          "Arte apenas para galerias e museus"
-        ],
-        answer: 0,
-        explanation: "Pop Art (Popular Art) incorpora objetos de consumo, imagens da mídia e cultura de massa."
-      },
-      {
-        question: "Quem cunhou o termo 'Pop Art'?",
-        options: [
-          "Lawrence Alloway",
-          "Richard Hamilton",
-          "Andy Warhol",
-          "Roy Lichtenstein"
-        ],
-        answer: 0,
-        explanation: "O crítico Lawrence Alloway utilizou o termo para descrever a arte ligada à cultura de massa."
-      },
-      {
-        question: "Qual grupo britânico foi central no surgimento da Pop Art?",
-        options: [
-          "Independent Group",
-          "Bloomsbury Group",
-          "Pre-Raphaelite Brotherhood",
-          "Young British Artists"
-        ],
-        answer: 0,
-        explanation: "O Independent Group (Inglaterra) defendia uma arte ligada ao cotidiano e à mídia."
-      },
-      {
-        question: "Quem criou a colagem 'O que exatamente torna os lares de hoje tão diferentes, tão atraentes?' (1956)?",
-        options: [
-          "Richard Hamilton",
-          "Andy Warhol",
-          "Tom Wesselmann",
-          "Claes Oldenburg"
-        ],
-        answer: 0,
-        explanation: "Richard Hamilton realizou essa colagem e é referência inicial da Pop Art."
-      },
-      {
-        question: "Em que exposição de 1956 o Independent Group apresentou trabalhos importantes?",
-        options: [
-          "Este é o amanhã (This Is Tomorrow)",
-          "A Nova Tendência",
-          "Arte para o Povo",
-          "Galeria Moderna"
-        ],
-        answer: 0,
-        explanation: "A exposição 'This Is Tomorrow' (Este é o amanhã) de 1956 foi marco para o grupo."
-      },
-      {
-        question: "Como Richard Hamilton descreveu a Pop Art (1957)?",
-        options: [
-          "Popular, produzida em massa, jovem, chamativa e consumível",
-          "Séria, elitista e distante do público",
-          "Exclusiva para galerias e colecionadores",
-          "Ligada apenas ao classicismo"
-        ],
-        answer: 0,
-        explanation: "Hamilton listou características que ligam a Pop Art à cultura de massa e ao consumo."
-      },
-      {
-        question: "Qual técnica permitia reproduções em série e foi muito usada por artistas pop?",
-        options: [
-          "Serigrafia",
-          "Fresco",
-          "Têmpera",
-          "Aquarela"
-        ],
-        answer: 0,
-        explanation: "A serigrafia permitia múltiplas cópias com baixo custo, compatível com a estética de produção em massa."
-      },
-      {
-        question: "Qual era uma característica plástica marcante da Pop Art?",
-        options: [
-          "Cores fortes, áreas planas e figuras bem definidas",
-          "Sombreamento suave e volumetria realista",
-          "Abstração total sem figuras",
-          "Paleta exclusivamente em preto e branco"
-        ],
-        answer: 0,
-        explanation: "A Pop Art evita volume e sombreamento tradicional; usa cores planas e contornos nítidos."
-      },
-      {
-        question: "Em que país a Pop Art encontrou o cenário perfeito nos anos 1960?",
-        options: [
-          "Estados Unidos",
-          "Brasil",
-          "Itália",
-          "Japão"
-        ],
-        answer: 0,
-        explanation: "O pós-guerra dos EUA teve crescimento econômico e cultura de massa que favoreceram a Pop Art."
-      },
-      {
-        question: "Qual artista ficou famoso por retratar a sopa Campbell’s e Marilyn Monroe?",
-        options: [
-          "Andy Warhol",
-          "Roy Lichtenstein",
-          "Tom Wesselmann",
-          "Claes Oldenburg"
-        ],
-        answer: 0,
-        explanation: "Warhol trabalhou com produtos de consumo e retratos de celebridades, usando serigrafia e repetição."
-      },
-      {
-        question: "Quem criou esculturas gigantes de objetos cotidianos (ex.: pregadores, hambúrgueres)?",
-        options: [
-          "Claes Oldenburg",
-          "Andy Warhol",
-          "Roy Lichtenstein",
-          "Tom Wesselmann"
-        ],
-        answer: 0,
-        explanation: "Oldenburg é conhecido por transformar objetos comuns em esculturas monumentais."
-      },
-      {
-        question: "Qual artista utilizava os pontos Ben-Day e estética de quadrinhos?",
-        options: [
-          "Roy Lichtenstein",
-          "Andy Warhol",
-          "Claes Oldenburg",
-          "Eduardo Paolozzi"
-        ],
-        answer: 0,
-        explanation: "Lichtenstein inspirou-se em tiras de HQ e reproduziu o aspecto gráfico dos pontos Ben-Day."
-      },
-      {
-        question: "O que era frequentemente criticado pela Pop Art ao apropriar imagens de consumo?",
-        options: [
-          "O consumismo desenfreado e a padronização cultural",
-          "A produção artesanal local",
-          "A arte clássica europeia",
-          "A política ambiental"
-        ],
-        answer: 0,
-        explanation: "Ao usar imagens do consumo, artistas pop criticavam a massificação e a superficialidade do período."
-      },
-      {
-        question: "No Brasil, como a Pop Art foi diferenciada em termos de tema?",
-        options: [
-          "Tinha forte caráter político e crítico",
-          "Foi totalmente comercial",
-          "Apostou somente em paisagens",
-          "Exclusivamente abstrata"
-        ],
-        answer: 0,
-        explanation: "A Pop Art brasileira frequentemente tratou de denúncia política durante a ditadura."
-      },
-      {
-        question: "Quem fez a série 'Bananas', crítica à ditadura?",
-        options: [
-          "Antônio Henrique Amaral",
-          "Cláudio Tozzi",
-          "Rubens Gerchman",
-          "Carlos Zilio"
-        ],
-        answer: 0,
-        explanation: "Amaral usou a banana como metáfora para criticar a repressão e violência política."
-      },
-      {
-        question: "A obra 'Multidão', de Cláudio Tozzi, refere-se a:",
-        options: [
-          "Manifestações e resistência à ditadura",
-          "Visões bucólicas do campo",
-          "Cenas mitológicas",
-          "Estudos anatômicos"
-        ],
-        answer: 0,
-        explanation: "A obra referencia manifestações e a presença dos jovens na luta pela liberdade de expressão."
-      },
-      {
-        question: "Qual era o estúdio de Andy Warhol?",
-        options: [
-          "A Fábrica",
-          "O Atelier",
-          "O Laboratório",
-          "Casa da Arte"
-        ],
-        answer: 0,
-        explanation: "Warhol batizou seu estúdio de 'A Fábrica', local de produção artística e encontros."
-      },
-      {
-        question: "Qual frase famosa é atribuída a Andy Warhol sobre a fama?",
-        options: [
-          "No futuro, todos terão 15 minutos de fama",
-          "A fama dura uma hora",
-          "Todos serão famosos por um dia",
-          "Fama é eterna"
-        ],
-        answer: 0,
-        explanation: "A frase dos '15 minutos de fama' antecipa a hiperexposição das mídias e redes sociais."
-      },
-      {
-        question: "Por que a Pop Art é considerada ironica ou ambígua?",
-        options: [
-          "Porque celebra e critica o consumo ao mesmo tempo",
-          "Porque é exclusivamente humorística",
-          "Porque nega qualquer relação com a sociedade",
-          "Porque é pessimista sobre tecnologia"
-        ],
-        answer: 0,
-        explanation: "A ironia vem do duplo movimento: apropriação e crítica das imagens de massa."
-      },
-      {
-        question: "Qual legado importante a Pop Art deixou para a arte contemporânea?",
-        options: [
-          "Quebrou a barreira entre 'alta' e 'baixa' cultura",
-          "Acabou com a pintura figurativa",
-          "Proibiu o uso de imagens comerciais",
-          "Fez desaparecer as galerias"
-        ],
-        answer: 0,
-        explanation: "A Pop Art legitimou elementos da cultura popular como matéria-prima da arte."
-      }
-    ];
+  document.getElementById('current').innerText = currentIndex + 1;
+  updateProgress();
 
-    // --- Estado ---
-    const total = quizData.length;
-    let current = 0;
-    let score = 0;
-    let answered = false;
-    let shuffled = []; // opções embaralhadas da questão atual: [{text, isCorrect},...]
-    const userAnswers = new Array(total).fill(null); // armazenar {selectedText, isCorrect, correctText}
+  const qnum = document.createElement('div');
+  qnum.className = 'q-number';
+  qnum.innerText = (q.type === 'tf' ? 'Verdadeiro ou Falso' : 'Múltipla escolha');
+  area.appendChild(qnum);
 
-    // --- DOM refs ---
-    const qIndexEl = document.getElementById('qIndex');
-    const scoreEl = document.getElementById('score');
-    const questionEl = document.getElementById('question');
-    const optionsEl = document.getElementById('options');
-    const nextBtn = document.getElementById('nextBtn');
-    const progressBar = document.getElementById('progressBar');
-    const summarySection = document.getElementById('summary');
-    const finalScoreEl = document.getElementById('finalScore');
-    const summaryListEl = document.getElementById('summaryList');
-    const card = document.getElementById('card');
-    const restartBtn = document.getElementById('restartBtn');
+  const qtext = document.createElement('div');
+  qtext.className = 'q-text';
+  qtext.innerText = q.text;
+  area.appendChild(qtext);
 
-    // Shuffle helper (Fisher-Yates)
-    function shuffleArray(array){
-      for(let i = array.length -1; i>0; i--){
-        const j = Math.floor(Math.random() * (i+1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
+  // prepare choices copy and shuffle (ensure correct included)
+  const choices = q.choices ? q.choices.slice() : (q.type==='tf' ? ['Verdadeiro','Falso'] : []);
+  if(!choices.includes(q.correct)) choices.push(q.correct);
+  shuffleArray(choices);
+
+  const choicesDiv = document.createElement('div');
+  choicesDiv.className = 'choices';
+
+  choices.forEach(choiceText => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.type = 'button';
+    btn.innerText = choiceText;
+    btn.dataset.choice = choiceText;
+    btn.addEventListener('click', onChoiceClick);
+    choicesDiv.appendChild(btn);
+  });
+
+  area.appendChild(choicesDiv);
+
+  // next button (hidden by default)
+  const btnRow = document.createElement('div');
+  btnRow.className = 'btn-row';
+  const nextBtn = document.createElement('button');
+  nextBtn.id = 'nextBtn';
+  nextBtn.className = 'btn-next hidden';
+  nextBtn.innerText = (currentIndex === total -1 ? 'Finalizar' : 'Próxima');
+  nextBtn.addEventListener('click', onNext);
+  btnRow.appendChild(nextBtn);
+  area.appendChild(btnRow);
+}
+
+// choice click
+function onChoiceClick(e){
+  const btn = e.currentTarget;
+  const chosen = btn.dataset.choice;
+  const q = questions[currentIndex];
+
+  // disable buttons
+  const allBtns = Array.from(document.querySelectorAll('.choice-btn'));
+  allBtns.forEach(b => b.disabled = true);
+
+  // mark correct (green) and the clicked wrong (red) if applicable
+  allBtns.forEach(b => {
+    if(b.dataset.choice === q.correct){
+      b.classList.add('choice-correct');
     }
+  });
 
-    // Prepares shuffled options with isCorrect flag
-    function prepareShuffledOptions(q){
-      const arr = q.options.map((opt, idx) => ({
-        text: opt,
-        isCorrect: idx === q.answer
-      }));
-      return shuffleArray(arr.slice());
-    }
+  if(chosen === q.correct){
+    // correct
+    score++;
+    userAnswers.push({questionIndex: currentIndex, selected: chosen, correct: q.correct, isCorrect: true});
+  } else {
+    // wrong
+    btn.classList.add('choice-wrong');
+    userAnswers.push({questionIndex: currentIndex, selected: chosen, correct: q.correct, isCorrect: false});
+  }
 
-    // Atualiza barra de progresso (mostra % de questões respondidas)
-    function updateProgress(showAfterAnswer = false){
-      // percent = completed / total *100
-      const completed = showAfterAnswer ? (current + 1) : current;
-      const pct = Math.round((completed / total) * 100);
-      progressBar.style.width = pct + '%';
-      progressBar.textContent = pct + '%';
-    }
+  // reveal next button
+  const nextBtn = document.getElementById('nextBtn');
+  nextBtn.classList.remove('hidden');
+}
 
-    function renderQuestion(){
-      // reset
-      answered = false;
-      nextBtn.style.display = 'none';
-      optionsEl.innerHTML = '';
-      const q = quizData[current];
-
-      // atualizar meta
-      qIndexEl.textContent = `Pergunta ${current + 1} / ${total}`;
-      scoreEl.textContent = `Acertos: ${score}`;
-
-      // pergunta
-      questionEl.textContent = q.question;
-
-      // preparar opções embaralhadas
-      shuffled = prepareShuffledOptions(q);
-
-      // criar botões centralizados
-      shuffled.forEach((optObj, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.type = 'button';
-        btn.innerText = optObj.text;
-        btn.dataset.idx = idx;
-        btn.addEventListener('click', () => selectOption(idx));
-        optionsEl.appendChild(btn);
-      });
-
-      // atualizar progresso (antes de responder)
-      updateProgress(false);
-    }
-
-    function selectOption(idx){
-      if(answered) return;
-      answered = true;
-
-      const btns = Array.from(optionsEl.children);
-      const clickedBtn = btns[idx];
-      const chosen = shuffled[idx];
-      // marcar correta/errada
-      if(chosen.isCorrect){
-        clickedBtn.classList.add('correct');
-        score++;
-        userAnswers[current] = { selectedText: chosen.text, isCorrect: true, correctText: chosen.text };
-      } else {
-        clickedBtn.classList.add('wrong');
-        // achar botão correto e marcar em verde
-        const correctIndex = shuffled.findIndex(o => o.isCorrect);
-        if(correctIndex >= 0){
-          btns[correctIndex].classList.add('correct');
-          userAnswers[current] = { selectedText: chosen.text, isCorrect: false, correctText: shuffled[correctIndex].text };
-        } else {
-          userAnswers[current] = { selectedText: chosen.text, isCorrect: false, correctText: null };
-        }
-      }
-
-      // desabilitar todos os botões
-      btns.forEach(b => {
-        b.classList.add('disabled');
-        b.disabled = true;
-      });
-
-      // mostrar botão Próxima pergunta
-      nextBtn.style.display = 'inline-block';
-      nextBtn.textContent = (current === total - 1) ? 'Ver resultado' : 'Próxima pergunta';
-
-      // atualizar contagem de acertos e barra (agora já mostrou 1 a mais respondida)
-      scoreEl.textContent = `Acertos: ${score}`;
-      updateProgress(true);
-    }
-
-    nextBtn.addEventListener('click', () => {
-      if(!answered && current < total) return; // não avançar sem responder
-      current++;
-      if(current < total){
-        renderQuestion();
-      } else {
-        showSummary();
-      }
-    });
-
-    function showSummary(){
-      // esconder card
-      card.style.display = 'none';
-      summarySection.style.display = 'block';
-      const pctCorrect = Math.round((score / total) * 100);
-      finalScoreEl.textContent = `Você acertou ${score} de ${total} questões (${pctCorrect}%).`;
-
-      // montar gabarito comentado
-      summaryListEl.innerHTML = '';
-      quizData.forEach((q, i) => {
-        const ua = userAnswers[i];
-        const correctText = q.options[q.answer];
-        const gotIt = ua && ua.isCorrect;
-        const mark = gotIt ? '✔' : '✖';
-        const div = document.createElement('div');
-        div.className = 'summary-item';
-        const qtitle = document.createElement('div');
-        qtitle.className = 'qtitle';
-        qtitle.textContent = `${mark} Pergunta ${i+1}: ${q.question}`;
-        const your = document.createElement('div');
-        your.innerHTML = `<strong>Sua resposta:</strong> ${ua ? ua.selectedText : '<em>Não respondeu</em>'}`;
-        const correct = document.createElement('div');
-        correct.innerHTML = `<strong>Resposta correta:</strong> ${correctText}`;
-        const explain = document.createElement('div');
-        explain.className = 'explain';
-        explain.innerHTML = `<strong>Explicação:</strong> ${q.explanation}`;
-        div.appendChild(qtitle);
-        div.appendChild(your);
-        div.appendChild(correct);
-        div.appendChild(explain);
-        summaryListEl.appendChild(div);
-      });
-
-      // set progress to 100%
-      progressBar.style.width = '100%';
-      progressBar.textContent = '100%';
-    }
-
-    restartBtn.addEventListener('click', () => {
-      // reset all
-      current = 0;
-      score = 0;
-      for(let i=0;i<userAnswers.length;i++) userAnswers[i] = null;
-      summarySection.style.display = 'none';
-      card.style.display = 'block';
-      renderQuestion();
-    });
-
-    // start
+// next or finish
+function onNext(){
+  currentIndex++;
+  if(currentIndex >= total){
+    showSummary();
+  } else {
     renderQuestion();
+  }
+}
 
-    // acessibilidade: Enter key triggers first available option; Space on focused option handled by button
-    window.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter'){
-        // se próximo visível e respondido, vá para próxima
-        if(nextBtn.style.display !== 'none' && answered){
-          nextBtn.click();
-        }
-      }
-    });
-  </script>
+// progress update
+function updateProgress(){
+  const percent = Math.round((currentIndex / total) * 100);
+  const bar = document.getElementById('progress-bar');
+  const label = document.getElementById('progress-label');
+  bar.style.width = percent + '%';
+  bar.setAttribute('aria-valuenow', percent);
+  label.innerText = percent + '%';
+}
+
+// summary
+function showSummary(){
+  document.getElementById('question-area').style.display = 'none';
+  document.getElementById('meta').style.display = 'none';
+  const cont = document.getElementById('summary-container');
+  cont.style.display = 'block';
+  document.getElementById('score').innerText = `Você acertou ${score} de ${total} perguntas.`;
+
+  const list = document.getElementById('summary-list');
+  list.innerHTML = '';
+
+  for(let i=0;i<questions.length;i++){
+    const q = questions[i];
+    const rec = userAnswers.find(r => r.questionIndex === i);
+    const isCorrect = rec ? rec.isCorrect : false;
+
+    const li = document.createElement('li');
+    li.className = 'summary-item';
+
+    const header = document.createElement('strong');
+    header.innerText = `Q${i+1}: ${q.text}`;
+    li.appendChild(header);
+
+    const markLine = document.createElement('div');
+    markLine.className = 'small';
+    markLine.innerHTML = (isCorrect ? `<span style="color:${getComputedStyle(document.documentElement).getPropertyValue('--success') || '#16a34a'}">✔ Acertou</span>` : `<span style="color:${getComputedStyle(document.documentElement).getPropertyValue('--danger') || '#dc2626'}">✖ Errou</span>`);
+    li.appendChild(markLine);
+
+    const ansLine = document.createElement('div');
+    ansLine.className = 'small';
+    ansLine.innerHTML = `<strong>Sua resposta:</strong> ${rec ? rec.selected : '<em>Sem resposta</em>'} &nbsp; — &nbsp; <strong>Resposta certa:</strong> ${q.correct}`;
+    li.appendChild(ansLine);
+
+    const expl = document.createElement('div');
+    expl.className = 'explain';
+    expl.innerText = q.explanation;
+    li.appendChild(expl);
+
+    list.appendChild(li);
+  }
+
+  // ensure progress shows 100%
+  document.getElementById('progress-bar').style.width = '100%';
+  document.getElementById('progress-label').innerText = '100%';
+
+  // restart
+  document.getElementById('restart').addEventListener('click', () => {
+    currentIndex = 0;
+    score = 0;
+    userAnswers.length = 0;
+    document.getElementById('summary-container').style.display = 'none';
+    document.getElementById('question-area').style.display = '';
+    document.getElementById('meta').style.display = '';
+    renderQuestion();
+  });
+}
+
+// initial render
+renderQuestion();
+updateProgress();
+
+</script>
 </body>
 </html>
