@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Quiz — Revoluções Industriais e Meio Técnico-Científico-Informacional</title>
+<title>Quiz — Revoluções Industriais e Meio Técnico-Científico-Informacional (50 Qs)</title>
 <style>
   :root{
     --bg: #f6f8fb;
@@ -26,98 +26,40 @@
     padding:24px;
     color:#0b1220;
   }
-  .wrap{
-    width:100%;
-    max-width:980px;
-  }
+  .wrap{ width:100%; max-width:1050px; }
   .card{
     background:var(--card);
     border-radius:14px;
     padding:26px;
     box-shadow: 0 10px 30px rgba(16,24,40,0.08);
   }
-  header{
-    display:flex;
-    gap:14px;
-    align-items:center;
-    margin-bottom:10px;
-  }
+  header{ display:flex; gap:14px; align-items:center; margin-bottom:10px; }
   header h1{ margin:0; font-size:20px; }
   header p{ margin:0; color:var(--muted); font-size:14px; }
   .progress-wrap{ margin-top:12px; display:flex; align-items:center; gap:12px; }
-  .progress{
-    flex:1;
-    height:12px;
-    background:#e6eefc;
-    border-radius:999px;
-    overflow:hidden;
-  }
-  .progress > i{
-    display:block;
-    height:100%;
-    width:0%;
-    background:linear-gradient(90deg,var(--accent),#60a5fa);
-    transition:width .35s ease;
-  }
+  .progress{ flex:1; height:12px; background:#e6eefc; border-radius:999px; overflow:hidden; }
+  .progress > i{ display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--accent),#60a5fa); transition:width .35s ease; }
   .progress-label{ min-width:68px; text-align:right; font-size:13px; color:var(--muted); }
   .question-area{ margin-top:18px; }
   .q-number{ color:var(--muted); font-size:13px; margin-bottom:8px; }
   .q-text{ font-size:18px; margin-bottom:18px; line-height:1.45; }
-  .choices{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    align-items:center;
-  }
+  .choices{ display:flex; flex-direction:column; gap:12px; align-items:center; }
   .choice-btn{
-    width:100%;
-    max-width:820px;
-    padding:var(--btn-padding);
-    border-radius:12px;
-    border:1px solid rgba(2,6,23,0.06);
-    background:#fff;
-    cursor:pointer;
-    font-size:15px;
-    text-align:center;
-    transition: transform .06s ease, box-shadow .06s ease;
-    outline:none;
+    width:100%; max-width:980px; padding:var(--btn-padding);
+    border-radius:12px; border:1px solid rgba(2,6,23,0.06);
+    background:#fff; cursor:pointer; font-size:15px; text-align:center;
+    transition: transform .06s ease, box-shadow .06s ease; outline:none;
   }
   .choice-btn:hover{ transform:translateY(-3px); box-shadow:0 8px 20px rgba(2,6,23,0.06); }
   .choice-btn[disabled]{ cursor:default; opacity:0.96; transform:none; box-shadow:none; }
-  .choice-correct{
-    background:var(--success) !important;
-    color:#fff !important;
-    border-color: rgba(16,185,129,0.9) !important;
-    box-shadow:0 8px 20px rgba(16,185,129,0.12);
-  }
-  .choice-wrong{
-    background:var(--danger) !important;
-    color:#fff !important;
-    border-color: rgba(220,38,38,0.9) !important;
-    box-shadow:0 8px 20px rgba(220,38,38,0.12);
-  }
+  .choice-correct{ background:var(--success) !important; color:#fff !important; border-color: rgba(16,185,129,0.9) !important; box-shadow:0 8px 20px rgba(16,185,129,0.12); }
+  .choice-wrong{ background:var(--danger) !important; color:#fff !important; border-color: rgba(220,38,38,0.9) !important; box-shadow:0 8px 20px rgba(220,38,38,0.12); }
   .btn-row{ display:flex; justify-content:center; margin-top:18px; gap:12px; }
-  .btn-next{
-    padding:10px 18px;
-    border-radius:10px;
-    background:var(--accent);
-    color:white;
-    border:0;
-    cursor:pointer;
-    font-weight:600;
-    display:inline-block;
-  }
+  .btn-next{ padding:10px 18px; border-radius:10px; background:var(--accent); color:white; border:0; cursor:pointer; font-weight:600; display:inline-block; }
   .btn-next.hidden{ display:none; }
   .meta{ margin-top:12px; color:var(--muted); font-size:14px; text-align:center; }
-  .summary{
-    margin-top:18px;
-  }
-  .final-card{
-    background:#fff;
-    border-radius:12px;
-    padding:18px;
-    border:1px solid rgba(2,6,23,0.04);
-  }
+  .summary{ margin-top:18px; }
+  .final-card{ background:#fff; border-radius:12px; padding:18px; border:1px solid rgba(2,6,23,0.04); }
   .summary-list{ list-style:none; margin:12px 0 0 0; padding:0; display:grid; gap:12px; }
   .summary-item{ padding:12px; border-radius:10px; border:1px solid rgba(2,6,23,0.04); background:#fcfeff; }
   .summary-item strong{ display:block; margin-bottom:6px; }
@@ -136,8 +78,8 @@
     <div class="card" id="card">
       <header>
         <div>
-          <h1>Quiz — Revoluções Industriais & Meio Técnico-Científico-Informacional</h1>
-          <p>20 questões (múltipla escolha + verdadeiro/falso). Responda e veja feedback imediato. Alternativas embaralhadas.</p>
+          <h1>Quiz — Revoluções Industriais & Meio Técnico-Científico-Informacional (50 perguntas)</h1>
+          <p>Questões baseadas no PDF enviado (capítulos sobre revoluções industriais, tecnociência, imperialismo, informática, etc.). As perguntas foram criadas a partir do documento que você carregou. :contentReference[oaicite:1]{index=1}</p>
         </div>
       </header>
 
@@ -149,7 +91,7 @@
       </div>
 
       <div class="question-area" id="question-area"></div>
-      <div class="meta" id="meta">Questão <span id="current">1</span> de <span id="total">20</span></div>
+      <div class="meta" id="meta">Questão <span id="current">1</span> de <span id="total">50</span></div>
 
       <div class="summary" id="summary-container" style="display:none;">
         <div class="final-card">
@@ -163,172 +105,461 @@
       </div>
 
       <footer>
-        Fonte: texto fornecido sobre Segunda Revolução Industrial, imperialismo, Terceira Revolução Industrial, tecnociência, eletrônica e meio técnico-científico-informacional.
+        Fonte: PDF enviado (capítulos sobre Expansão do meio técnico, Segunda Revolução Industrial, imperialismo, Terceira Revolução Industrial, tecnociência, avanços da eletrônica e informática, meio técnico-científico-informacional). :contentReference[oaicite:2]{index=2}
       </footer>
     </div>
   </div>
 
 <script>
-/*
-Quiz gerado a partir do texto fornecido.
-- 20 perguntas (mix MCQ e TF)
-- Alternativas embaralhadas a cada render
-- Próxima aparece só após responder
-- Barra de progresso (porcentagem)
-- Resumo final com ✔ / ✖ e explicação
+/* 50 perguntas geradas a partir do PDF fornecido.
+   - Alternativas embaralhadas
+   - Próxima só aparece após escolha
+   - Barra de progresso em %
 */
 
+// ----- perguntas (50) -----
 const questions = [
+  // primeiras 20 (baseadas no trecho que já havíamos usado)
   {
-    text: "Qual invenção e uso impulsionaram a Segunda Revolução Industrial, conforme o texto?",
+    text: "Quem projetou a máquina eletromecânica chamada 'The Bombe' que ajudou a decifrar códigos durante a Segunda Guerra Mundial?",
     type: "mcq",
-    choices: ["Máquina a vapor e carvão", "Eletricidade e motor a combustão interna", "Energia nuclear", "Internet"],
-    correct: "Eletricidade e motor a combustão interna",
-    explanation: "O texto destaca a utilização da eletricidade e do motor a combustão interna como marca da Segunda Revolução Industrial."
+    choices: ["John Mauchly","Alan Turing","John Eckert","Frederick Taylor"],
+    correct: "Alan Turing",
+    explanation: "Alan Turing projetou a bomba eletromecânica (The Bombe) para auxiliar na decifração dos códigos alemães."
   },
   {
-    text: "Durante a Segunda Revolução Industrial, qual material tornou-se central para a indústria?",
+    text: "Qual foi o principal objetivo do ENIAC, desenvolvido por Mauchly e Eckert?",
     type: "mcq",
-    choices: ["Plástico", "Aço", "Madeira", "Cobre"],
-    correct: "Aço",
-    explanation: "O desenvolvimento de novos processos para a produção de aço o tornou um dos materiais mais importantes na indústria."
+    choices: ["Calcular trajetórias de bombas","Processar texto","Navegação por satélite","Comércio eletrônico"],
+    correct: "Calcular trajetórias de bombas",
+    explanation: "O ENIAC foi encomendado pelo exército dos EUA para calcular trajetórias de bombas de longo alcance."
   },
   {
-    text: "O surgimento do taylorismo visava principalmente:",
-    type: "mcq",
-    choices: ["Aumentar a produtividade organizando o trabalho em tarefas simples", "Diminuir o controle sobre os operários", "Eliminar máquinas das fábricas", "Promover férias mais longas"],
-    correct: "Aumentar a produtividade organizando o trabalho em tarefas simples",
-    explanation: "O método de Taylor dividia o processo em etapas simples para aumentar eficiência e produtividade."
+    text: "O ENIAC ficou pronto durante a Segunda Guerra Mundial.",
+    type: "tf",
+    choices: ["Verdadeiro","Falso"],
+    correct: "Falso",
+    explanation: "O ENIAC só foi concluído entre o final de 1945 e o início de 1946, após o fim do conflito."
   },
   {
-    text: "O taylorismo procurava reduzir a força de trabalho através da eficiência.",
+    text: "Qual console foi citado como primeiro comercialmente bem-sucedido no documento?",
+    type: "mcq",
+    choices: ["Magnavox Odyssey","Atari 2600","Nintendo NES","PlayStation"],
+    correct: "Magnavox Odyssey",
+    explanation: "O Magnavox Odyssey, lançado em 1972, foi mencionado como o primeiro console de videogame comercialmente bem-sucedido."
+  },
+  {
+    text: "Em que década os computadores pessoais começaram a chegar aos lares, segundo o texto?",
+    type: "mcq",
+    choices: ["1970s","1950s","1990s","1930s"],
+    correct: "1970s",
+    explanation: "A partir da década de 1970 os computadores pessoais começaram a se disseminar entre lares e escritórios."
+  },
+  {
+    text: "A World Wide Web (WWW) foi criada entre 1989 e 1990 no:",
+    type: "mcq",
+    choices: ["CERN","MIT","Harvard","NASA"],
+    correct: "CERN",
+    explanation: "A WWW foi proposta por pesquisadores do CERN entre 1989 e 1990."
+  },
+  {
+    text: "A Web 2.0 trouxe principalmente:",
+    type: "mcq",
+    choices: ["Usuários como produtores de conteúdo","Mais TV por assinatura","A volta dos jornais impressos","Redução da interação"],
+    correct: "Usuários como produtores de conteúdo",
+    explanation: "A Web 2.0 ampliou a interação e fez do usuário um produtor de conteúdo (blogs, redes sociais, YouTube etc.)."
+  },
+  {
+    text: "Smartphones e tablets permitiram ampliar o uso de ferramentas de:",
+    type: "mcq",
+    choices: ["Geolocalização via GPS","Impressão 3D","Energia nuclear","Agricultura manual"],
+    correct: "Geolocalização via GPS",
+    explanation: "A popularização de dispositivos móveis possibilitou o uso amplo de geolocalização (GPS)."
+  },
+  {
+    text: "A internet é, no texto, descrita como:",
+    type: "mcq",
+    choices: ["Um sistema de dispositivos interligados","Um único servidor mundial","Uma TV gigante","Uma invenção dos anos 60 sem conexão global"],
+    correct: "Um sistema de dispositivos interligados",
+    explanation: "O texto descreve a internet como um sistema de dispositivos móveis e fixos interligados."
+  },
+  {
+    text: "O termo 'meio técnico-científico-informacional' refere-se a:",
+    type: "mcq",
+    choices: ["Objetos produzidos pela união entre ciência e técnica","Só a agricultura tradicional","A natureza intocada","A música popular"],
+    correct: "Objetos produzidos pela união entre ciência e técnica",
+    explanation: "O meio técnico-científico-informacional é formado pelos objetos produzidos pela ciência aplicada à produção industrial."
+  },
+  {
+    text: "A Terceira Revolução Industrial destaca-se por:",
+    type: "mcq",
+    choices: ["Avanços em eletrônica e indústria química","Uso exclusivo de vapor","Fim da indústria","Produção apenas manual"],
+    correct: "Avanços em eletrônica e indústria química",
+    explanation: "A terceira revolução está marcada pela junção entre técnica e ciência, com avanços na eletrônica e indústria química."
+  },
+  {
+    text: "Industry 4.0 refere-se à quarta revolução, com automação, IoT e conectividade.",
     type: "tf",
     choices: ["Verdadeiro","Falso"],
     correct: "Verdadeiro",
-    explanation: "Taylor buscava produzir mais com menos tempo, energia e matéria-prima, reduzindo a necessidade de mão de obra."
+    explanation: "O texto cita Industry 4.0 como adoção de tecnologias como internet das coisas e automação conectada."
   },
   {
-    text: "Uma consequência econômica da Segunda Revolução Industrial, apontada no texto, foi:",
-    type: "mcq",
-    choices: ["Menor necessidade de matérias-primas", "A ampliação do mercado consumidor para absorver maior produção", "Fim do comércio internacional", "Redução da produção industrial"],
-    correct: "A ampliação do mercado consumidor para absorver maior produção",
-    explanation: "Com o aumento da produção havia a necessidade de expandir mercados consumidores para comprar os produtos."
-  },
-  {
-    text: "Qual país foi o primeiro a reunir condições para iniciar a industrialização, segundo o texto?",
-    type: "mcq",
-    choices: ["Estados Unidos", "França", "Reino Unido", "Alemanha"],
-    correct: "Reino Unido",
-    explanation: "No final do século XVIII, o Reino Unido era o único país que reunia condições para iniciar a industrialização."
-  },
-  {
-    text: "O imperialismo (neocolonialismo) é descrito como:",
-    type: "mcq",
-    choices: ["Uma expansão para garantir matérias-primas e mercados", "Uma forma de comércio igualitário entre países", "Uma política de isolamento cultural", "A distribuição de tecnologia gratuitamente"],
-    correct: "Uma expansão para garantir matérias-primas e mercados",
-    explanation: "As potências industriais expandiram-se à África e Ásia para garantir matérias-primas e mercados, dando origem ao imperialismo."
-  },
-  {
-    text: "As potências imperialistas citadas incluem Inglaterra, França, Alemanha e Japão.",
+    text: "O surgimento da biotecnologia está ligado à engenharia genética e a aplicações na medicina e agropecuária.",
     type: "tf",
     choices: ["Verdadeiro","Falso"],
     correct: "Verdadeiro",
-    explanation: "O texto cita Inglaterra, França, Alemanha, Bélgica, Japão e Estados Unidos como principais potências imperialistas."
+    explanation: "Biotecnologia refere-se a aplicações da engenharia genética, como OGMs e clonagem."
   },
   {
-    text: "O texto relaciona o imperialismo com práticas violentas e genocídios em algumas regiões.",
-    type: "tf",
-    choices: ["Verdadeiro","Falso"],
-    correct: "Verdadeiro",
-    explanation: "Relatos no texto mencionam violência na África Subsaariana e registros de genocídios na história contemporânea."
-  },
-  {
-    text: "A Terceira Revolução Industrial é caracterizada, segundo o texto, por:",
+    text: "As tecnologias no texto são apresentadas como propriedade registrada via:",
     type: "mcq",
-    choices: ["A invenção da máquina a vapor", "A junção entre técnica e ciência e o avanço da eletrônica e indústria química", "O fim da produção industrial", "A adoção do motor a combustão interna"],
-    correct: "A junção entre técnica e ciência e o avanço da eletrônica e indústria química",
-    explanation: "O texto define a Terceira Revolução como o período em que ciência e técnica se unem, com avanços em eletrônica e indústria química."
+    choices: ["Patentes","Folclore","Tradição oral","Registro gratuito universal"],
+    correct: "Patentes",
+    explanation: "Tecnologias passaram a ser tratadas como propriedades e registradas por meio do sistema internacional de patentes."
   },
   {
-    text: "A energia nuclear foi usada no final da Segunda Guerra Mundial e depois aplicada para geração elétrica.",
-    type: "tf",
-    choices: ["Verdadeiro","Falso"],
-    correct: "Verdadeiro",
-    explanation: "O texto menciona as bombas atômicas lançadas em agosto de 1945 e o posterior uso da energia nuclear para eletricidade."
-  },
-  {
-    text: "O termo 'tecnociência' refere-se a:",
+    text: "O aumento de registros de patentes no século XIX ocorreu por:",
     type: "mcq",
-    choices: ["Estudos científicos sem financiamento", "A pesquisa científica financiada e orientada para produzir tecnologias", "A técnica manual sem ciência", "Um tipo de indústria agrícola"],
-    correct: "A pesquisa científica financiada e orientada para produzir tecnologias",
-    explanation: "Tecnociência descreve estudos científicos com financiamento de empresas/Estado e infraestrutura, com intenção de criar tecnologias."
+    choices: ["Mais investimento em ciência e mais universidades","Menos pesquisa","Guerra mundial","Fome generalizada"],
+    correct: "Mais investimento em ciência e mais universidades",
+    explanation: "Maior investimento científico e mais centros de pesquisa levaram ao aumento de registros de patentes."
   },
   {
-    text: "As tecnologias, diferentemente dos saberes tradicionais, costumam ser propriedade registrada por patentes.",
+    text: "A IBM foi citada no texto como exemplo de empresa que agregou tecnologias para processar dados.",
     type: "tf",
     choices: ["Verdadeiro","Falso"],
     correct: "Verdadeiro",
-    explanation: "O texto explica que tecnologias são tratadas como propriedades e registradas por meio de patentes."
+    explanation: "IBM surgiu em 1924 a partir da junção de empresas que produziam máquinas de medir e contabilizar dados."
   },
   {
-    text: "O crescimento de registros de patentes no século XIX ocorreu por causa de:",
+    text: "A expansão da industrialização fez com que países industriais buscassem novas áreas para matérias-primas e mercados — processo conhecido como:",
     type: "mcq",
-    choices: ["Menor investimento em pesquisa", "Aumento de investimentos científicos e ampliação de universidades", "Redução das invenções", "Proibição de indústria química"],
-    correct: "Aumento de investimentos científicos e ampliação de universidades",
-    explanation: "Mais investimentos em ciência e mais centros de pesquisa levaram ao aumento de registros de patentes."
+    choices: ["Imperialismo","Isolacionismo","Globalização sem trocas","Neolocalismo"],
+    correct: "Imperialismo",
+    explanation: "O texto relaciona a expansão industrial com o imperialismo (neocolonialismo) na África e Ásia."
   },
   {
-    text: "Segundo o texto, a eletrônica permitiu evoluções como rádio, televisão e computadores.",
+    text: "O imperialismo foi promovido sem uso de poder militar pelas potências industriais.",
+    type: "tf",
+    choices: ["Verdadeiro","Falso"],
+    correct: "Falso",
+    explanation: "As potências usaram poder militar para impor dominação em muitos territórios."
+  },
+  {
+    text: "Entre as consequências do aumento da produção industrial estava a necessidade de ampliar mercados consumidores.",
     type: "tf",
     choices: ["Verdadeiro","Falso"],
     correct: "Verdadeiro",
-    explanation: "A eletrônica expandiu o uso da eletricidade e possibilitou invenções como rádio, TV e computadores."
+    explanation: "Para manter o crescimento, era preciso que mais pessoas comprassem os produtos — ampliando o mercado consumidor."
   },
-  {
-    text: "O primeiro computador eletrônico surgiu em 1946, conforme o texto.",
-    type: "tf",
-    choices: ["Verdadeiro","Falso"],
-    correct: "Verdadeiro",
-    explanation: "O texto indica que, nesse contexto, em 1946 surgiu o primeiro computador eletrônico."
-  },
-  {
-    text: "A biotecnologia, mencionada no texto, está associada a avanços em:",
-    type: "mcq",
-    choices: ["Televisão e rádio", "Engenharia genética aplicada à medicina e agropecuária", "Motor a combustão", "Máquina a vapor"],
-    correct: "Engenharia genética aplicada à medicina e agropecuária",
-    explanation: "O texto relaciona a biotecnologia a aplicações da engenharia genética, como OGMs e clonagem."
-  },
-  {
-    text: "A informação torna-se variável-chave do período porque empresas e governos precisam organizar e processar grandes volumes de dados.",
-    type: "tf",
-    choices: ["Verdadeiro","Falso"],
-    correct: "Verdadeiro",
-    explanation: "O texto destaca a necessidade de organizar estoques, contabilidade e gestão de grandes volumes de informação."
-  },
-  {
-    text: "IBM foi citada como exemplo de empresa que surgiu para organizar processamento de dados.",
-    type: "mcq",
-    choices: ["Apple", "IBM", "Microsoft", "Oracle"],
-    correct: "IBM",
-    explanation: "O texto cita a IBM, criada em 1924 pela junção de empresas que produziam relógios de ponto, balanças e máquinas de contabilizar."
-  },
-  {
-    text: "As tecnologias do meio técnico-científico-informacional funcionam de forma interdependente — se uma falhar, o sistema pode paralisar.",
-    type: "tf",
-    choices: ["Verdadeiro","Falso"],
-    correct: "Verdadeiro",
-    explanation: "O texto exemplifica que tecnologias dependem umas das outras (ex.: celular depende de antenas e eletricidade)."
-  }
-];
 
-// --- estado ---
+  // +30 novas perguntas (começando aqui)
+  {
+    text: "A divisão entre países industrializados e não industrializados aprofundou-se por conta de:",
+    type: "mcq",
+    choices: ["Propagação desigual do sistema técnico-industrial","Diferenças no clima apenas","Línguas diferentes","Troca de receitas culinárias"],
+    correct: "Propagação desigual do sistema técnico-industrial",
+    explanation: "A propagação desigual do sistema técnico-industrial consolidou divisões econômicas entre países."
+  },
+  {
+    text: "Qual elemento tecnológico permitiu que o aço se tornasse um dos materiais mais importantes na indústria?",
+    type: "mcq",
+    choices: ["Novos processos de produção de aço","Moinhos de vento","Computadores pessoais","Televisão"],
+    correct: "Novos processos de produção de aço",
+    explanation: "O desenvolvimento de novos processos para produzir aço o tornou central para muitas indústrias."
+  },
+  {
+    text: "O surgimento da indústria automobilística é associado a qual fase histórica?",
+    type: "mcq",
+    choices: ["Segunda Revolução Industrial","Primeira Guerra Mundial","Era medieval","Revolução Neolítica"],
+    correct: "Segunda Revolução Industrial",
+    explanation: "A indústria automobilística surgiu como parte das inovações da Segunda Revolução Industrial."
+  },
+  {
+    text: "O taylorismo recomenda dividir a produção em etapas simples e repetitivas para aumentar eficiência.",
+    type: "tf",
+    choices: ["Verdadeiro","Falso"],
+    correct: "Verdadeiro",
+    explanation: "Taylor propôs a divisão do processo em tarefas repetitivas para aumentar produtividade."
+  },
+  {
+    text: "O objetivo principal do método taylorista era:",
+    type: "mcq",
+    choices: ["Aumentar eficiência e produtividade","Promover autonomia total dos trabalhadores","Reduzir a produção","Eliminar a energia elétrica"],
+    correct: "Aumentar eficiência e produtividade",
+    explanation: "Taylor buscava produzir mais, com menos tempo e menos recursos."
+  },
+  {
+    text: "A mundialização da divisão do trabalho levou à necessidade de:",
+    type: "mcq",
+    choices: ["Mais países exportadores de matérias-primas","Redução do comércio global","Fechamento de fronteiras","Substituir indústrias por agricultura"],
+    correct: "Mais países exportadores de matérias-primas",
+    explanation: "Com mais países industrializados, foi preciso ampliar os fornecedores de matérias-primas."
+  },
+  {
+    text: "O neocolonialismo buscou principalmente:",
+    type: "mcq",
+    choices: ["Garantir condições para o desenvolvimento industrial das potências","Trocar conhecimento gratuito","Distribuir renda igualmente","Promover turismo cultural"],
+    correct: "Garantir condições para o desenvolvimento industrial das potências",
+    explanation: "África e Ásia foram alvo do imperialismo para suprir necessidades industriais das potências."
+  },
+  {
+    text: "Indique uma região mencionada no texto que sofreu intervenção violenta durante o imperialismo:",
+    type: "mcq",
+    choices: ["Congo Belga","América do Norte pré-colombiana","Escandinávia","Groenlândia"],
+    correct: "Congo Belga",
+    explanation: "O texto cita o Congo Belga como local de práticas violentas durante o imperialismo."
+  },
+  {
+    text: "A afirmação: 'A Terceira Revolução Industrial começou com a invenção da máquina a vapor em 1750' — é correta segundo o texto?",
+    type: "tf",
+    choices: ["Verdadeiro","Falso"],
+    correct: "Falso",
+    explanation: "A máquina a vapor inaugurou a Primeira Revolução; a Terceira é caracterizada por técnica+ciência no século XX."
+  },
+  {
+    text: "A partir de meados do século XX a ciência passou a ser um fator produtivo importante devido a:",
+    type: "mcq",
+    choices: ["Desenvolvimento da eletrônica e indústria química","Adoção do cavalo como transporte","Surgimento das rádios AM","Queda do uso de eletricidade"],
+    correct: "Desenvolvimento da eletrônica e indústria química",
+    explanation: "O desenvolvimento da eletrônica e química fez da ciência um fator produtivo essencial."
+  },
+  {
+    text: "A energia nuclear foi empregada ao final da Segunda Guerra Mundial em:",
+    type: "mcq",
+    choices: ["Bombas atômicas lançadas sobre Hiroshima e Nagasaki","Lançamento de satélites de comunicação","Vacinação em massa","Construção de ferrovias"],
+    correct: "Bombas atômicas lançadas sobre Hiroshima e Nagasaki",
+    explanation: "O texto menciona o uso da energia nuclear nas bombas lançadas sobre Hiroshima e Nagasaki em agosto de 1945."
+  },
+  {
+    text: "Durante as décadas seguintes a 1950, a economia mundial ficou fortemente baseada em:",
+    type: "mcq",
+    choices: ["Petróleo, eletricidade, eletrônica e indústria química","Carvão e moinhos manuais","Energia solar quase exclusiva","Agricultura sem tecnologia"],
+    correct: "Petróleo, eletricidade, eletrônica e indústria química",
+    explanation: "Entre 1950 e 1970 a economia se apoiou em petróleo, eletricidade, eletrônica e indústria química."
+  },
+  {
+    text: "O que diferencia 'tecnologias' das 'técnicas' tradicionais, segundo o texto?",
+    type: "mcq",
+    choices: ["Tecnologias são propriedades/registradas, técnicas tradicionais eram compartilhadas","Técnicas eram sempre registradas","Tecnologias são gratuitas","Técnicas possuem patentes"],
+    correct: "Tecnologias são propriedades/registradas, técnicas tradicionais eram compartilhadas",
+    explanation: "Tecnologias modernas costumam ser propriedade privada e protegidas por patentes; técnicas antigas eram mais compartilhadas."
+  },
+  {
+    text: "O termo 'tecnociência' descreve:",
+    type: "mcq",
+    choices: ["Pesquisa científica financiada e orientada para criar tecnologias","Práticas agrícolas sem ciência","Contos populares sobre máquinas","Uma religião tecnológica"],
+    correct: "Pesquisa científica financiada e orientada para criar tecnologias",
+    explanation: "Tecnociência indica estudos científicos com financiamento e infraestrutura voltados à produção de tecnologia."
+  },
+  {
+    text: "O aumento da disputa pelo poder ocasionado por novas tecnologias resultou também em:",
+    type: "mcq",
+    choices: ["Reafirmação da desigualdade no acesso a tecnologias","Iguais oportunidades para todos imediatamente","Fim das patentes","Distribuição universal de tecnologia"],
+    correct: "Reafirmação da desigualdade no acesso a tecnologias",
+    explanation: "O texto destaca que o desenvolvimento tecnológico reafirmou desigualdades, pois nem todos têm acesso às tecnologias."
+  },
+  {
+    text: "A eletricidade foi inicialmente usada principalmente para:",
+    type: "mcq",
+    choices: ["Acender lâmpadas e impulsionar motores elétricos","Navegação espacial","Impressão 3D","Transmissão de internet móvel"],
+    correct: "Acender lâmpadas e impulsionar motores elétricos",
+    explanation: "Inicialmente a eletricidade tinha usos básicos como iluminação e acionamento de motores."
+  },
+  {
+    text: "A informática surgiu concomitantemente a qual desenvolvimento tecnológico?",
+    type: "mcq",
+    choices: ["Desenvolvimento da eletrônica","Da imprensa","Do tear manual","Do barro cozido"],
+    correct: "Desenvolvimento da eletrônica",
+    explanation: "O surgimento da informática ocorreu junto ao avanço da eletrônica."
+  },
+  {
+    text: "Em 1946 surgiu, conforme o texto, o:",
+    type: "mcq",
+    choices: ["Primeiro computador eletrônico","Primeiro smartphone","Primeira televisão","Primeiro GPS"],
+    correct: "Primeiro computador eletrônico",
+    explanation: "O texto indica que, nesse contexto, o primeiro computador eletrônico surgiu por volta de 1946."
+  },
+  {
+    text: "A disseminação da tecnologia da informação a partir de 1970 envolveu a junção entre:",
+    type: "mcq",
+    choices: ["Indústrias de computadores/softwares e empresas de telecomunicação","Setor têxtil e pesca","Mineração e artesanato","Agricultura e culinária"],
+    correct: "Indústrias de computadores/softwares e empresas de telecomunicação",
+    explanation: "Na década de 1970 houve maior integração entre computadores, softwares e telecomunicações."
+  },
+  {
+    text: "OGMs e clonagem são exemplos citados como avanços de:",
+    type: "mcq",
+    choices: ["Biotecnologia","Têxteis","Carpintaria","Mecânica sem eletricidade"],
+    correct: "Biotecnologia",
+    explanation: "O texto relaciona OGMs e clonagem a resultados da biotecnologia."
+  },
+  {
+    text: "A informação passa a ser variável-chave do período porque:",
+    type: "mcq",
+    choices: ["Empresas e governos precisavam organizar e controlar grandes volumes de dados","As pessoas pararam de usar papel","O clima mudou da noite para o dia","A população diminuiu drasticamente"],
+    correct: "Empresas e governos precisavam organizar e controlar grandes volumes de dados",
+    explanation: "O crescimento de empresas e do Estado exigiu organização precisa de estoques, contabilidade e gestão de pessoas."
+  },
+  {
+    text: "Relógios de ponto, balanças de precisão e máquinas para contabilizar dados se juntaram para formar qual empresa em 1924?",
+    type: "mcq",
+    choices: ["IBM","Intel","Google","Samsung"],
+    correct: "IBM",
+    explanation: "A IBM surgiu em 1924 pela junção de empresas que produziam relógios de ponto, balanças e máquinas de contagem."
+  },
+  {
+    text: "A interligação de computadores, rádio, telefonia e televisão possibilitou:",
+    type: "mcq",
+    choices: ["Fluxo global e simultâneo de informação","Isolamento das pessoas","Eliminação do comércio","Fim da produção cultural"],
+    correct: "Fluxo global e simultâneo de informação",
+    explanation: "A interligação das redes proporcionou fluxo de informações ao mesmo tempo e no mundo todo."
+  },
+  {
+    text: "A sensação de 'encurtamento das distâncias' está associada a:",
+    type: "mcq",
+    choices: ["Ampliação do fluxo de informação e transportes rápidos","Crescimento apenas das cidades pequenas","Fenômeno climático","Diminuição das viagens"],
+    correct: "Ampliação do fluxo de informação e transportes rápidos",
+    explanation: "Redes de comunicação e transporte deram a sensação de que distâncias foram 'encurtadas'."
+  },
+  {
+    text: "A WWW começou como uma rede essencialmente:",
+    type: "mcq",
+    choices: ["Acadêmica","Comercial desde o início","Focada em entretenimento","De uso militar apenas"],
+    correct: "Acadêmica",
+    explanation: "A WWW teve origem em contextos acadêmicos e de pesquisa, como no CERN."
+  },
+  {
+    text: "Menos de um ano após a liberação inicial da WWW, já havia:",
+    type: "mcq",
+    choices: ["Centenas de servidores conectados","A internet com bilhões de usuários","Telepatia global","Fim da pesquisa científica"],
+    correct: "Centenas de servidores conectados",
+    explanation: "O texto afirma que, menos de um ano depois, centenas de servidores estavam conectados."
+  },
+  {
+    text: "A Web 2.0 é particularmente marcada por:",
+    type: "mcq",
+    choices: ["Ferramentas que transformam usuários em produtores de conteúdo","Retrocesso tecnológico","Exclusão de redes sociais","Fim do streaming de vídeo"],
+    correct: "Ferramentas que transformam usuários em produtores de conteúdo",
+    explanation: "Blogs, redes sociais e plataformas como YouTube são exemplos dessa mudança."
+  },
+  {
+    text: "Os dispositivos móveis passaram a conectar as pessoas em movimento por meio de:",
+    type: "mcq",
+    choices: ["Wi-fi e dados móveis","Fios fixos","Somente rádios AM","Correio tradicional"],
+    correct: "Wi-fi e dados móveis",
+    explanation: "Smartphones e tablets permitem conexão em movimento via wi-fi ou dados móveis."
+  },
+  {
+    text: "Os objetos informacionais servem basicamente para:",
+    type: "mcq",
+    choices: ["Organizar, transmitir ou receber informações","Armazenar apenas alimentos","Substituir todas as máquinas","Unir sociedades sem tecnologia"],
+    correct: "Organizar, transmitir ou receber informações",
+    explanation: "Satélites, cabos, smartphones e computadores são usados para tratar informações."
+  },
+  {
+    text: "Se uma tecnologia do sistema falhar, o texto indica que:",
+    type: "mcq",
+    choices: ["Todo o sistema tende a paralisar","Nada acontece","A tecnologia se cura sozinha","O sistema volta no dia seguinte sem problemas"],
+    correct: "Todo o sistema tende a paralisar",
+    explanation: "As tecnologias funcionam como sistemas interdependentes; falhas podem paralisar o conjunto."
+  },
+  {
+    text: "Entre as polêmicas citadas que surgem com o meio técnico-científico-informacional está:",
+    type: "mcq",
+    choices: ["Privacidade na rede","Culinária internacional","Banimento de livros","Fim do futebol"],
+    correct: "Privacidade na rede",
+    explanation: "O texto menciona privacidade, direitos autorais, controle da informação e espionagem on-line como polêmicas."
+  },
+  {
+    text: "A passagem do meio natural ao meio técnico foi discutida por qual geógrafo, citada no texto?",
+    type: "mcq",
+    choices: ["Milton Santos","Karl Marx","Adam Smith","Immanuel Kant"],
+    correct: "Milton Santos",
+    explanation: "Milton Santos é citado ao discutir a passagem do meio natural ao meio técnico no processo de globalização."
+  },
+  {
+    text: "A expansão da industrialização até o final do século XIX incluiu o desenvolvimento industrial de qual país asiático?",
+    type: "mcq",
+    choices: ["Japão","Índia","Coreia do Norte","Tailândia"],
+    correct: "Japão",
+    explanation: "Ao final do século XIX o Japão já havia se industrializado, segundo o texto."
+  },
+  {
+    text: "O texto menciona que o crescimento das empresas capitalistas exigia melhor organização de:",
+    type: "mcq",
+    choices: ["Estoques, contabilidade e controle de tempo","Produção exclusivamente artesanal","Abolição de registros","Fechamento de universidades"],
+    correct: "Estoques, contabilidade e controle de tempo",
+    explanation: "Com empresas maiores cresceu a necessidade de organizar estoques, contabilidade e eficiência do trabalho."
+  },
+  {
+    text: "Relógio de ponto é um dispositivo para:",
+    type: "mcq",
+    choices: ["Controlar entrada e saída de funcionários","Medir temperatura ambiente","Calcular impostos","Editar vídeos"],
+    correct: "Controlar entrada e saída de funcionários",
+    explanation: "Relógios de ponto registram horário de entrada e saída de trabalhadores."
+  },
+  {
+    text: "A expressão 'meio técnico-científico-informacional' combina três elementos: técnico, científico e...?",
+    type: "mcq",
+    choices: ["Informacional","Religioso","Militar","Artístico"],
+    correct: "Informacional",
+    explanation: "O termo enfatiza que o novo meio é técnico, científico e informacional."
+  },
+  {
+    text: "O crescimento de centros de pesquisa e universidades contribuiu para:",
+    type: "mcq",
+    choices: ["Aumentar inovações tecnológicas e registros de patentes","Diminuir a produção de ciência","Manter tudo informal","Acabar com a indústria"],
+    correct: "Aumentar inovações tecnológicas e registros de patentes",
+    explanation: "Mais universidades e centros de pesquisa impulsionaram inovações e patentes."
+  },
+  {
+    text: "A Segunda Revolução Industrial intensificou o uso de:",
+    type: "mcq",
+    choices: ["Eletricidade e derivados do petróleo","Velas e carroças","Telégrafo apenas","Arados manuais"],
+    correct: "Eletricidade e derivados do petróleo",
+    explanation: "A elétrica e o petróleo passaram a ter papel central nas indústrias dessa fase."
+  },
+  {
+    text: "A globalização, segundo o texto, resultou principalmente em:",
+    type: "mcq",
+    choices: ["Aumento da conexão entre lugares e aceleração das trocas","Separação completa entre povos","Fim do comércio internacional","Desinteresse por tecnologia"],
+    correct: "Aumento da conexão entre lugares e aceleração das trocas",
+    explanation: "Globalização intensificou conexões e trocas comerciais, culturais e informacionais."
+  },
+  {
+    text: "A biotecnologia e a eletrônica são exemplos de inovações associadas a qual revolução?",
+    type: "mcq",
+    choices: ["Terceira Revolução Industrial","Primeira Revolução Industrial","Período medieval","Era Paleolítica"],
+    correct: "Terceira Revolução Industrial",
+    explanation: "A Terceira Revolução incluiu avanços em eletrônica e na biotecnologia."
+  },
+  {
+    text: "O texto afirma que tecnologias costumam pertencer a:",
+    type: "mcq",
+    choices: ["Pessoas, empresas e governos (são propriedades)","A todos de forma gratuita","A nenhuma entidade","Somente à natureza"],
+    correct: "Pessoas, empresas e governos (são propriedades)",
+    explanation: "Tecnologias são tratadas como propriedades pertencentes a indivíduos, empresas ou governos."
+  },
+  {
+    text: "A expansão industrial levou as potências a olhar para quais continentes em busca de matérias-primas?",
+    type: "mcq",
+    choices: ["África e Ásia","Antártida e Oceania","Europa apenas","América do Norte exclusivamente"],
+    correct: "África e Ásia",
+    explanation: "As potências europeias voltaram-se para África e Ásia para garantir matérias-primas e mercados."
+  }
+]; // fim do array de 50 perguntas
+
+// ----- fim perguntas -----
+
 const total = questions.length;
 document.getElementById('total').innerText = total;
 let currentIndex = 0;
 let score = 0;
 const userAnswers = []; // {questionIndex, selected, correct, isCorrect}
 
-// util shuffle
+// embaralha array in-place
 function shuffleArray(arr){
   for(let i = arr.length -1; i>0; i--){
     const j = Math.floor(Math.random() * (i+1));
@@ -337,7 +568,7 @@ function shuffleArray(arr){
   return arr;
 }
 
-// render
+// renderiza questão atual
 function renderQuestion(){
   const q = questions[currentIndex];
   const area = document.getElementById('question-area');
@@ -356,8 +587,8 @@ function renderQuestion(){
   qtext.innerText = q.text;
   area.appendChild(qtext);
 
-  // prepare choices copy and shuffle (ensure correct included)
-  const choices = q.choices ? q.choices.slice() : (q.type==='tf' ? ['Verdadeiro','Falso'] : []);
+  // preparar alternativas: copia e embaralha
+  let choices = q.choices ? q.choices.slice() : (q.type==='tf' ? ['Verdadeiro','Falso'] : []);
   if(!choices.includes(q.correct)) choices.push(q.correct);
   shuffleArray(choices);
 
@@ -376,7 +607,7 @@ function renderQuestion(){
 
   area.appendChild(choicesDiv);
 
-  // next button (hidden by default)
+  // botão Próxima (oculto por padrão)
   const btnRow = document.createElement('div');
   btnRow.className = 'btn-row';
   const nextBtn = document.createElement('button');
@@ -388,17 +619,17 @@ function renderQuestion(){
   area.appendChild(btnRow);
 }
 
-// choice click
+// ao clicar em alternativa
 function onChoiceClick(e){
   const btn = e.currentTarget;
   const chosen = btn.dataset.choice;
   const q = questions[currentIndex];
 
-  // disable buttons
+  // desabilita todas as opções
   const allBtns = Array.from(document.querySelectorAll('.choice-btn'));
   allBtns.forEach(b => b.disabled = true);
 
-  // mark correct (green) and the clicked wrong (red) if applicable
+  // marca a correta
   allBtns.forEach(b => {
     if(b.dataset.choice === q.correct){
       b.classList.add('choice-correct');
@@ -406,21 +637,19 @@ function onChoiceClick(e){
   });
 
   if(chosen === q.correct){
-    // correct
     score++;
     userAnswers.push({questionIndex: currentIndex, selected: chosen, correct: q.correct, isCorrect: true});
   } else {
-    // wrong
     btn.classList.add('choice-wrong');
     userAnswers.push({questionIndex: currentIndex, selected: chosen, correct: q.correct, isCorrect: false});
   }
 
-  // reveal next button
+  // mostra botão Próxima
   const nextBtn = document.getElementById('nextBtn');
   nextBtn.classList.remove('hidden');
 }
 
-// next or finish
+// próximo
 function onNext(){
   currentIndex++;
   if(currentIndex >= total){
@@ -430,9 +659,9 @@ function onNext(){
   }
 }
 
-// progress update
+// atualiza barra de progresso
 function updateProgress(){
-  const percent = Math.round((currentIndex / total) * 100);
+  const percent = Math.round(((currentIndex) / total) * 100);
   const bar = document.getElementById('progress-bar');
   const label = document.getElementById('progress-label');
   bar.style.width = percent + '%';
@@ -440,7 +669,7 @@ function updateProgress(){
   label.innerText = percent + '%';
 }
 
-// summary
+// mostra resumo final
 function showSummary(){
   document.getElementById('question-area').style.display = 'none';
   document.getElementById('meta').style.display = 'none';
@@ -481,15 +710,13 @@ function showSummary(){
     list.appendChild(li);
   }
 
-  // ensure progress shows 100%
+  // garante 100% na barra
   document.getElementById('progress-bar').style.width = '100%';
   document.getElementById('progress-label').innerText = '100%';
 
-  // restart
+  // reiniciar
   document.getElementById('restart').addEventListener('click', () => {
-    currentIndex = 0;
-    score = 0;
-    userAnswers.length = 0;
+    currentIndex = 0; score = 0; userAnswers.length = 0;
     document.getElementById('summary-container').style.display = 'none';
     document.getElementById('question-area').style.display = '';
     document.getElementById('meta').style.display = '';
@@ -497,7 +724,7 @@ function showSummary(){
   });
 }
 
-// initial render
+// inicializa
 renderQuestion();
 updateProgress();
 
