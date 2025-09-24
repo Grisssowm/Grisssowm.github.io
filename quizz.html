@@ -1,732 +1,310 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Quiz — Revoluções Industriais e Meio Técnico-Científico-Informacional (50 Qs)</title>
-<style>
-  :root{
-    --bg: #f6f8fb;
-    --card: #ffffff;
-    --accent: #2563eb;
-    --success: #16a34a;
-    --danger: #dc2626;
-    --muted: #6b7280;
-    --btn-padding: 12px 18px;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0;
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:var(--bg);
-    padding:24px;
-    color:#0b1220;
-  }
-  .wrap{ width:100%; max-width:1050px; }
-  .card{
-    background:var(--card);
-    border-radius:14px;
-    padding:26px;
-    box-shadow: 0 10px 30px rgba(16,24,40,0.08);
-  }
-  header{ display:flex; gap:14px; align-items:center; margin-bottom:10px; }
-  header h1{ margin:0; font-size:20px; }
-  header p{ margin:0; color:var(--muted); font-size:14px; }
-  .progress-wrap{ margin-top:12px; display:flex; align-items:center; gap:12px; }
-  .progress{ flex:1; height:12px; background:#e6eefc; border-radius:999px; overflow:hidden; }
-  .progress > i{ display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--accent),#60a5fa); transition:width .35s ease; }
-  .progress-label{ min-width:68px; text-align:right; font-size:13px; color:var(--muted); }
-  .question-area{ margin-top:18px; }
-  .q-number{ color:var(--muted); font-size:13px; margin-bottom:8px; }
-  .q-text{ font-size:18px; margin-bottom:18px; line-height:1.45; }
-  .choices{ display:flex; flex-direction:column; gap:12px; align-items:center; }
-  .choice-btn{
-    width:100%; max-width:980px; padding:var(--btn-padding);
-    border-radius:12px; border:1px solid rgba(2,6,23,0.06);
-    background:#fff; cursor:pointer; font-size:15px; text-align:center;
-    transition: transform .06s ease, box-shadow .06s ease; outline:none;
-  }
-  .choice-btn:hover{ transform:translateY(-3px); box-shadow:0 8px 20px rgba(2,6,23,0.06); }
-  .choice-btn[disabled]{ cursor:default; opacity:0.96; transform:none; box-shadow:none; }
-  .choice-correct{ background:var(--success) !important; color:#fff !important; border-color: rgba(16,185,129,0.9) !important; box-shadow:0 8px 20px rgba(16,185,129,0.12); }
-  .choice-wrong{ background:var(--danger) !important; color:#fff !important; border-color: rgba(220,38,38,0.9) !important; box-shadow:0 8px 20px rgba(220,38,38,0.12); }
-  .btn-row{ display:flex; justify-content:center; margin-top:18px; gap:12px; }
-  .btn-next{ padding:10px 18px; border-radius:10px; background:var(--accent); color:white; border:0; cursor:pointer; font-weight:600; display:inline-block; }
-  .btn-next.hidden{ display:none; }
-  .meta{ margin-top:12px; color:var(--muted); font-size:14px; text-align:center; }
-  .summary{ margin-top:18px; }
-  .final-card{ background:#fff; border-radius:12px; padding:18px; border:1px solid rgba(2,6,23,0.04); }
-  .summary-list{ list-style:none; margin:12px 0 0 0; padding:0; display:grid; gap:12px; }
-  .summary-item{ padding:12px; border-radius:10px; border:1px solid rgba(2,6,23,0.04); background:#fcfeff; }
-  .summary-item strong{ display:block; margin-bottom:6px; }
-  .explain{ color:var(--muted); font-size:14px; margin-top:8px; }
-  .small{ font-size:13px; color:var(--muted); }
-  footer{ margin-top:18px; text-align:center; color:var(--muted); font-size:13px; }
-  @media (max-width:720px){
-    .q-text{ font-size:16px; }
-    .choice-btn{ font-size:15px; }
-    header{ flex-direction:column; align-items:flex-start; gap:6px; }
-  }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Quiz: Ciências & Português</title>
+  <style>
+    :root{--bg:#f5f7fb;--card:#ffffff;--primary:#4f46e5;--success:#16a34a;--danger:#dc2626;--muted:#6b7280}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);margin:0;padding:32px;display:flex;align-items:center;justify-content:center;min-height:100vh}
+    .container{width:100%;max-width:900px;background:var(--card);border-radius:12px;box-shadow:0 6px 24px rgba(15,23,42,0.08);padding:28px}
+    h1{margin:0 0 8px;font-size:20px}
+    .meta{color:var(--muted);margin-bottom:18px}
+    .progress{height:14px;background:#eef2ff;border-radius:999px;overflow:hidden;margin-bottom:18px}
+    .progress > .bar{height:100%;width:0%;background:linear-gradient(90deg,var(--primary),#06b6d4);transition:width .35s}
+    .progress-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px}
+    .card{padding:18px;border-radius:10px;border:1px solid #eef2ff}
+    .question{font-weight:600;margin-bottom:12px}
+    .answers{display:flex;flex-direction:column;gap:10px}
+    .answer-btn{padding:12px;border-radius:8px;border:1px solid #e6e9fb;background:#fff;cursor:pointer;text-align:left;font-size:15px}
+    .answer-btn:hover{transform:translateY(-1px)}
+    .answer-btn.correct{background:rgba(22,163,74,0.12);border-color:rgba(22,163,74,0.25)}
+    .answer-btn.incorrect{background:rgba(220,38,38,0.08);border-color:rgba(220,38,38,0.18)}
+    .controls{display:flex;justify-content:space-between;align-items:center;margin-top:16px}
+    .next-btn{padding:10px 16px;border-radius:8px;border:none;background:var(--primary);color:#fff;cursor:pointer;display:none}
+    .next-btn:disabled{opacity:.5;cursor:not-allowed}
+    .summary{margin-top:20px}
+    .summary-list{margin-top:12px;border-top:1px dashed #eef2ff;padding-top:12px}
+    .summary-item{padding:10px;border-radius:8px;background:#fafafa;margin-bottom:8px}
+    .explanation{font-size:14px;color:var(--muted);margin-top:8px}
+    .score{font-weight:700;margin-top:12px}
+    .small{font-size:13px;color:var(--muted)}
+    footer{margin-top:14px;font-size:13px;color:var(--muted)}
+    .menu{display:flex;gap:12px;justify-content:center;margin-bottom:18px}
+    .menu button{padding:10px 16px;border-radius:8px;border:none;background:#111827;color:#fff;cursor:pointer}
+    @media (max-width:640px){.container{padding:18px}}
+  </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card" id="card">
-      <header>
-        <div>
-          <h1>Quiz — Revoluções Industriais & Meio Técnico-Científico-Informacional (50 perguntas)</h1>
-          <p>Questões baseadas no PDF enviado (capítulos sobre revoluções industriais, tecnociência, imperialismo, informática, etc.). As perguntas foram criadas a partir do documento que você carregou. :contentReference[oaicite:1]{index=1}</p>
-        </div>
-      </header>
+  <div class="container" id="app">
+    <h1>Quiz — Ciências & Português</h1>
+    <div class="meta">Escolha um tema para começar</div>
 
-      <div class="progress-wrap" aria-hidden="false">
-        <div class="progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <i id="progress-bar"></i>
-        </div>
-        <div class="progress-label" id="progress-label">0%</div>
-      </div>
+    <div class="menu" id="menu">
+      <button id="btnCiencias">Ciências (50)</button>
+      <button id="btnPortugues">Português (50)</button>
+    </div>
 
-      <div class="question-area" id="question-area"></div>
-      <div class="meta" id="meta">Questão <span id="current">1</span> de <span id="total">50</span></div>
+    <!-- Progress area (updated per-theme) -->
+    <div class="progress-label" id="progressLabel" style="display:none"><div id="qcount">Pergunta 1 / 50</div><div id="pct">0%</div></div>
+    <div class="progress" id="progressBarWrap" style="display:none" aria-hidden><div class="bar" id="bar"></div></div>
 
-      <div class="summary" id="summary-container" style="display:none;">
-        <div class="final-card">
-          <h2>Resumo final</h2>
-          <p id="score" style="font-weight:700; margin:6px 0;"></p>
-          <ul class="summary-list" id="summary-list"></ul>
-          <div style="margin-top:12px; text-align:center;">
-            <button id="restart" class="btn-next" style="background:#374151">Refazer quiz</button>
-          </div>
+    <div class="card" id="card" style="display:none">
+      <div class="question" id="question">Carregando...</div>
+      <div class="answers" id="answers"></div>
+      <div class="explanation" id="explanation" style="display:none"></div>
+      <div class="controls">
+        <div class="small" id="hint">Fonte: documentos fornecidos</div>
+        <div style="margin-left:auto">
+          <button id="nextBtn" class="next-btn">Próxima</button>
         </div>
       </div>
+    </div>
 
-      <footer>
-        Fonte: PDF enviado (capítulos sobre Expansão do meio técnico, Segunda Revolução Industrial, imperialismo, Terceira Revolução Industrial, tecnociência, avanços da eletrônica e informática, meio técnico-científico-informacional). :contentReference[oaicite:2]{index=2}
-      </footer>
+    <div class="summary" id="summary" style="display:none">
+      <div class="score" id="score"></div>
+      <div class="summary-list" id="summaryList"></div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <button id="retrySame" class="menuBtn">Jogar esse tema novamente</button>
+        <button id="playOther" class="menuBtn">Jogar o outro tema</button>
+        <button id="backMenu" class="menuBtn">Voltar à seleção</button>
+      </div>
+      <footer>Feito a partir dos documentos que você enviou — perguntas geradas automaticamente.</footer>
     </div>
   </div>
 
 <script>
-/* 50 perguntas geradas a partir do PDF fornecido.
-   - Alternativas embaralhadas
-   - Próxima só aparece após escolha
-   - Barra de progresso em %
-*/
+// --- QUESTIONS: split into two arrays (50 each) ---
+const portugues = [
+  {q: 'O que caracteriza um período simples?', choices: ['Possui apenas um verbo','Possui mais de um verbo','Possui apenas sujeito oculto','É sempre uma frase nominal'], a:0, explanation:'Período simples contém apenas um verbo ou uma locução verbal que funcione como um único verbo.'},
+  {q: 'Quando um período é composto?', choices: ['Quando possui mais de um verbo','Quando tem apenas sujeito composto','Quando é uma frase nominal','Quando é curto demais'], a:0, explanation:'Período composto tem mais de um verbo, cada verbo representa uma oração.'},
+  {q: 'Qual termo descreve orações que mantêm estrutura completa e podem ser unidas por conjunção?', choices:['Orações coordenadas','Orações subordinadas','Orações reduzidas','Orações absolutas'], a:0, explanation:'Orações coordenadas têm estrutura sintática independente.'},
+  {q: 'O que é uma oração subordinada?', choices:['Oração que depende da principal','Oração com verbo no infinitivo','Oração sem sujeito','Oração exclamativa'], a:0, explanation:'Oração subordinada depende sintaticamente de outra, a principal.'},
+  {q: 'Qual conjunção indica sentido adversativo?', choices:['mas','e','logo','pois'], a:0, explanation:'"Mas" indica oposição entre as ideias.'},
+  {q: 'Qual conjunção costuma indicar conclusão?', choices:['logo','mas','e','ou'], a:0, explanation:'"Logo" e similares expressam conclusão ou consequência.'},
+  {q: 'Assinale a opção que é exemplo de coordenação assindética:', choices:['Li o mito, não entendi seu significado.','Li o mito, mas não entendi.','Se gostou, diga.','Que li o livro...'], a:0, explanation:'Assindética = sem conjunção; as orações são apenas separadas por vírgula.'},
+  {q: 'Qual das alternativas apresenta conjunção explicativa?', choices:['pois','ou','mas','e'], a:0, explanation:'"Pois" justifica ou explica a oração anterior.'},
+  {q: 'Quando a vírgula é proibida entre orações com "e"?', choices:['Quando as orações têm o mesmo sujeito','Quando há polissíndeto','Quando são alternadas','Quando emprega conjunção adversativa'], a:0, explanation:'Com sujeito idêntico e conjunção aditiva "e", não se usa vírgula entre os verbos.'},
+  {q: 'O que é polissíndeto?', choices:['Repetição da conjunção entre várias orações','Ausência de conjunção','Conjunção explicativa','Conjunção conclusiva'], a:0, explanation:'Polissíndeto = repetição de conjunções (ex.: e... e... e...).'},
+  {q: 'Qual exemplo corresponde a orações coordenadas alternativas?', choices:['Ou vence o cão, ou vence a raposa.','A raposa fugiu e voltou.','Ele estudou, logo passou.','Estava triste, mas sorriu.'], a:0, explanation:'Alternativas indicam escolha entre possibilidades (ou...ou).'},
+  {q: 'O pronome relativo "que" pode introduzir qual tipo de oração?', choices:['Adjetiva','Adverbial','Substantiva','Coordenada'], a:0, explanation:'"Que" introduz orações adjetivas que caracterizam um termo do substantivo.'},
+  {q: 'Uma oração que funciona como objeto direto é chamada de:', choices:['Substantiva','Adjetiva','Adverbial','Coordenada'], a:0, explanation:'Orações substantivas podem exercer função de objeto direto, sujeito, etc.'},
+  {q: 'Qual conjunção expressa sentido aditivo?', choices:['e','porém','logo','ou'], a:0, explanation:'Conjunções aditivas (e, nem) exprimem soma ou adição de ideias.'},
+  {q: 'Marque a alternativa com conjunção que indica explicação:', choices:['porque','ou','e','mas'], a:0, explanation:'"Porque" conecta uma justificativa/explicação à oração anterior.'},
+  {q: 'Qual o efeito sintático de uma oração subordinada adverbial?', choices:['Amplia o sentido do verbo principal','Substitui o sujeito','Serve como vocativo','Sempre tem pronome relativo'], a:0, explanation:'Adverbial amplia circunstâncias como tempo, causa, condição do verbo da principal.'},
+  {q: 'Em "Eu trocarei o livro assim que chegar à biblioteca.", que tipo de subordinada é "assim que chegar à biblioteca"?', choices:['Adverbial temporal','Substantiva','Adjetiva','Coordenada'], a:0, explanation:'"Assim que" indica tempo — é subordinada adverbial temporal.'},
+  {q: 'Em "O livro de mitologia que li me surpreendeu.", a oração "que li" é:', choices:['Adjetiva restritiva','Substantiva','Adverbial','Coordenada'], a:0, explanation:'"Que li" caracteriza "o livro" — é oração adjetiva.'},
+  {q: 'Quando usamos vírgula entre coordenadas introduzidas por "e"?', choices:['Quando os sujeitos são diferentes (opcional)','Nunca','Sempre','Quando há polissíndeto apenas'], a:0, explanation:'Com sujeitos diferentes a vírgula é opcional; com polissíndeto é obrigatória.'},
+  {q: 'Qual conjunção pertence ao grupo conclusivo?', choices:['portanto','e','mas','ou'], a:0, explanation:'"Portanto" indica conclusão; pertence às conclusivas.'},
+  {q: 'O que diferencia uma oração coordenada sindética de uma assindética?', choices:['A presença de conjunção','O número de sujeitos','O tempo verbal','A pontuação somente'], a:0, explanation:'Sindética tem conjunção que liga orações; assindética não tem.'},
+  {q: 'Exemplo de conjunção adversativa além de "mas":', choices:['porém','e','ou','logo'], a:0, explanation:'"Porém" expressa adversidade/contraste, como "mas".'},
+  {q: 'Qual conjunção pode ter sentido explicativo e também conclusivo dependendo do contexto?', choices:['pois','e','ou','mas'], a:0, explanation:'"Pois" pode ter sentido explicativo; em posição pós-verbal costuma explicar.'},
+  {q: 'Se uma oração não possui sentido completo sozinha e depende de outra, é:', choices:['Subordinada','Coordenada','Assindética','Sindética'], a:0, explanation:'Falta de sentido independente caracteriza oração subordinada.'},
+  {q: 'As orações que aparecem justapostas sem conjunção são chamadas de:', choices:['Assindéticas','Sindéticas','Subordinadas','Relativas'], a:0, explanation:'Justapostas sem conjunção = assindéticas.'},
+  {q: 'Qual é a função típica de uma oração substantiva?', choices:['Substituir um termo substantivo (ex.: atuar como objeto direto)','Caracterizar um substantivo','Indicar circunstância temporal','Unir orações coordenadas'], a:0, explanation:'Orações substantivas desempenham funções típicas de substantivo, como sujeito ou objeto.'},
+  {q: 'Em "Ela pesquisou o mito e não encontrou nada.", qual sentido a conjunção "e" pode assumir?', choices:['Oposição (mas) ou adição dependendo do contexto','Aditivo sempre','Conclusivo sempre','Explicativo sempre'], a:0, explanation:'A conjunção "e" pode assumir vários sentidos conforme contexto (oposição, conclusão, etc.).'},
+  {q: 'Qual estrutura demonstra que cada oração tem sujeito e predicado próprios?', choices:['Coordenação','Subordinação','Orações reduzidas','Vocativo'], a:0, explanation:'Coordenação = cada oração tem estrutura completa com sujeito e predicado.'},
+  {q: 'Em "Li o mito, não entendi seu significado.", o sujeito de ambas as orações é:', choices:['Oculto (eu)','Li o mito','Você','Ele'], a:0, explanation:'Sujeito oculto é "eu" nas duas orações do exemplo.'},
+  {q: 'Conjunções coordenativas morfologicamente são:', choices:['Classe invariável','Verbos auxiliares','Pronomes','Advérbios'], a:0, explanation:'Conjunções são palavras invariáveis que ligam orações.'},
+  {q: 'Qual conectivo é usado para justificar algo e pode ser classificado como explicativo?', choices:['pois','ou','e','mas'], a:0, explanation:'"Pois" justifica a oração anterior: é explicativa.'},
+  {q: 'Quando dizemos que uma oração é autônoma no sentido apresentado na tabela, ela é:', choices:['Adversativa','Subordinada','Reduzida','Substantiva'], a:0, explanation:'No contexto da tabela, "autônoma" relaciona-se às adversativas que apresentam independência sem relação de dependência sintática.'},
+  {q: 'O que significa que as orações "se associam em um único período preservando sua estrutura completa"?', choices:['São coordenadas','São reduzidas','São subordinadas','São elipses'], a:0, explanation:'Preservar estrutura completa = orações coordenadas.'},
+  {q: 'No período composto, cada verbo (quando não locução) indica:', choices:['Uma oração','Um sujeito','Uma vírgula','Um advérbio'], a:0, explanation:'Cada verbo marca uma oração no período.'},
+  {q: 'Qual alternativa indica corretamente que as orações coordenadas podem expressar conclusão?', choices:['Conclusivas','Aditivas','Alternativas','Adversativas'], a:0, explanation:'Conclusivas exprimem consequência ou conclusão.'},
+  {q: 'O conector "porquanto" pertence a qual grupo?', choices:['Explicativas','Aditivas','Alternativas','Adversativas'], a:0, explanation:'"Porquanto" é uma conjunção explicativa/causal.'},
+  {q: 'As orações coordenadas que se unem sem conjunção são organizadas por:', choices:['Vírgulas','Ponto e vírgula','Dois pontos','Travessão'], a:0, explanation:'Assindéticas geralmente são separadas por vírgulas.'},
+  {q: 'Qual é a indicação típica de uma oração coordenada conclusiva?', choices:['Expressar consequência da oração anterior','Unir sujeitos distintos','Explicar uma ideia','Ser reduzida'], a:0, explanation:'Conclusiva exprime a conclusão ou consequência da oração precedente.'}
+];
 
-// ----- perguntas (50) -----
-const questions = [
-  // primeiras 20 (baseadas no trecho que já havíamos usado)
-  {
-    text: "Quem projetou a máquina eletromecânica chamada 'The Bombe' que ajudou a decifrar códigos durante a Segunda Guerra Mundial?",
-    type: "mcq",
-    choices: ["John Mauchly","Alan Turing","John Eckert","Frederick Taylor"],
-    correct: "Alan Turing",
-    explanation: "Alan Turing projetou a bomba eletromecânica (The Bombe) para auxiliar na decifração dos códigos alemães."
-  },
-  {
-    text: "Qual foi o principal objetivo do ENIAC, desenvolvido por Mauchly e Eckert?",
-    type: "mcq",
-    choices: ["Calcular trajetórias de bombas","Processar texto","Navegação por satélite","Comércio eletrônico"],
-    correct: "Calcular trajetórias de bombas",
-    explanation: "O ENIAC foi encomendado pelo exército dos EUA para calcular trajetórias de bombas de longo alcance."
-  },
-  {
-    text: "O ENIAC ficou pronto durante a Segunda Guerra Mundial.",
-    type: "tf",
-    choices: ["Verdadeiro","Falso"],
-    correct: "Falso",
-    explanation: "O ENIAC só foi concluído entre o final de 1945 e o início de 1946, após o fim do conflito."
-  },
-  {
-    text: "Qual console foi citado como primeiro comercialmente bem-sucedido no documento?",
-    type: "mcq",
-    choices: ["Magnavox Odyssey","Atari 2600","Nintendo NES","PlayStation"],
-    correct: "Magnavox Odyssey",
-    explanation: "O Magnavox Odyssey, lançado em 1972, foi mencionado como o primeiro console de videogame comercialmente bem-sucedido."
-  },
-  {
-    text: "Em que década os computadores pessoais começaram a chegar aos lares, segundo o texto?",
-    type: "mcq",
-    choices: ["1970s","1950s","1990s","1930s"],
-    correct: "1970s",
-    explanation: "A partir da década de 1970 os computadores pessoais começaram a se disseminar entre lares e escritórios."
-  },
-  {
-    text: "A World Wide Web (WWW) foi criada entre 1989 e 1990 no:",
-    type: "mcq",
-    choices: ["CERN","MIT","Harvard","NASA"],
-    correct: "CERN",
-    explanation: "A WWW foi proposta por pesquisadores do CERN entre 1989 e 1990."
-  },
-  {
-    text: "A Web 2.0 trouxe principalmente:",
-    type: "mcq",
-    choices: ["Usuários como produtores de conteúdo","Mais TV por assinatura","A volta dos jornais impressos","Redução da interação"],
-    correct: "Usuários como produtores de conteúdo",
-    explanation: "A Web 2.0 ampliou a interação e fez do usuário um produtor de conteúdo (blogs, redes sociais, YouTube etc.)."
-  },
-  {
-    text: "Smartphones e tablets permitiram ampliar o uso de ferramentas de:",
-    type: "mcq",
-    choices: ["Geolocalização via GPS","Impressão 3D","Energia nuclear","Agricultura manual"],
-    correct: "Geolocalização via GPS",
-    explanation: "A popularização de dispositivos móveis possibilitou o uso amplo de geolocalização (GPS)."
-  },
-  {
-    text: "A internet é, no texto, descrita como:",
-    type: "mcq",
-    choices: ["Um sistema de dispositivos interligados","Um único servidor mundial","Uma TV gigante","Uma invenção dos anos 60 sem conexão global"],
-    correct: "Um sistema de dispositivos interligados",
-    explanation: "O texto descreve a internet como um sistema de dispositivos móveis e fixos interligados."
-  },
-  {
-    text: "O termo 'meio técnico-científico-informacional' refere-se a:",
-    type: "mcq",
-    choices: ["Objetos produzidos pela união entre ciência e técnica","Só a agricultura tradicional","A natureza intocada","A música popular"],
-    correct: "Objetos produzidos pela união entre ciência e técnica",
-    explanation: "O meio técnico-científico-informacional é formado pelos objetos produzidos pela ciência aplicada à produção industrial."
-  },
-  {
-    text: "A Terceira Revolução Industrial destaca-se por:",
-    type: "mcq",
-    choices: ["Avanços em eletrônica e indústria química","Uso exclusivo de vapor","Fim da indústria","Produção apenas manual"],
-    correct: "Avanços em eletrônica e indústria química",
-    explanation: "A terceira revolução está marcada pela junção entre técnica e ciência, com avanços na eletrônica e indústria química."
-  },
-  {
-    text: "Industry 4.0 refere-se à quarta revolução, com automação, IoT e conectividade.",
-    type: "tf",
-    choices: ["Verdadeiro","Falso"],
-    correct: "Verdadeiro",
-    explanation: "O texto cita Industry 4.0 como adoção de tecnologias como internet das coisas e automação conectada."
-  },
-  {
-    text: "O surgimento da biotecnologia está ligado à engenharia genética e a aplicações na medicina e agropecuária.",
-    type: "tf",
-    choices: ["Verdadeiro","Falso"],
-    correct: "Verdadeiro",
-    explanation: "Biotecnologia refere-se a aplicações da engenharia genética, como OGMs e clonagem."
-  },
-  {
-    text: "As tecnologias no texto são apresentadas como propriedade registrada via:",
-    type: "mcq",
-    choices: ["Patentes","Folclore","Tradição oral","Registro gratuito universal"],
-    correct: "Patentes",
-    explanation: "Tecnologias passaram a ser tratadas como propriedades e registradas por meio do sistema internacional de patentes."
-  },
-  {
-    text: "O aumento de registros de patentes no século XIX ocorreu por:",
-    type: "mcq",
-    choices: ["Mais investimento em ciência e mais universidades","Menos pesquisa","Guerra mundial","Fome generalizada"],
-    correct: "Mais investimento em ciência e mais universidades",
-    explanation: "Maior investimento científico e mais centros de pesquisa levaram ao aumento de registros de patentes."
-  },
-  {
-    text: "A IBM foi citada no texto como exemplo de empresa que agregou tecnologias para processar dados.",
-    type: "tf",
-    choices: ["Verdadeiro","Falso"],
-    correct: "Verdadeiro",
-    explanation: "IBM surgiu em 1924 a partir da junção de empresas que produziam máquinas de medir e contabilizar dados."
-  },
-  {
-    text: "A expansão da industrialização fez com que países industriais buscassem novas áreas para matérias-primas e mercados — processo conhecido como:",
-    type: "mcq",
-    choices: ["Imperialismo","Isolacionismo","Globalização sem trocas","Neolocalismo"],
-    correct: "Imperialismo",
-    explanation: "O texto relaciona a expansão industrial com o imperialismo (neocolonialismo) na África e Ásia."
-  },
-  {
-    text: "O imperialismo foi promovido sem uso de poder militar pelas potências industriais.",
-    type: "tf",
-    choices: ["Verdadeiro","Falso"],
-    correct: "Falso",
-    explanation: "As potências usaram poder militar para impor dominação em muitos territórios."
-  },
-  {
-    text: "Entre as consequências do aumento da produção industrial estava a necessidade de ampliar mercados consumidores.",
-    type: "tf",
-    choices: ["Verdadeiro","Falso"],
-    correct: "Verdadeiro",
-    explanation: "Para manter o crescimento, era preciso que mais pessoas comprassem os produtos — ampliando o mercado consumidor."
-  },
+const ciencias = [
+  {q: 'Qual a porcentagem aproximada do plasma no volume sanguíneo?', choices: ['55%','41%','30%','70%'], a:0, explanation:'O plasma compõe aproximadamente 55% do sangue, sendo ~90% água.'},
+  {q: 'Qual é a principal função da hemoglobina nas hemácias?', choices: ['Transportar oxigênio','Coagular sangue','Produzir anticorpos','Regulador térmico'], a:0, explanation:'Hemoglobina liga-se ao oxigênio e o transporta dos pulmões para as células.'},
+  {q: 'Cerca de quantos litros de sangue circulam no corpo de um adulto?', choices: ['5 a 6 litros','1 a 2 litros','10 a 12 litros','200 a 300 ml'], a:0, explanation:'Um adulto tem em média 5 a 6 litros de sangue.'},
+  {q: 'Onde são produzidos principalmente os elementos figurados do sangue?', choices: ['Medula óssea','Fígado','Baço','Pulmões'], a:0, explanation:'Medula óssea produz hemácias, leucócitos e plaquetas.'},
+  {q: 'Qual célula sanguínea é responsável pela defesa do organismo?', choices: ['Leucócitos','Hemácias','Plaquetas','Plasma'], a:0, explanation:'Leucócitos (glóbulos brancos) atuam na defesa contra agentes estranhos.'},
+  {q: 'Que componente do sangue tem cor amarelada e contém 90% água?', choices: ['Plasma','Hemácias','Plaquetas','Fibrina'], a:0, explanation:'Plasma é o componente líquido, de coloração amarelada.'},
+  {q: 'Qual a função principal das plaquetas?', choices: ['Promover a coagulação','Transportar oxigênio','Combater infecções','Filtrar sangue'], a:0, explanation:'Plaquetas liberam substâncias que iniciam a coagulação para estancar sangramentos.'},
+  {q: 'Quantas plaquetas aproximadamente por mm³ um adulto possui?', choices: ['~300.000','~50.000','~1.000.000','~10.000'], a:0, explanation:'Um adulto tem cerca de 300 mil plaquetas por milímetro cúbico.'},
+  {q: 'A hemácia vive, em média, quanto tempo?', choices: ['90 a 120 dias','5 a 9 dias','Horas a semanas','365 dias'], a:0, explanation:'Vida útil das hemácias é de 90 a 120 dias; já as plaquetas 5-9 dias.'},
+  {q: 'O que ocorre na centrifugação do sangue?', choices: ['Separação em plasma e elementos figurados','Mistura completa','Formação de coágulos','Destruição das hemácias'], a:0, explanation:'Centrifugação permite visualizar plasma e elementos figurados separadamente.'},
+  {q: 'Qual é a principal função do sistema circulatório?', choices: ['Distribuir nutrientes, gases e regular temperatura','Produzir hormônios','Digestionar alimentos','Controlar movimentos'], a:0, explanation:'Sistema circulatório distribui substâncias e regula temperatura.'},
+  {q: 'Qual vaso sanguíneo sai do coração levando sangue com maior pressão?', choices: ['Artéria','Veia','Capilar','Vênula'], a:0, explanation:'Artérias saem do coração e suportam alta pressão.'},
+  {q: 'Quais vasos possuem válvulas para impedir refluxo?', choices: ['Veias','Artérias','Capilares','Arteríolas'], a:0, explanation:'Veias têm válvulas que auxiliam o retorno venoso contra a gravidade.'},
+  {q: 'Onde ocorrem as trocas gasosas entre sangue e ar?', choices: ['Capilares (em contato com alvéolos)','Veias','Artérias','Coração'], a:0, explanation:'Capilares pulmonares em contato com alvéolos permitem trocas gasosas.'},
+  {q: 'Qual tecido reveste externamente o coração?', choices: ['Pericárdio','Endocárdio','Miocárdio','Epicárdio'], a:0, explanation:'Pericárdio reveste externamente o coração e facilita seus movimentos.'},
+  {q: 'Qual cavidade do coração bombeia sangue para o corpo (circuito sistêmico)?', choices: ['Ventrículo esquerdo','Ventrículo direito','Átrio direito','Átrio esquerdo'], a:0, explanation:'Ventrículo esquerdo impulsiona sangue para o corpo com alta pressão.'},
+  {q: 'O que é sístole?', choices: ['Contração do músculo cardíaco','Relaxamento','Batida fraca','Um tipo de válvula'], a:0, explanation:'Sístole = contração; diástole = relaxamento.'},
+  {q: 'Em repouso, a frequência cardíaca média é de:', choices: ['60 a 70 batimentos por minuto','30 a 40','100 a 120','200'], a:0, explanation:'Coração em repouso bate cerca de 60-70 vezes por minuto.'},
+  {q: 'Qual componente do sangue contém aglutininas (anticorpos) do sistema ABO?', choices: ['Plasma','Hemácias','Plaquetas','Fibrina'], a:0, explanation:'As aglutininas estão no plasma e reagem contra aglutinogênios estranhos.'},
+  {q: 'Qual tipo sanguíneo é considerado doador universal?', choices: ['O-','AB+','A+','B-'], a:0, explanation:'O- não possui aglutinogênios e pode ser dado a todos os tipos.'},
+  {q: 'Por que um receptor Rh- pode reagir mal a sangue Rh+?', choices: ['Porque produz anticorpos anti-Rh','Porque tem mais hemácias','Porque tem mais plasma','Porque Rh- tem trombose'], a:0, explanation:'Receptor Rh- pode formar anticorpos anti-Rh que aglutinam hemácias Rh+.'},
+  {q: 'Quem pode ser doador de sangue segundo o documento?', choices: ['Pessoas entre 16 e 69 anos (com regras)','Qualquer pessoa sem restrições','Apenas maiores de 50','Apenas profissionais de saúde'], a:0, explanation:'Doadores geralmente entre 16 e 69 anos; menores de 18 precisam de autorização.'},
+  {q: 'Qual requisito mínimo de peso para ser doador?', choices: ['50 kg','40 kg','60 kg','70 kg'], a:0, explanation:'Peso mínimo citado: 50 kg.'},
+  {q: 'Quanto tempo homens devem aguardar entre doações?', choices: ['60 dias','30 dias','90 dias','120 dias'], a:0, explanation:'Homens: pelo menos 60 dias entre doações; mulheres 90 dias.'},
+  {q: 'Durante a pandemia, o que aconteceu com os bancos de sangue?', choices: ['Redução significativa nas doações','Aumento recorde de doações','Nenhuma mudança','Foram extintos'], a:0, explanation:'Houve queda nas doações, deixando os bancos em situação crítica.'},
+  {q: 'Qual doença está associada a produção descontrolada de células sanguíneas na medula?', choices: ['Leucemia','Anemia','Hemofilia','Trombose'], a:0, explanation:'Leucemia é câncer da medula, produz células imaturas e descontroladas.'},
+  {q: 'Anemia caracteriza-se por:', choices: ['Redução de hemácias ou hemoglobina','Excesso de plaquetas','Infecção bacteriana','Coagulação anormal'], a:0, explanation:'Anemia = baixa contagem de hemácias ou hemoglobina, reduz transporte de O2.'},
+  {q: 'Trombose é:', choices: ['Formação de coágulo que obstrui vaso','Falta de plaquetas','Tipo de leucemia','Infecção viral'], a:0, explanation:'Trombo = coágulo que pode obstruir vasos e causar sintomas locais.'},
+  {q: 'Qual órgão remove hemácias antigas do sangue?', choices: ['Baço e fígado','Rins','Coração','Pulmões'], a:0, explanation:'Baço e fígado removem hemácias envelhecidas.'},
+  {q: 'Qual pigmento contém ferro e transporta oxigênio?', choices: ['Hemoglobina','Mioglobina','Fibrina','Albumina'], a:0, explanation:'Hemoglobina é pigmento rico em ferro presente nas hemácias.'},
+  {q: 'Qual é a cor natural do plasma?', choices: ['Amarelada','Vermelha','Incolor','Verde'], a:0, explanation:'Plasma tem tom amarelado devido a substâncias dissolvidas.'},
+  {q: 'As hemácias têm núcleo?', choices: ['Não (anucleadas)','Sim, grande núcleo','Apenas em mulheres','Apenas durante infecções'], a:0, explanation:'Hemácias humanas maduras são anucleadas (sem núcleo).'},
+  {q: 'Onde o sangue circula obrigatoriamente nos humanos?', choices: ['Dentro dos vasos sanguíneos','No espaço intersticial','Fora do corpo','Dentro dos ossos'], a:0, explanation:'Sangue humano circula dentro de vasos: artérias, veias e capilares.'},
+  {q: 'Qual é o papel dos capilares?', choices: ['Permitir trocas de substâncias entre sangue e células','Bombear sangue','Produzir sangue','Filtrar urina'], a:0, explanation:'Capilares, com paredes finas, permitem trocas gasosas e de nutrientes.'},
+  {q: 'O que acontece quando aglutininas do plasma encontram aglutinogênios incompatíveis?', choices: ['Aglutinação das hemácias e risco de obstrução vascular','Aumento de plaquetas','Redução de plasma','Cura imediata'], a:0, explanation:'Aglutinação leva ao entupimento de vasos e pode ser fatal.'},
+  {q: 'Qual das opções é impedimento definitivo para doação segundo o texto?', choices: ['Soropositividade para HIV','Ter colírio no olho','Usar óculos','Alergia sazonal'], a:0, explanation:'Ser soropositivo para HIV é implicação permanente que impede a doação.'},
+  {q: 'O que é fibrina?', choices: ['Proteína que forma rede no coágulo','Tipo de hemácia','Hormônio','Anticorpo'], a:0, explanation:'Fibrina forma a malha que, junto com plaquetas, constitui o coágulo.'},
+  {q: 'Qual procedimento garante que o sangue coletado seja seguro para transfusão?', choices: ['Conhecer tipos sanguíneos do doador e receptor','Dar plasma a qualquer pessoa','Misturar todos os tipos','Não testar'], a:0, explanation:'Teste de compatibilidade (ABO e Rh) evita reações transfusionais.'},
+  {q: 'Qual elemento ajuda a distribuir calor pelo corpo?', choices: ['Sangue','Plaquetas','Hemácias sozinhas','Glândulas sebáceas'], a:0, explanation:'Sangue participa do controle térmico distribuindo calor.'},
+  {q: 'Qual é o efeito da COVID-19 mencionado em relação ao sangue?', choices: ['Pode favorecer trombose','Aumenta o número de plaquetas permanentemente','Cura anemia','Diminui plasma a zero'], a:0, explanation:'COVID-19 pode aumentar risco de trombose em alguns casos.'},
+  {q: 'Qual das afirmativas é verdadeira sobre hemácias?', choices: ['São a célula em maior quantidade no sangue','São as menos numerosas','Têm núcleo grande','Vivem anos'], a:0, explanation:'Hemácias são as mais numerosas; vivem cerca de 90-120 dias.'},
+  {q: 'O que significa "elementos figurados" do sangue?', choices: ['Células e fragmentos celulares (hemácias, leucócitos, plaquetas)','Só o plasma','Somente proteínas','Fibrina apenas'], a:0, explanation:'Elementos figurados = células e fragmentos suspensos no plasma.'},
+  {q: 'Em caso de transfusão, por que O- é considerado doador universal mas receptor restrito?', choices: ['Porque não possui aglutinogênios, mas possui aglutininas anti-A/anti-B/anti-Rh','Porque é raro','Porque tem mais plasma','Porque é sempre positivo'], a:0, explanation:'O- não tem antígenos na hemácia, mas seu plasma contém anticorpos que atacam outros tipos.'}
+];
 
-  // +30 novas perguntas (começando aqui)
-  {
-    text: "A divisão entre países industrializados e não industrializados aprofundou-se por conta de:",
-    type: "mcq",
-    choices: ["Propagação desigual do sistema técnico-industrial","Diferenças no clima apenas","Línguas diferentes","Troca de receitas culinárias"],
-    correct: "Propagação desigual do sistema técnico-industrial",
-    explanation: "A propagação desigual do sistema técnico-industrial consolidou divisões econômicas entre países."
-  },
-  {
-    text: "Qual elemento tecnológico permitiu que o aço se tornasse um dos materiais mais importantes na indústria?",
-    type: "mcq",
-    choices: ["Novos processos de produção de aço","Moinhos de vento","Computadores pessoais","Televisão"],
-    correct: "Novos processos de produção de aço",
-    explanation: "O desenvolvimento de novos processos para produzir aço o tornou central para muitas indústrias."
-  },
-  {
-    text: "O surgimento da indústria automobilística é associado a qual fase histórica?",
-    type: "mcq",
-    choices: ["Segunda Revolução Industrial","Primeira Guerra Mundial","Era medieval","Revolução Neolítica"],
-    correct: "Segunda Revolução Industrial",
-    explanation: "A indústria automobilística surgiu como parte das inovações da Segunda Revolução Industrial."
-  },
-  {
-    text: "O taylorismo recomenda dividir a produção em etapas simples e repetitivas para aumentar eficiência.",
-    type: "tf",
-    choices: ["Verdadeiro","Falso"],
-    correct: "Verdadeiro",
-    explanation: "Taylor propôs a divisão do processo em tarefas repetitivas para aumentar produtividade."
-  },
-  {
-    text: "O objetivo principal do método taylorista era:",
-    type: "mcq",
-    choices: ["Aumentar eficiência e produtividade","Promover autonomia total dos trabalhadores","Reduzir a produção","Eliminar a energia elétrica"],
-    correct: "Aumentar eficiência e produtividade",
-    explanation: "Taylor buscava produzir mais, com menos tempo e menos recursos."
-  },
-  {
-    text: "A mundialização da divisão do trabalho levou à necessidade de:",
-    type: "mcq",
-    choices: ["Mais países exportadores de matérias-primas","Redução do comércio global","Fechamento de fronteiras","Substituir indústrias por agricultura"],
-    correct: "Mais países exportadores de matérias-primas",
-    explanation: "Com mais países industrializados, foi preciso ampliar os fornecedores de matérias-primas."
-  },
-  {
-    text: "O neocolonialismo buscou principalmente:",
-    type: "mcq",
-    choices: ["Garantir condições para o desenvolvimento industrial das potências","Trocar conhecimento gratuito","Distribuir renda igualmente","Promover turismo cultural"],
-    correct: "Garantir condições para o desenvolvimento industrial das potências",
-    explanation: "África e Ásia foram alvo do imperialismo para suprir necessidades industriais das potências."
-  },
-  {
-    text: "Indique uma região mencionada no texto que sofreu intervenção violenta durante o imperialismo:",
-    type: "mcq",
-    choices: ["Congo Belga","América do Norte pré-colombiana","Escandinávia","Groenlândia"],
-    correct: "Congo Belga",
-    explanation: "O texto cita o Congo Belga como local de práticas violentas durante o imperialismo."
-  },
-  {
-    text: "A afirmação: 'A Terceira Revolução Industrial começou com a invenção da máquina a vapor em 1750' — é correta segundo o texto?",
-    type: "tf",
-    choices: ["Verdadeiro","Falso"],
-    correct: "Falso",
-    explanation: "A máquina a vapor inaugurou a Primeira Revolução; a Terceira é caracterizada por técnica+ciência no século XX."
-  },
-  {
-    text: "A partir de meados do século XX a ciência passou a ser um fator produtivo importante devido a:",
-    type: "mcq",
-    choices: ["Desenvolvimento da eletrônica e indústria química","Adoção do cavalo como transporte","Surgimento das rádios AM","Queda do uso de eletricidade"],
-    correct: "Desenvolvimento da eletrônica e indústria química",
-    explanation: "O desenvolvimento da eletrônica e química fez da ciência um fator produtivo essencial."
-  },
-  {
-    text: "A energia nuclear foi empregada ao final da Segunda Guerra Mundial em:",
-    type: "mcq",
-    choices: ["Bombas atômicas lançadas sobre Hiroshima e Nagasaki","Lançamento de satélites de comunicação","Vacinação em massa","Construção de ferrovias"],
-    correct: "Bombas atômicas lançadas sobre Hiroshima e Nagasaki",
-    explanation: "O texto menciona o uso da energia nuclear nas bombas lançadas sobre Hiroshima e Nagasaki em agosto de 1945."
-  },
-  {
-    text: "Durante as décadas seguintes a 1950, a economia mundial ficou fortemente baseada em:",
-    type: "mcq",
-    choices: ["Petróleo, eletricidade, eletrônica e indústria química","Carvão e moinhos manuais","Energia solar quase exclusiva","Agricultura sem tecnologia"],
-    correct: "Petróleo, eletricidade, eletrônica e indústria química",
-    explanation: "Entre 1950 e 1970 a economia se apoiou em petróleo, eletricidade, eletrônica e indústria química."
-  },
-  {
-    text: "O que diferencia 'tecnologias' das 'técnicas' tradicionais, segundo o texto?",
-    type: "mcq",
-    choices: ["Tecnologias são propriedades/registradas, técnicas tradicionais eram compartilhadas","Técnicas eram sempre registradas","Tecnologias são gratuitas","Técnicas possuem patentes"],
-    correct: "Tecnologias são propriedades/registradas, técnicas tradicionais eram compartilhadas",
-    explanation: "Tecnologias modernas costumam ser propriedade privada e protegidas por patentes; técnicas antigas eram mais compartilhadas."
-  },
-  {
-    text: "O termo 'tecnociência' descreve:",
-    type: "mcq",
-    choices: ["Pesquisa científica financiada e orientada para criar tecnologias","Práticas agrícolas sem ciência","Contos populares sobre máquinas","Uma religião tecnológica"],
-    correct: "Pesquisa científica financiada e orientada para criar tecnologias",
-    explanation: "Tecnociência indica estudos científicos com financiamento e infraestrutura voltados à produção de tecnologia."
-  },
-  {
-    text: "O aumento da disputa pelo poder ocasionado por novas tecnologias resultou também em:",
-    type: "mcq",
-    choices: ["Reafirmação da desigualdade no acesso a tecnologias","Iguais oportunidades para todos imediatamente","Fim das patentes","Distribuição universal de tecnologia"],
-    correct: "Reafirmação da desigualdade no acesso a tecnologias",
-    explanation: "O texto destaca que o desenvolvimento tecnológico reafirmou desigualdades, pois nem todos têm acesso às tecnologias."
-  },
-  {
-    text: "A eletricidade foi inicialmente usada principalmente para:",
-    type: "mcq",
-    choices: ["Acender lâmpadas e impulsionar motores elétricos","Navegação espacial","Impressão 3D","Transmissão de internet móvel"],
-    correct: "Acender lâmpadas e impulsionar motores elétricos",
-    explanation: "Inicialmente a eletricidade tinha usos básicos como iluminação e acionamento de motores."
-  },
-  {
-    text: "A informática surgiu concomitantemente a qual desenvolvimento tecnológico?",
-    type: "mcq",
-    choices: ["Desenvolvimento da eletrônica","Da imprensa","Do tear manual","Do barro cozido"],
-    correct: "Desenvolvimento da eletrônica",
-    explanation: "O surgimento da informática ocorreu junto ao avanço da eletrônica."
-  },
-  {
-    text: "Em 1946 surgiu, conforme o texto, o:",
-    type: "mcq",
-    choices: ["Primeiro computador eletrônico","Primeiro smartphone","Primeira televisão","Primeiro GPS"],
-    correct: "Primeiro computador eletrônico",
-    explanation: "O texto indica que, nesse contexto, o primeiro computador eletrônico surgiu por volta de 1946."
-  },
-  {
-    text: "A disseminação da tecnologia da informação a partir de 1970 envolveu a junção entre:",
-    type: "mcq",
-    choices: ["Indústrias de computadores/softwares e empresas de telecomunicação","Setor têxtil e pesca","Mineração e artesanato","Agricultura e culinária"],
-    correct: "Indústrias de computadores/softwares e empresas de telecomunicação",
-    explanation: "Na década de 1970 houve maior integração entre computadores, softwares e telecomunicações."
-  },
-  {
-    text: "OGMs e clonagem são exemplos citados como avanços de:",
-    type: "mcq",
-    choices: ["Biotecnologia","Têxteis","Carpintaria","Mecânica sem eletricidade"],
-    correct: "Biotecnologia",
-    explanation: "O texto relaciona OGMs e clonagem a resultados da biotecnologia."
-  },
-  {
-    text: "A informação passa a ser variável-chave do período porque:",
-    type: "mcq",
-    choices: ["Empresas e governos precisavam organizar e controlar grandes volumes de dados","As pessoas pararam de usar papel","O clima mudou da noite para o dia","A população diminuiu drasticamente"],
-    correct: "Empresas e governos precisavam organizar e controlar grandes volumes de dados",
-    explanation: "O crescimento de empresas e do Estado exigiu organização precisa de estoques, contabilidade e gestão de pessoas."
-  },
-  {
-    text: "Relógios de ponto, balanças de precisão e máquinas para contabilizar dados se juntaram para formar qual empresa em 1924?",
-    type: "mcq",
-    choices: ["IBM","Intel","Google","Samsung"],
-    correct: "IBM",
-    explanation: "A IBM surgiu em 1924 pela junção de empresas que produziam relógios de ponto, balanças e máquinas de contagem."
-  },
-  {
-    text: "A interligação de computadores, rádio, telefonia e televisão possibilitou:",
-    type: "mcq",
-    choices: ["Fluxo global e simultâneo de informação","Isolamento das pessoas","Eliminação do comércio","Fim da produção cultural"],
-    correct: "Fluxo global e simultâneo de informação",
-    explanation: "A interligação das redes proporcionou fluxo de informações ao mesmo tempo e no mundo todo."
-  },
-  {
-    text: "A sensação de 'encurtamento das distâncias' está associada a:",
-    type: "mcq",
-    choices: ["Ampliação do fluxo de informação e transportes rápidos","Crescimento apenas das cidades pequenas","Fenômeno climático","Diminuição das viagens"],
-    correct: "Ampliação do fluxo de informação e transportes rápidos",
-    explanation: "Redes de comunicação e transporte deram a sensação de que distâncias foram 'encurtadas'."
-  },
-  {
-    text: "A WWW começou como uma rede essencialmente:",
-    type: "mcq",
-    choices: ["Acadêmica","Comercial desde o início","Focada em entretenimento","De uso militar apenas"],
-    correct: "Acadêmica",
-    explanation: "A WWW teve origem em contextos acadêmicos e de pesquisa, como no CERN."
-  },
-  {
-    text: "Menos de um ano após a liberação inicial da WWW, já havia:",
-    type: "mcq",
-    choices: ["Centenas de servidores conectados","A internet com bilhões de usuários","Telepatia global","Fim da pesquisa científica"],
-    correct: "Centenas de servidores conectados",
-    explanation: "O texto afirma que, menos de um ano depois, centenas de servidores estavam conectados."
-  },
-  {
-    text: "A Web 2.0 é particularmente marcada por:",
-    type: "mcq",
-    choices: ["Ferramentas que transformam usuários em produtores de conteúdo","Retrocesso tecnológico","Exclusão de redes sociais","Fim do streaming de vídeo"],
-    correct: "Ferramentas que transformam usuários em produtores de conteúdo",
-    explanation: "Blogs, redes sociais e plataformas como YouTube são exemplos dessa mudança."
-  },
-  {
-    text: "Os dispositivos móveis passaram a conectar as pessoas em movimento por meio de:",
-    type: "mcq",
-    choices: ["Wi-fi e dados móveis","Fios fixos","Somente rádios AM","Correio tradicional"],
-    correct: "Wi-fi e dados móveis",
-    explanation: "Smartphones e tablets permitem conexão em movimento via wi-fi ou dados móveis."
-  },
-  {
-    text: "Os objetos informacionais servem basicamente para:",
-    type: "mcq",
-    choices: ["Organizar, transmitir ou receber informações","Armazenar apenas alimentos","Substituir todas as máquinas","Unir sociedades sem tecnologia"],
-    correct: "Organizar, transmitir ou receber informações",
-    explanation: "Satélites, cabos, smartphones e computadores são usados para tratar informações."
-  },
-  {
-    text: "Se uma tecnologia do sistema falhar, o texto indica que:",
-    type: "mcq",
-    choices: ["Todo o sistema tende a paralisar","Nada acontece","A tecnologia se cura sozinha","O sistema volta no dia seguinte sem problemas"],
-    correct: "Todo o sistema tende a paralisar",
-    explanation: "As tecnologias funcionam como sistemas interdependentes; falhas podem paralisar o conjunto."
-  },
-  {
-    text: "Entre as polêmicas citadas que surgem com o meio técnico-científico-informacional está:",
-    type: "mcq",
-    choices: ["Privacidade na rede","Culinária internacional","Banimento de livros","Fim do futebol"],
-    correct: "Privacidade na rede",
-    explanation: "O texto menciona privacidade, direitos autorais, controle da informação e espionagem on-line como polêmicas."
-  },
-  {
-    text: "A passagem do meio natural ao meio técnico foi discutida por qual geógrafo, citada no texto?",
-    type: "mcq",
-    choices: ["Milton Santos","Karl Marx","Adam Smith","Immanuel Kant"],
-    correct: "Milton Santos",
-    explanation: "Milton Santos é citado ao discutir a passagem do meio natural ao meio técnico no processo de globalização."
-  },
-  {
-    text: "A expansão da industrialização até o final do século XIX incluiu o desenvolvimento industrial de qual país asiático?",
-    type: "mcq",
-    choices: ["Japão","Índia","Coreia do Norte","Tailândia"],
-    correct: "Japão",
-    explanation: "Ao final do século XIX o Japão já havia se industrializado, segundo o texto."
-  },
-  {
-    text: "O texto menciona que o crescimento das empresas capitalistas exigia melhor organização de:",
-    type: "mcq",
-    choices: ["Estoques, contabilidade e controle de tempo","Produção exclusivamente artesanal","Abolição de registros","Fechamento de universidades"],
-    correct: "Estoques, contabilidade e controle de tempo",
-    explanation: "Com empresas maiores cresceu a necessidade de organizar estoques, contabilidade e eficiência do trabalho."
-  },
-  {
-    text: "Relógio de ponto é um dispositivo para:",
-    type: "mcq",
-    choices: ["Controlar entrada e saída de funcionários","Medir temperatura ambiente","Calcular impostos","Editar vídeos"],
-    correct: "Controlar entrada e saída de funcionários",
-    explanation: "Relógios de ponto registram horário de entrada e saída de trabalhadores."
-  },
-  {
-    text: "A expressão 'meio técnico-científico-informacional' combina três elementos: técnico, científico e...?",
-    type: "mcq",
-    choices: ["Informacional","Religioso","Militar","Artístico"],
-    correct: "Informacional",
-    explanation: "O termo enfatiza que o novo meio é técnico, científico e informacional."
-  },
-  {
-    text: "O crescimento de centros de pesquisa e universidades contribuiu para:",
-    type: "mcq",
-    choices: ["Aumentar inovações tecnológicas e registros de patentes","Diminuir a produção de ciência","Manter tudo informal","Acabar com a indústria"],
-    correct: "Aumentar inovações tecnológicas e registros de patentes",
-    explanation: "Mais universidades e centros de pesquisa impulsionaram inovações e patentes."
-  },
-  {
-    text: "A Segunda Revolução Industrial intensificou o uso de:",
-    type: "mcq",
-    choices: ["Eletricidade e derivados do petróleo","Velas e carroças","Telégrafo apenas","Arados manuais"],
-    correct: "Eletricidade e derivados do petróleo",
-    explanation: "A elétrica e o petróleo passaram a ter papel central nas indústrias dessa fase."
-  },
-  {
-    text: "A globalização, segundo o texto, resultou principalmente em:",
-    type: "mcq",
-    choices: ["Aumento da conexão entre lugares e aceleração das trocas","Separação completa entre povos","Fim do comércio internacional","Desinteresse por tecnologia"],
-    correct: "Aumento da conexão entre lugares e aceleração das trocas",
-    explanation: "Globalização intensificou conexões e trocas comerciais, culturais e informacionais."
-  },
-  {
-    text: "A biotecnologia e a eletrônica são exemplos de inovações associadas a qual revolução?",
-    type: "mcq",
-    choices: ["Terceira Revolução Industrial","Primeira Revolução Industrial","Período medieval","Era Paleolítica"],
-    correct: "Terceira Revolução Industrial",
-    explanation: "A Terceira Revolução incluiu avanços em eletrônica e na biotecnologia."
-  },
-  {
-    text: "O texto afirma que tecnologias costumam pertencer a:",
-    type: "mcq",
-    choices: ["Pessoas, empresas e governos (são propriedades)","A todos de forma gratuita","A nenhuma entidade","Somente à natureza"],
-    correct: "Pessoas, empresas e governos (são propriedades)",
-    explanation: "Tecnologias são tratadas como propriedades pertencentes a indivíduos, empresas ou governos."
-  },
-  {
-    text: "A expansão industrial levou as potências a olhar para quais continentes em busca de matérias-primas?",
-    type: "mcq",
-    choices: ["África e Ásia","Antártida e Oceania","Europa apenas","América do Norte exclusivamente"],
-    correct: "África e Ásia",
-    explanation: "As potências europeias voltaram-se para África e Ásia para garantir matérias-primas e mercados."
-  }
-]; // fim do array de 50 perguntas
+// Utility functions
+function shuffle(array){for(let i=array.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[array[i],array[j]]=[array[j],array[i]]}return array}
 
-// ----- fim perguntas -----
+// App state per theme
+let state = {
+  theme: null, // 'ciencias' or 'portugues'
+  questions: [],
+  order: [],
+  idx: 0,
+  userAnswers: []
+};
 
-const total = questions.length;
-document.getElementById('total').innerText = total;
-let currentIndex = 0;
-let score = 0;
-const userAnswers = []; // {questionIndex, selected, correct, isCorrect}
+// DOM refs
+const menuEl = document.getElementById('menu');
+const cardEl = document.getElementById('card');
+const questionEl = document.getElementById('question');
+const answersEl = document.getElementById('answers');
+const explanationEl = document.getElementById('explanation');
+const nextBtn = document.getElementById('nextBtn');
+const progressLabel = document.getElementById('progressLabel');
+const qcount = document.getElementById('qcount');
+const bar = document.getElementById('bar');
+const pct = document.getElementById('pct');
+const progressBarWrap = document.getElementById('progressBarWrap');
+const summaryEl = document.getElementById('summary');
+const scoreEl = document.getElementById('score');
+const summaryList = document.getElementById('summaryList');
+const retrySame = document.getElementById('retrySame');
+const playOther = document.getElementById('playOther');
+const backMenu = document.getElementById('backMenu');
 
-// embaralha array in-place
-function shuffleArray(arr){
-  for(let i = arr.length -1; i>0; i--){
-    const j = Math.floor(Math.random() * (i+1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
+// Menu buttons
+document.getElementById('btnCiencias').addEventListener('click', ()=>startTheme('ciencias'));
+document.getElementById('btnPortugues').addEventListener('click', ()=>startTheme('portugues'));
+
+// Next button
+nextBtn.addEventListener('click', ()=>{
+  state.idx++;
+  if(state.idx >= state.order.length) showSummary();
+  else renderQuestion();
+});
+
+retrySame.addEventListener('click', ()=> startTheme(state.theme));
+playOther.addEventListener('click', ()=> startTheme(state.theme === 'ciencias' ? 'portugues' : 'ciencias'));
+backMenu.addEventListener('click', ()=>{
+  summaryEl.style.display = 'none';
+  menuEl.style.display = 'flex';
+  progressLabel.style.display = 'none';
+  progressBarWrap.style.display = 'none';
+});
+
+function startTheme(theme){
+  state.theme = theme;
+  state.questions = theme === 'ciencias' ? JSON.parse(JSON.stringify(ciencias)) : JSON.parse(JSON.stringify(portugues));
+  state.order = shuffle(state.questions.map((_,i)=>i));
+  state.idx = 0;
+  state.userAnswers = [];
+
+  // UI
+  menuEl.style.display = 'none';
+  summaryEl.style.display = 'none';
+  cardEl.style.display = 'block';
+  progressLabel.style.display = 'flex';
+  progressBarWrap.style.display = 'block';
+
+  renderQuestion();
 }
 
-// renderiza questão atual
 function renderQuestion(){
-  const q = questions[currentIndex];
-  const area = document.getElementById('question-area');
-  area.innerHTML = '';
+  const qIndex = state.order[state.idx];
+  const current = state.questions[qIndex];
+  questionEl.textContent = `${state.idx+1}. ${current.q}`;
+  answersEl.innerHTML = '';
+  explanationEl.style.display = 'none';
+  nextBtn.style.display = 'none'; nextBtn.disabled = false;
 
-  document.getElementById('current').innerText = currentIndex + 1;
-  updateProgress();
+  // shuffle choices
+  const choices = current.choices.map((c,i)=>({text:c,orig:i}));
+  shuffle(choices);
 
-  const qnum = document.createElement('div');
-  qnum.className = 'q-number';
-  qnum.innerText = (q.type === 'tf' ? 'Verdadeiro ou Falso' : 'Múltipla escolha');
-  area.appendChild(qnum);
-
-  const qtext = document.createElement('div');
-  qtext.className = 'q-text';
-  qtext.innerText = q.text;
-  area.appendChild(qtext);
-
-  // preparar alternativas: copia e embaralha
-  let choices = q.choices ? q.choices.slice() : (q.type==='tf' ? ['Verdadeiro','Falso'] : []);
-  if(!choices.includes(q.correct)) choices.push(q.correct);
-  shuffleArray(choices);
-
-  const choicesDiv = document.createElement('div');
-  choicesDiv.className = 'choices';
-
-  choices.forEach(choiceText => {
+  choices.forEach(ch => {
     const btn = document.createElement('button');
-    btn.className = 'choice-btn';
-    btn.type = 'button';
-    btn.innerText = choiceText;
-    btn.dataset.choice = choiceText;
-    btn.addEventListener('click', onChoiceClick);
-    choicesDiv.appendChild(btn);
+    btn.className = 'answer-btn';
+    btn.innerText = ch.text;
+    btn.addEventListener('click', ()=>handleSelect(btn, ch.orig, current));
+    answersEl.appendChild(btn);
   });
 
-  area.appendChild(choicesDiv);
-
-  // botão Próxima (oculto por padrão)
-  const btnRow = document.createElement('div');
-  btnRow.className = 'btn-row';
-  const nextBtn = document.createElement('button');
-  nextBtn.id = 'nextBtn';
-  nextBtn.className = 'btn-next hidden';
-  nextBtn.innerText = (currentIndex === total -1 ? 'Finalizar' : 'Próxima');
-  nextBtn.addEventListener('click', onNext);
-  btnRow.appendChild(nextBtn);
-  area.appendChild(btnRow);
+  // progress
+  const total = state.order.length;
+  qcount.textContent = `Pergunta ${state.idx+1} / ${total}`;
+  const percentage = Math.round(((state.idx)/total)*100);
+  bar.style.width = percentage + '%';
+  pct.textContent = percentage + '%';
 }
 
-// ao clicar em alternativa
-function onChoiceClick(e){
-  const btn = e.currentTarget;
-  const chosen = btn.dataset.choice;
-  const q = questions[currentIndex];
+function handleSelect(btn, origIndex, current){
+  if(nextBtn.style.display === 'block') return; // already answered
+  const btns = answersEl.querySelectorAll('.answer-btn');
+  btns.forEach(b=>b.disabled=true);
 
-  // desabilita todas as opções
-  const allBtns = Array.from(document.querySelectorAll('.choice-btn'));
-  allBtns.forEach(b => b.disabled = true);
-
-  // marca a correta
-  allBtns.forEach(b => {
-    if(b.dataset.choice === q.correct){
-      b.classList.add('choice-correct');
-    }
-  });
-
-  if(chosen === q.correct){
-    score++;
-    userAnswers.push({questionIndex: currentIndex, selected: chosen, correct: q.correct, isCorrect: true});
-  } else {
-    btn.classList.add('choice-wrong');
-    userAnswers.push({questionIndex: currentIndex, selected: chosen, correct: q.correct, isCorrect: false});
+  const correctIndex = current.a;
+  const isCorrect = (origIndex === correctIndex);
+  if(isCorrect) btn.classList.add('correct');
+  else {
+    btn.classList.add('incorrect');
+    // highlight correct
+    btns.forEach(b=>{ if(b.innerText === current.choices[correctIndex]) b.classList.add('correct'); });
   }
 
-  // mostra botão Próxima
-  const nextBtn = document.getElementById('nextBtn');
-  nextBtn.classList.remove('hidden');
+  explanationEl.style.display = 'block';
+  explanationEl.textContent = current.explanation || '';
+
+  // store
+  state.userAnswers[state.idx] = {selected: origIndex, correct: correctIndex, isCorrect, question: current.q};
+
+  // show next
+  nextBtn.style.display = 'block';
 }
 
-// próximo
-function onNext(){
-  currentIndex++;
-  if(currentIndex >= total){
-    showSummary();
-  } else {
-    renderQuestion();
-  }
-}
-
-// atualiza barra de progresso
-function updateProgress(){
-  const percent = Math.round(((currentIndex) / total) * 100);
-  const bar = document.getElementById('progress-bar');
-  const label = document.getElementById('progress-label');
-  bar.style.width = percent + '%';
-  bar.setAttribute('aria-valuenow', percent);
-  label.innerText = percent + '%';
-}
-
-// mostra resumo final
 function showSummary(){
-  document.getElementById('question-area').style.display = 'none';
-  document.getElementById('meta').style.display = 'none';
-  const cont = document.getElementById('summary-container');
-  cont.style.display = 'block';
-  document.getElementById('score').innerText = `Você acertou ${score} de ${total} perguntas.`;
+  cardEl.style.display = 'none';
+  progressLabel.style.display = 'none';
+  progressBarWrap.style.display = 'none';
+  summaryEl.style.display = 'block';
 
-  const list = document.getElementById('summary-list');
-  list.innerHTML = '';
+  const total = state.order.length;
+  const correctCount = state.userAnswers.filter(a=>a && a.isCorrect).length;
+  scoreEl.textContent = `Você acertou ${correctCount} de ${total} perguntas.`;
 
-  for(let i=0;i<questions.length;i++){
-    const q = questions[i];
-    const rec = userAnswers.find(r => r.questionIndex === i);
-    const isCorrect = rec ? rec.isCorrect : false;
-
-    const li = document.createElement('li');
-    li.className = 'summary-item';
-
-    const header = document.createElement('strong');
-    header.innerText = `Q${i+1}: ${q.text}`;
-    li.appendChild(header);
-
-    const markLine = document.createElement('div');
-    markLine.className = 'small';
-    markLine.innerHTML = (isCorrect ? `<span style="color:${getComputedStyle(document.documentElement).getPropertyValue('--success') || '#16a34a'}">✔ Acertou</span>` : `<span style="color:${getComputedStyle(document.documentElement).getPropertyValue('--danger') || '#dc2626'}">✖ Errou</span>`);
-    li.appendChild(markLine);
-
-    const ansLine = document.createElement('div');
-    ansLine.className = 'small';
-    ansLine.innerHTML = `<strong>Sua resposta:</strong> ${rec ? rec.selected : '<em>Sem resposta</em>'} &nbsp; — &nbsp; <strong>Resposta certa:</strong> ${q.correct}`;
-    li.appendChild(ansLine);
-
-    const expl = document.createElement('div');
-    expl.className = 'explain';
-    expl.innerText = q.explanation;
-    li.appendChild(expl);
-
-    list.appendChild(li);
-  }
-
-  // garante 100% na barra
-  document.getElementById('progress-bar').style.width = '100%';
-  document.getElementById('progress-label').innerText = '100%';
-
-  // reiniciar
-  document.getElementById('restart').addEventListener('click', () => {
-    currentIndex = 0; score = 0; userAnswers.length = 0;
-    document.getElementById('summary-container').style.display = 'none';
-    document.getElementById('question-area').style.display = '';
-    document.getElementById('meta').style.display = '';
-    renderQuestion();
+  summaryList.innerHTML = '';
+  state.order.forEach((qIdx,i)=>{
+    const q = state.questions[qIdx];
+    const ua = state.userAnswers[i];
+    const ok = ua && ua.isCorrect;
+    const userText = ua ? (q.choices[ua.selected] || '—') : '—';
+    const item = document.createElement('div');
+    item.className = 'summary-item';
+    const mark = ok ? '✔' : '✖';
+    item.innerHTML = `<strong>${i+1}. ${q.q}</strong><div style="margin-top:6px">${mark} Sua resposta: <em>${userText}</em></div><div style="margin-top:6px;color:#374151">Resposta correta: <strong>${q.choices[q.a]}</strong></div><div class="explanation">Explicação: ${q.explanation || ''}</div>`;
+    summaryList.appendChild(item);
   });
 }
-
-// inicializa
-renderQuestion();
-updateProgress();
 
 </script>
 </body>
