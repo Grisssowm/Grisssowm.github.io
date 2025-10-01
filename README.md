@@ -2,311 +2,632 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Quiz: Ciências & Português</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quiz Interativo — História (50 questões)</title>
   <style>
-    :root{--bg:#f5f7fb;--card:#ffffff;--primary:#4f46e5;--success:#16a34a;--danger:#dc2626;--muted:#6b7280}
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);margin:0;padding:32px;display:flex;align-items:center;justify-content:center;min-height:100vh}
-    .container{width:100%;max-width:900px;background:var(--card);border-radius:12px;box-shadow:0 6px 24px rgba(15,23,42,0.08);padding:28px}
-    h1{margin:0 0 8px;font-size:20px}
-    .meta{color:var(--muted);margin-bottom:18px}
-    .progress{height:14px;background:#eef2ff;border-radius:999px;overflow:hidden;margin-bottom:18px}
-    .progress > .bar{height:100%;width:0%;background:linear-gradient(90deg,var(--primary),#06b6d4);transition:width .35s}
-    .progress-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px}
-    .card{padding:18px;border-radius:10px;border:1px solid #eef2ff}
-    .question{font-weight:600;margin-bottom:12px}
-    .answers{display:flex;flex-direction:column;gap:10px}
-    .answer-btn{padding:12px;border-radius:8px;border:1px solid #e6e9fb;background:#fff;cursor:pointer;text-align:left;font-size:15px}
-    .answer-btn:hover{transform:translateY(-1px)}
-    .answer-btn.correct{background:rgba(22,163,74,0.12);border-color:rgba(22,163,74,0.25)}
-    .answer-btn.incorrect{background:rgba(220,38,38,0.08);border-color:rgba(220,38,38,0.18)}
-    .controls{display:flex;justify-content:space-between;align-items:center;margin-top:16px}
-    .next-btn{padding:10px 16px;border-radius:8px;border:none;background:var(--primary);color:#fff;cursor:pointer;display:none}
-    .next-btn:disabled{opacity:.5;cursor:not-allowed}
-    .summary{margin-top:20px}
-    .summary-list{margin-top:12px;border-top:1px dashed #eef2ff;padding-top:12px}
-    .summary-item{padding:10px;border-radius:8px;background:#fafafa;margin-bottom:8px}
-    .explanation{font-size:14px;color:var(--muted);margin-top:8px}
-    .score{font-weight:700;margin-top:12px}
-    .small{font-size:13px;color:var(--muted)}
-    footer{margin-top:14px;font-size:13px;color:var(--muted)}
-    .menu{display:flex;gap:12px;justify-content:center;margin-bottom:18px}
-    .menu button{padding:10px 16px;border-radius:8px;border:none;background:#111827;color:#fff;cursor:pointer}
-    @media (max-width:640px){.container{padding:18px}}
+    :root{
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --primary:#2563eb;
+      --success:#16a34a;
+      --danger:#dc2626;
+      --muted:#6b7280;
+    }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      padding:24px;
+    }
+    .container{
+      width:100%;
+      max-width:920px;
+      background:var(--card);
+      border-radius:16px;
+      box-shadow:0 8px 30px rgba(12,15,20,0.08);
+      padding:28px;
+      box-sizing:border-box;
+    }
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:18px;
+    }
+    h1{ margin:0; font-size:20px; }
+    .meta{ color:var(--muted); font-size:13px; }
+    .progress-wrap{ width:100%; background:#e6eefc; height:12px; border-radius:999px; overflow:hidden; margin:12px 0 18px; }
+    .progress{ height:100%; width:0%; background:linear-gradient(90deg,var(--primary),#60a5fa); transition:width .35s ease; }
+    .progress-text{ text-align:right; font-size:12px; color:var(--muted); margin-bottom:6px; }
+    .card{
+      padding:18px;
+      border-radius:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,252,0.98));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.6);
+    }
+    .question-number{ color:var(--muted); font-size:13px; margin-bottom:8px; }
+    .question{ font-size:18px; margin:0 0 14px 0; }
+    .choices{ display:flex; flex-direction:column; gap:10px; align-items:center; }
+    .choice-btn{
+      width:100%;
+      max-width:740px;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid #e6e9ef;
+      background:#fff;
+      cursor:pointer;
+      text-align:center;
+      font-size:16px;
+      box-shadow:0 2px 6px rgba(12,15,20,0.04);
+      transition:transform .06s ease, box-shadow .06s ease;
+    }
+    .choice-btn:active{ transform:translateY(1px); }
+    .choice-btn[disabled]{ cursor:default; opacity:0.95; }
+    .choice-correct{ background:rgba(22,163,74,0.12); border-color: rgba(22,163,74,0.22); }
+    .choice-wrong{ background:rgba(220,38,38,0.08); border-color: rgba(220,38,38,0.18); }
+    .next-wrap{ display:flex; justify-content:center; margin-top:16px; }
+    .next-btn{
+      display:inline-block;
+      padding:10px 18px;
+      border-radius:10px;
+      background:var(--primary);
+      color:white;
+      border:none;
+      cursor:pointer;
+      font-weight:600;
+      font-size:15px;
+      box-shadow:0 6px 18px rgba(37,99,235,0.18);
+      visibility:hidden;
+      opacity:0;
+      transform:translateY(6px);
+      transition:all .18s ease;
+    }
+    .next-btn.show{ visibility:visible; opacity:1; transform:translateY(0); }
+    .summary{
+      margin-top:20px;
+    }
+    .summary h2{ margin:10px 0 6px 0; font-size:18px; }
+    .summary-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+    .summary-item{ background:#fbfdff; padding:10px 12px; border-radius:10px; border:1px solid #eef6ff; }
+    .score{ font-weight:700; font-size:18px; margin-top:10px; }
+    .explain{ color:var(--muted); font-size:14px; margin-top:6px; }
+    footer{ margin-top:18px; color:var(--muted); font-size:13px; display:flex; justify-content:space-between; align-items:center; }
+    .small{ font-size:12px; color:var(--muted); }
+    /* responsive */
+    @media (max-width:720px){
+      .choice-btn{ font-size:15px; padding:10px 12px; }
+    }
   </style>
 </head>
 <body>
-  <div class="container" id="app">
-    <h1>Quiz — Ciências & Português</h1>
-    <div class="meta">Escolha um tema para começar</div>
-
-    <div class="menu" id="menu">
-      <button id="btnCiencias">Ciências (50)</button>
-      <button id="btnPortugues">Português (50)</button>
-    </div>
-
-    <!-- Progress area (updated per-theme) -->
-    <div class="progress-label" id="progressLabel" style="display:none"><div id="qcount">Pergunta 1 / 50</div><div id="pct">0%</div></div>
-    <div class="progress" id="progressBarWrap" style="display:none" aria-hidden><div class="bar" id="bar"></div></div>
-
-    <div class="card" id="card" style="display:none">
-      <div class="question" id="question">Carregando...</div>
-      <div class="answers" id="answers"></div>
-      <div class="explanation" id="explanation" style="display:none"></div>
-      <div class="controls">
-        <div class="small" id="hint">Fonte: documentos fornecidos</div>
-        <div style="margin-left:auto">
-          <button id="nextBtn" class="next-btn">Próxima</button>
+  <div class="container" role="main">
+    <header>
+      <div>
+        <h1>Quiz Interativo — História: Vinda da Corte & Independência (50)</h1>
+        <div class="meta">Fonte: Documento sem título - Documentos Google. Perguntas extraídas e adaptadas do documento. :contentReference[oaicite:1]{index=1}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="small">Progresso</div>
+        <div class="progress-wrap" aria-hidden="true">
+          <div class="progress" id="progress"></div>
         </div>
+        <div class="progress-text" id="progressText">0% concluído</div>
       </div>
-    </div>
+    </header>
 
-    <div class="summary" id="summary" style="display:none">
-      <div class="score" id="score"></div>
-      <div class="summary-list" id="summaryList"></div>
-      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-        <button id="retrySame" class="menuBtn">Jogar esse tema novamente</button>
-        <button id="playOther" class="menuBtn">Jogar o outro tema</button>
-        <button id="backMenu" class="menuBtn">Voltar à seleção</button>
+    <section class="card" id="quizCard">
+      <div class="question-number" id="qNumber">Questão 1 de 50</div>
+      <h2 class="question" id="questionText">Carregando...</h2>
+
+      <div class="choices" id="choices"></div>
+
+      <div class="next-wrap">
+        <button id="nextBtn" class="next-btn">Próxima</button>
       </div>
-      <footer>Feito a partir dos documentos que você enviou — perguntas geradas automaticamente.</footer>
-    </div>
+
+    </section>
+
+    <section class="summary" id="summarySection" style="display:none;">
+      <h2>Resumo final</h2>
+      <div class="score" id="scoreText"></div>
+      <ul class="summary-list" id="summaryList"></ul>
+    </section>
+
+    <footer>
+      <div class="small">Estilo: fundo claro, contêiner branco, bordas arredondadas. Botões centralizados.</div>
+      <div class="small">Resultado: ✔ acerto, ✖ erro. Explicação abaixo de cada pergunta.</div>
+    </footer>
   </div>
 
-<script>
-// --- QUESTIONS: split into two arrays (50 each) ---
-const portugues = [
-  {q: 'O que caracteriza um período simples?', choices: ['Possui apenas um verbo','Possui mais de um verbo','Possui apenas sujeito oculto','É sempre uma frase nominal'], a:0, explanation:'Período simples contém apenas um verbo ou uma locução verbal que funcione como um único verbo.'},
-  {q: 'Quando um período é composto?', choices: ['Quando possui mais de um verbo','Quando tem apenas sujeito composto','Quando é uma frase nominal','Quando é curto demais'], a:0, explanation:'Período composto tem mais de um verbo, cada verbo representa uma oração.'},
-  {q: 'Qual termo descreve orações que mantêm estrutura completa e podem ser unidas por conjunção?', choices:['Orações coordenadas','Orações subordinadas','Orações reduzidas','Orações absolutas'], a:0, explanation:'Orações coordenadas têm estrutura sintática independente.'},
-  {q: 'O que é uma oração subordinada?', choices:['Oração que depende da principal','Oração com verbo no infinitivo','Oração sem sujeito','Oração exclamativa'], a:0, explanation:'Oração subordinada depende sintaticamente de outra, a principal.'},
-  {q: 'Qual conjunção indica sentido adversativo?', choices:['mas','e','logo','pois'], a:0, explanation:'"Mas" indica oposição entre as ideias.'},
-  {q: 'Qual conjunção costuma indicar conclusão?', choices:['logo','mas','e','ou'], a:0, explanation:'"Logo" e similares expressam conclusão ou consequência.'},
-  {q: 'Assinale a opção que é exemplo de coordenação assindética:', choices:['Li o mito, não entendi seu significado.','Li o mito, mas não entendi.','Se gostou, diga.','Que li o livro...'], a:0, explanation:'Assindética = sem conjunção; as orações são apenas separadas por vírgula.'},
-  {q: 'Qual das alternativas apresenta conjunção explicativa?', choices:['pois','ou','mas','e'], a:0, explanation:'"Pois" justifica ou explica a oração anterior.'},
-  {q: 'Quando a vírgula é proibida entre orações com "e"?', choices:['Quando as orações têm o mesmo sujeito','Quando há polissíndeto','Quando são alternadas','Quando emprega conjunção adversativa'], a:0, explanation:'Com sujeito idêntico e conjunção aditiva "e", não se usa vírgula entre os verbos.'},
-  {q: 'O que é polissíndeto?', choices:['Repetição da conjunção entre várias orações','Ausência de conjunção','Conjunção explicativa','Conjunção conclusiva'], a:0, explanation:'Polissíndeto = repetição de conjunções (ex.: e... e... e...).'},
-  {q: 'Qual exemplo corresponde a orações coordenadas alternativas?', choices:['Ou vence o cão, ou vence a raposa.','A raposa fugiu e voltou.','Ele estudou, logo passou.','Estava triste, mas sorriu.'], a:0, explanation:'Alternativas indicam escolha entre possibilidades (ou...ou).'},
-  {q: 'O pronome relativo "que" pode introduzir qual tipo de oração?', choices:['Adjetiva','Adverbial','Substantiva','Coordenada'], a:0, explanation:'"Que" introduz orações adjetivas que caracterizam um termo do substantivo.'},
-  {q: 'Uma oração que funciona como objeto direto é chamada de:', choices:['Substantiva','Adjetiva','Adverbial','Coordenada'], a:0, explanation:'Orações substantivas podem exercer função de objeto direto, sujeito, etc.'},
-  {q: 'Qual conjunção expressa sentido aditivo?', choices:['e','porém','logo','ou'], a:0, explanation:'Conjunções aditivas (e, nem) exprimem soma ou adição de ideias.'},
-  {q: 'Marque a alternativa com conjunção que indica explicação:', choices:['porque','ou','e','mas'], a:0, explanation:'"Porque" conecta uma justificativa/explicação à oração anterior.'},
-  {q: 'Qual o efeito sintático de uma oração subordinada adverbial?', choices:['Amplia o sentido do verbo principal','Substitui o sujeito','Serve como vocativo','Sempre tem pronome relativo'], a:0, explanation:'Adverbial amplia circunstâncias como tempo, causa, condição do verbo da principal.'},
-  {q: 'Em "Eu trocarei o livro assim que chegar à biblioteca.", que tipo de subordinada é "assim que chegar à biblioteca"?', choices:['Adverbial temporal','Substantiva','Adjetiva','Coordenada'], a:0, explanation:'"Assim que" indica tempo — é subordinada adverbial temporal.'},
-  {q: 'Em "O livro de mitologia que li me surpreendeu.", a oração "que li" é:', choices:['Adjetiva restritiva','Substantiva','Adverbial','Coordenada'], a:0, explanation:'"Que li" caracteriza "o livro" — é oração adjetiva.'},
-  {q: 'Quando usamos vírgula entre coordenadas introduzidas por "e"?', choices:['Quando os sujeitos são diferentes (opcional)','Nunca','Sempre','Quando há polissíndeto apenas'], a:0, explanation:'Com sujeitos diferentes a vírgula é opcional; com polissíndeto é obrigatória.'},
-  {q: 'Qual conjunção pertence ao grupo conclusivo?', choices:['portanto','e','mas','ou'], a:0, explanation:'"Portanto" indica conclusão; pertence às conclusivas.'},
-  {q: 'O que diferencia uma oração coordenada sindética de uma assindética?', choices:['A presença de conjunção','O número de sujeitos','O tempo verbal','A pontuação somente'], a:0, explanation:'Sindética tem conjunção que liga orações; assindética não tem.'},
-  {q: 'Exemplo de conjunção adversativa além de "mas":', choices:['porém','e','ou','logo'], a:0, explanation:'"Porém" expressa adversidade/contraste, como "mas".'},
-  {q: 'Qual conjunção pode ter sentido explicativo e também conclusivo dependendo do contexto?', choices:['pois','e','ou','mas'], a:0, explanation:'"Pois" pode ter sentido explicativo; em posição pós-verbal costuma explicar.'},
-  {q: 'Se uma oração não possui sentido completo sozinha e depende de outra, é:', choices:['Subordinada','Coordenada','Assindética','Sindética'], a:0, explanation:'Falta de sentido independente caracteriza oração subordinada.'},
-  {q: 'As orações que aparecem justapostas sem conjunção são chamadas de:', choices:['Assindéticas','Sindéticas','Subordinadas','Relativas'], a:0, explanation:'Justapostas sem conjunção = assindéticas.'},
-  {q: 'Qual é a função típica de uma oração substantiva?', choices:['Substituir um termo substantivo (ex.: atuar como objeto direto)','Caracterizar um substantivo','Indicar circunstância temporal','Unir orações coordenadas'], a:0, explanation:'Orações substantivas desempenham funções típicas de substantivo, como sujeito ou objeto.'},
-  {q: 'Em "Ela pesquisou o mito e não encontrou nada.", qual sentido a conjunção "e" pode assumir?', choices:['Oposição (mas) ou adição dependendo do contexto','Aditivo sempre','Conclusivo sempre','Explicativo sempre'], a:0, explanation:'A conjunção "e" pode assumir vários sentidos conforme contexto (oposição, conclusão, etc.).'},
-  {q: 'Qual estrutura demonstra que cada oração tem sujeito e predicado próprios?', choices:['Coordenação','Subordinação','Orações reduzidas','Vocativo'], a:0, explanation:'Coordenação = cada oração tem estrutura completa com sujeito e predicado.'},
-  {q: 'Em "Li o mito, não entendi seu significado.", o sujeito de ambas as orações é:', choices:['Oculto (eu)','Li o mito','Você','Ele'], a:0, explanation:'Sujeito oculto é "eu" nas duas orações do exemplo.'},
-  {q: 'Conjunções coordenativas morfologicamente são:', choices:['Classe invariável','Verbos auxiliares','Pronomes','Advérbios'], a:0, explanation:'Conjunções são palavras invariáveis que ligam orações.'},
-  {q: 'Qual conectivo é usado para justificar algo e pode ser classificado como explicativo?', choices:['pois','ou','e','mas'], a:0, explanation:'"Pois" justifica a oração anterior: é explicativa.'},
-  {q: 'Quando dizemos que uma oração é autônoma no sentido apresentado na tabela, ela é:', choices:['Adversativa','Subordinada','Reduzida','Substantiva'], a:0, explanation:'No contexto da tabela, "autônoma" relaciona-se às adversativas que apresentam independência sem relação de dependência sintática.'},
-  {q: 'O que significa que as orações "se associam em um único período preservando sua estrutura completa"?', choices:['São coordenadas','São reduzidas','São subordinadas','São elipses'], a:0, explanation:'Preservar estrutura completa = orações coordenadas.'},
-  {q: 'No período composto, cada verbo (quando não locução) indica:', choices:['Uma oração','Um sujeito','Uma vírgula','Um advérbio'], a:0, explanation:'Cada verbo marca uma oração no período.'},
-  {q: 'Qual alternativa indica corretamente que as orações coordenadas podem expressar conclusão?', choices:['Conclusivas','Aditivas','Alternativas','Adversativas'], a:0, explanation:'Conclusivas exprimem consequência ou conclusão.'},
-  {q: 'O conector "porquanto" pertence a qual grupo?', choices:['Explicativas','Aditivas','Alternativas','Adversativas'], a:0, explanation:'"Porquanto" é uma conjunção explicativa/causal.'},
-  {q: 'As orações coordenadas que se unem sem conjunção são organizadas por:', choices:['Vírgulas','Ponto e vírgula','Dois pontos','Travessão'], a:0, explanation:'Assindéticas geralmente são separadas por vírgulas.'},
-  {q: 'Qual é a indicação típica de uma oração coordenada conclusiva?', choices:['Expressar consequência da oração anterior','Unir sujeitos distintos','Explicar uma ideia','Ser reduzida'], a:0, explanation:'Conclusiva exprime a conclusão ou consequência da oração precedente.'}
-];
+  <script>
+    // === QUESTÕES EXTRAÍDAS DO DOCUMENTO (50 questões) ===
+    // Cada entrada: {type: 'mc'|'tf', q: 'Pergunta', choices: [...], correct: index, explanation: '...' }
+    // Observação: alternativas serão embaralhadas dinamicamente.
+    const questions = [
+      { type:'mc', q:'Qual foi a causa imediata que levou a família real portuguesa a fugir para o Brasil?', 
+        choices:['Invasão napoleônica na Península Ibérica','Revolução Liberal do Porto','Gripe na corte','Seca prolongada em Portugal'],
+        correct:0,
+        explanation:'Com o avanço das tropas de Napoleão na Península Ibérica a família real fugiu para o Brasil.'},
 
-const ciencias = [
-  {q: 'Qual a porcentagem aproximada do plasma no volume sanguíneo?', choices: ['55%','41%','30%','70%'], a:0, explanation:'O plasma compõe aproximadamente 55% do sangue, sendo ~90% água.'},
-  {q: 'Qual é a principal função da hemoglobina nas hemácias?', choices: ['Transportar oxigênio','Coagular sangue','Produzir anticorpos','Regulador térmico'], a:0, explanation:'Hemoglobina liga-se ao oxigênio e o transporta dos pulmões para as células.'},
-  {q: 'Cerca de quantos litros de sangue circulam no corpo de um adulto?', choices: ['5 a 6 litros','1 a 2 litros','10 a 12 litros','200 a 300 ml'], a:0, explanation:'Um adulto tem em média 5 a 6 litros de sangue.'},
-  {q: 'Onde são produzidos principalmente os elementos figurados do sangue?', choices: ['Medula óssea','Fígado','Baço','Pulmões'], a:0, explanation:'Medula óssea produz hemácias, leucócitos e plaquetas.'},
-  {q: 'Qual célula sanguínea é responsável pela defesa do organismo?', choices: ['Leucócitos','Hemácias','Plaquetas','Plasma'], a:0, explanation:'Leucócitos (glóbulos brancos) atuam na defesa contra agentes estranhos.'},
-  {q: 'Que componente do sangue tem cor amarelada e contém 90% água?', choices: ['Plasma','Hemácias','Plaquetas','Fibrina'], a:0, explanation:'Plasma é o componente líquido, de coloração amarelada.'},
-  {q: 'Qual a função principal das plaquetas?', choices: ['Promover a coagulação','Transportar oxigênio','Combater infecções','Filtrar sangue'], a:0, explanation:'Plaquetas liberam substâncias que iniciam a coagulação para estancar sangramentos.'},
-  {q: 'Quantas plaquetas aproximadamente por mm³ um adulto possui?', choices: ['~300.000','~50.000','~1.000.000','~10.000'], a:0, explanation:'Um adulto tem cerca de 300 mil plaquetas por milímetro cúbico.'},
-  {q: 'A hemácia vive, em média, quanto tempo?', choices: ['90 a 120 dias','5 a 9 dias','Horas a semanas','365 dias'], a:0, explanation:'Vida útil das hemácias é de 90 a 120 dias; já as plaquetas 5-9 dias.'},
-  {q: 'O que ocorre na centrifugação do sangue?', choices: ['Separação em plasma e elementos figurados','Mistura completa','Formação de coágulos','Destruição das hemácias'], a:0, explanation:'Centrifugação permite visualizar plasma e elementos figurados separadamente.'},
-  {q: 'Qual é a principal função do sistema circulatório?', choices: ['Distribuir nutrientes, gases e regular temperatura','Produzir hormônios','Digestionar alimentos','Controlar movimentos'], a:0, explanation:'Sistema circulatório distribui substâncias e regula temperatura.'},
-  {q: 'Qual vaso sanguíneo sai do coração levando sangue com maior pressão?', choices: ['Artéria','Veia','Capilar','Vênula'], a:0, explanation:'Artérias saem do coração e suportam alta pressão.'},
-  {q: 'Quais vasos possuem válvulas para impedir refluxo?', choices: ['Veias','Artérias','Capilares','Arteríolas'], a:0, explanation:'Veias têm válvulas que auxiliam o retorno venoso contra a gravidade.'},
-  {q: 'Onde ocorrem as trocas gasosas entre sangue e ar?', choices: ['Capilares (em contato com alvéolos)','Veias','Artérias','Coração'], a:0, explanation:'Capilares pulmonares em contato com alvéolos permitem trocas gasosas.'},
-  {q: 'Qual tecido reveste externamente o coração?', choices: ['Pericárdio','Endocárdio','Miocárdio','Epicárdio'], a:0, explanation:'Pericárdio reveste externamente o coração e facilita seus movimentos.'},
-  {q: 'Qual cavidade do coração bombeia sangue para o corpo (circuito sistêmico)?', choices: ['Ventrículo esquerdo','Ventrículo direito','Átrio direito','Átrio esquerdo'], a:0, explanation:'Ventrículo esquerdo impulsiona sangue para o corpo com alta pressão.'},
-  {q: 'O que é sístole?', choices: ['Contração do músculo cardíaco','Relaxamento','Batida fraca','Um tipo de válvula'], a:0, explanation:'Sístole = contração; diástole = relaxamento.'},
-  {q: 'Em repouso, a frequência cardíaca média é de:', choices: ['60 a 70 batimentos por minuto','30 a 40','100 a 120','200'], a:0, explanation:'Coração em repouso bate cerca de 60-70 vezes por minuto.'},
-  {q: 'Qual componente do sangue contém aglutininas (anticorpos) do sistema ABO?', choices: ['Plasma','Hemácias','Plaquetas','Fibrina'], a:0, explanation:'As aglutininas estão no plasma e reagem contra aglutinogênios estranhos.'},
-  {q: 'Qual tipo sanguíneo é considerado doador universal?', choices: ['O-','AB+','A+','B-'], a:0, explanation:'O- não possui aglutinogênios e pode ser dado a todos os tipos.'},
-  {q: 'Por que um receptor Rh- pode reagir mal a sangue Rh+?', choices: ['Porque produz anticorpos anti-Rh','Porque tem mais hemácias','Porque tem mais plasma','Porque Rh- tem trombose'], a:0, explanation:'Receptor Rh- pode formar anticorpos anti-Rh que aglutinam hemácias Rh+.'},
-  {q: 'Quem pode ser doador de sangue segundo o documento?', choices: ['Pessoas entre 16 e 69 anos (com regras)','Qualquer pessoa sem restrições','Apenas maiores de 50','Apenas profissionais de saúde'], a:0, explanation:'Doadores geralmente entre 16 e 69 anos; menores de 18 precisam de autorização.'},
-  {q: 'Qual requisito mínimo de peso para ser doador?', choices: ['50 kg','40 kg','60 kg','70 kg'], a:0, explanation:'Peso mínimo citado: 50 kg.'},
-  {q: 'Quanto tempo homens devem aguardar entre doações?', choices: ['60 dias','30 dias','90 dias','120 dias'], a:0, explanation:'Homens: pelo menos 60 dias entre doações; mulheres 90 dias.'},
-  {q: 'Durante a pandemia, o que aconteceu com os bancos de sangue?', choices: ['Redução significativa nas doações','Aumento recorde de doações','Nenhuma mudança','Foram extintos'], a:0, explanation:'Houve queda nas doações, deixando os bancos em situação crítica.'},
-  {q: 'Qual doença está associada a produção descontrolada de células sanguíneas na medula?', choices: ['Leucemia','Anemia','Hemofilia','Trombose'], a:0, explanation:'Leucemia é câncer da medula, produz células imaturas e descontroladas.'},
-  {q: 'Anemia caracteriza-se por:', choices: ['Redução de hemácias ou hemoglobina','Excesso de plaquetas','Infecção bacteriana','Coagulação anormal'], a:0, explanation:'Anemia = baixa contagem de hemácias ou hemoglobina, reduz transporte de O2.'},
-  {q: 'Trombose é:', choices: ['Formação de coágulo que obstrui vaso','Falta de plaquetas','Tipo de leucemia','Infecção viral'], a:0, explanation:'Trombo = coágulo que pode obstruir vasos e causar sintomas locais.'},
-  {q: 'Qual órgão remove hemácias antigas do sangue?', choices: ['Baço e fígado','Rins','Coração','Pulmões'], a:0, explanation:'Baço e fígado removem hemácias envelhecidas.'},
-  {q: 'Qual pigmento contém ferro e transporta oxigênio?', choices: ['Hemoglobina','Mioglobina','Fibrina','Albumina'], a:0, explanation:'Hemoglobina é pigmento rico em ferro presente nas hemácias.'},
-  {q: 'Qual é a cor natural do plasma?', choices: ['Amarelada','Vermelha','Incolor','Verde'], a:0, explanation:'Plasma tem tom amarelado devido a substâncias dissolvidas.'},
-  {q: 'As hemácias têm núcleo?', choices: ['Não (anucleadas)','Sim, grande núcleo','Apenas em mulheres','Apenas durante infecções'], a:0, explanation:'Hemácias humanas maduras são anucleadas (sem núcleo).'},
-  {q: 'Onde o sangue circula obrigatoriamente nos humanos?', choices: ['Dentro dos vasos sanguíneos','No espaço intersticial','Fora do corpo','Dentro dos ossos'], a:0, explanation:'Sangue humano circula dentro de vasos: artérias, veias e capilares.'},
-  {q: 'Qual é o papel dos capilares?', choices: ['Permitir trocas de substâncias entre sangue e células','Bombear sangue','Produzir sangue','Filtrar urina'], a:0, explanation:'Capilares, com paredes finas, permitem trocas gasosas e de nutrientes.'},
-  {q: 'O que acontece quando aglutininas do plasma encontram aglutinogênios incompatíveis?', choices: ['Aglutinação das hemácias e risco de obstrução vascular','Aumento de plaquetas','Redução de plasma','Cura imediata'], a:0, explanation:'Aglutinação leva ao entupimento de vasos e pode ser fatal.'},
-  {q: 'Qual das opções é impedimento definitivo para doação segundo o texto?', choices: ['Soropositividade para HIV','Ter colírio no olho','Usar óculos','Alergia sazonal'], a:0, explanation:'Ser soropositivo para HIV é implicação permanente que impede a doação.'},
-  {q: 'O que é fibrina?', choices: ['Proteína que forma rede no coágulo','Tipo de hemácia','Hormônio','Anticorpo'], a:0, explanation:'Fibrina forma a malha que, junto com plaquetas, constitui o coágulo.'},
-  {q: 'Qual procedimento garante que o sangue coletado seja seguro para transfusão?', choices: ['Conhecer tipos sanguíneos do doador e receptor','Dar plasma a qualquer pessoa','Misturar todos os tipos','Não testar'], a:0, explanation:'Teste de compatibilidade (ABO e Rh) evita reações transfusionais.'},
-  {q: 'Qual elemento ajuda a distribuir calor pelo corpo?', choices: ['Sangue','Plaquetas','Hemácias sozinhas','Glândulas sebáceas'], a:0, explanation:'Sangue participa do controle térmico distribuindo calor.'},
-  {q: 'Qual é o efeito da COVID-19 mencionado em relação ao sangue?', choices: ['Pode favorecer trombose','Aumenta o número de plaquetas permanentemente','Cura anemia','Diminui plasma a zero'], a:0, explanation:'COVID-19 pode aumentar risco de trombose em alguns casos.'},
-  {q: 'Qual das afirmativas é verdadeira sobre hemácias?', choices: ['São a célula em maior quantidade no sangue','São as menos numerosas','Têm núcleo grande','Vivem anos'], a:0, explanation:'Hemácias são as mais numerosas; vivem cerca de 90-120 dias.'},
-  {q: 'O que significa "elementos figurados" do sangue?', choices: ['Células e fragmentos celulares (hemácias, leucócitos, plaquetas)','Só o plasma','Somente proteínas','Fibrina apenas'], a:0, explanation:'Elementos figurados = células e fragmentos suspensos no plasma.'},
-  {q: 'Em caso de transfusão, por que O- é considerado doador universal mas receptor restrito?', choices: ['Porque não possui aglutinogênios, mas possui aglutininas anti-A/anti-B/anti-Rh','Porque é raro','Porque tem mais plasma','Porque é sempre positivo'], a:0, explanation:'O- não tem antígenos na hemácia, mas seu plasma contém anticorpos que atacam outros tipos.'}
-];
+      { type:'mc', q:'O bloqueio continental foi descumprido por qual país, segundo o documento?', 
+        choices:['Inglaterra','Espanha','França','Holanda'],
+        correct:0,
+        explanation:'O texto menciona o descumprimento do bloqueio continental da Inglaterra.'},
 
-// Utility functions
-function shuffle(array){for(let i=array.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[array[i],array[j]]=[array[j],array[i]]}return array}
+      { type:'mc', q:'A viagem da corte para o Brasil teve duração aproximada de:', 
+        choices:['Meses e levou mais de 10 mil pessoas','Algumas semanas e 500 pessoas','Dois anos e 50 mil pessoas','Uma semana e 2 mil pessoas'],
+        correct:0,
+        explanation:'O documento diz que a viagem teve duração de meses e levou mais de 10 mil pessoas.'},
 
-// App state per theme
-let state = {
-  theme: null, // 'ciencias' or 'portugues'
-  questions: [],
-  order: [],
-  idx: 0,
-  userAnswers: []
-};
+      { type:'mc', q:'Uma mudança importante na economia mencionada foi:', 
+        choices:['Abertura dos portos aos países exportadores','Fechamento do Banco do Brasil','Proibição de comércio com a Inglaterra','Nacionalização das terras'],
+        correct:0,
+        explanation:'Com a chegada da corte foram abertos os portos, fim do pacto colonial.'},
 
-// DOM refs
-const menuEl = document.getElementById('menu');
-const cardEl = document.getElementById('card');
-const questionEl = document.getElementById('question');
-const answersEl = document.getElementById('answers');
-const explanationEl = document.getElementById('explanation');
-const nextBtn = document.getElementById('nextBtn');
-const progressLabel = document.getElementById('progressLabel');
-const qcount = document.getElementById('qcount');
-const bar = document.getElementById('bar');
-const pct = document.getElementById('pct');
-const progressBarWrap = document.getElementById('progressBarWrap');
-const summaryEl = document.getElementById('summary');
-const scoreEl = document.getElementById('score');
-const summaryList = document.getElementById('summaryList');
-const retrySame = document.getElementById('retrySame');
-const playOther = document.getElementById('playOther');
-const backMenu = document.getElementById('backMenu');
+      { type:'mc', q:'A abertura dos portos resultou em:', 
+        choices:['Quebra do pacto colonial e mais autonomia à colônia','Retorno imediato da família real a Portugal','Fim do comércio com a Inglaterra','Fim do escravismo'],
+        correct:0,
+        explanation:'O texto descreve a quebra do pacto colonial e aumento de autonomia com a abertura dos portos.'},
 
-// Menu buttons
-document.getElementById('btnCiencias').addEventListener('click', ()=>startTheme('ciencias'));
-document.getElementById('btnPortugues').addEventListener('click', ()=>startTheme('portugues'));
+      { type:'mc', q:'Qual instituição NÃO foi citada como criada após a chegada da corte?', 
+        choices:['Banco do Brasil','Real Biblioteca','Universidade Federal do Rio de Janeiro','Nenhuma das anteriores'],
+        correct:2,
+        explanation:'O documento cita Banco do Brasil e a Real Biblioteca; não cita a UFRJ.'},
 
-// Next button
-nextBtn.addEventListener('click', ()=>{
-  state.idx++;
-  if(state.idx >= state.order.length) showSummary();
-  else renderQuestion();
-});
+      { type:'tf', q:'Verdadeiro ou falso: A chegada da corte deixou a colônia totalmente livre de dependência econômica.', 
+        choices:['Verdadeiro','Falso'], correct:1,
+        explanation:'Falso — o documento relata que tratados tornaram o Brasil dependente de produtos ingleses.'},
 
-retrySame.addEventListener('click', ()=> startTheme(state.theme));
-playOther.addEventListener('click', ()=> startTheme(state.theme === 'ciencias' ? 'portugues' : 'ciencias'));
-backMenu.addEventListener('click', ()=>{
-  summaryEl.style.display = 'none';
-  menuEl.style.display = 'flex';
-  progressLabel.style.display = 'none';
-  progressBarWrap.style.display = 'none';
-});
+      { type:'mc', q:'Os tratados e acordos assinados com a Inglaterra causaram:', 
+        choices:['Descontentamento por depender de produtos ingleses','Aumento da independência econômica','Fim das elites agrárias','Imediata abolição da escravidão'],
+        correct:0,
+        explanation:'Os tratados aumentaram dependência de produtos ingleses e desagradaram colonos e artesãos.'},
 
-function startTheme(theme){
-  state.theme = theme;
-  state.questions = theme === 'ciencias' ? JSON.parse(JSON.stringify(ciencias)) : JSON.parse(JSON.stringify(portugues));
-  state.order = shuffle(state.questions.map((_,i)=>i));
-  state.idx = 0;
-  state.userAnswers = [];
+      { type:'mc', q:'Que característica social foi mantida após a chegada da corte?', 
+        choices:['Patriarcalismo','Igualdade de gênero','Redistribuição de terras','Fim do escravismo'],
+        correct:0,
+        explanation:'O documento cita o patriarcalismo como característica mantida.'},
 
-  // UI
-  menuEl.style.display = 'none';
-  summaryEl.style.display = 'none';
-  cardEl.style.display = 'block';
-  progressLabel.style.display = 'flex';
-  progressBarWrap.style.display = 'block';
+      { type:'mc', q:'O que significa "elite fundiária" conforme o texto?', 
+        choices:['Poucas pessoas com muitas terras','Distribuição igual de terras','Propriedade coletiva','Pequenos proprietários rurais'],
+        correct:0,
+        explanation:'Elite fundiária refere-se a muitas terras concentradas em poucas mãos.'},
 
-  renderQuestion();
-}
+      { type:'mc', q:'Segundo o documento, qual foi a “solução” encontrada para a mão de obra após o genocídio indígena?', 
+        choices:['Escravização de africanos','Imigração europeia em massa','Mecanização agrícola','Trabalho assalariado urbano'],
+        correct:0,
+        explanation:'O texto afirma que a escravização de africanos foi utilizada para a produção.'},
 
-function renderQuestion(){
-  const qIndex = state.order[state.idx];
-  const current = state.questions[qIndex];
-  questionEl.textContent = `${state.idx+1}. ${current.q}`;
-  answersEl.innerHTML = '';
-  explanationEl.style.display = 'none';
-  nextBtn.style.display = 'none'; nextBtn.disabled = false;
+      { type:'mc', q:'A Missão Artística Francesa foi enviada por qual país?', 
+        choices:['França','Inglaterra','Espanha','Itália'],
+        correct:0,
+        explanation:'Tratou-se de uma missão artística francesa comandada por Joachim Lebreton.'},
 
-  // shuffle choices
-  const choices = current.choices.map((c,i)=>({text:c,orig:i}));
-  shuffle(choices);
+      { type:'mc', q:'Quem comandou a Missão Artística Francesa mencionada no documento?', 
+        choices:['Joachim Lebreton','Napoleão Bonaparte','Dom João VI','José Bonifácio'],
+        correct:0,
+        explanation:'O documento menciona Joachim Lebreton como comandante da missão.'},
 
-  choices.forEach(ch => {
-    const btn = document.createElement('button');
-    btn.className = 'answer-btn';
-    btn.innerText = ch.text;
-    btn.addEventListener('click', ()=>handleSelect(btn, ch.orig, current));
-    answersEl.appendChild(btn);
-  });
+      { type:'mc', q:'A Missão Francesa introduziu qual estilo à arte americana?', 
+        choices:['Neoclássico','Barroco','Romântico','Gótico'],
+        correct:0,
+        explanation:'A missão incorporou o modelo neoclássico à arte americana.'},
 
-  // progress
-  const total = state.order.length;
-  qcount.textContent = `Pergunta ${state.idx+1} / ${total}`;
-  const percentage = Math.round(((state.idx)/total)*100);
-  bar.style.width = percentage + '%';
-  pct.textContent = percentage + '%';
-}
+      { type:'mc', q:'A Revolução Pernambucana foi inspirada por ideias de:', 
+        choices:['Iluminismo e revoluções americanas','Monarquismo absoluto','Absolutismo francês','Modelo colonial espanhol'],
+        correct:0,
+        explanation:'O texto diz que a Revolução Pernambucana se inspirou em ideias iluministas e em outras revoluções.'},
 
-function handleSelect(btn, origIndex, current){
-  if(nextBtn.style.display === 'block') return; // already answered
-  const btns = answersEl.querySelectorAll('.answer-btn');
-  btns.forEach(b=>b.disabled=true);
+      { type:'tf', q:'Verdadeiro ou falso: A Revolução Pernambucana resultou permanentemente na independência do estado.', 
+        choices:['Verdadeiro','Falso'], correct:1,
+        explanation:'Falso — Dom João enviou tropas portuguesas para restaurar a ordem.'},
 
-  const correctIndex = current.a;
-  const isCorrect = (origIndex === correctIndex);
-  if(isCorrect) btn.classList.add('correct');
-  else {
-    btn.classList.add('incorrect');
-    // highlight correct
-    btns.forEach(b=>{ if(b.innerText === current.choices[correctIndex]) b.classList.add('correct'); });
-  }
+      { type:'mc', q:'A Revolução Liberal do Porto levou a exigir que:', 
+        choices:['Dom João retornasse a Portugal e tivesse seus poderes reduzidos por uma Constituição','Dom João permanecesse no Brasil com poderes ilimitados','Portugal se tornasse colônia do Brasil','A França ocupasse Portugal'],
+        correct:0,
+        explanation:'O movimento exigiu o retorno de Dom João e limitação de poderes por Constituição.'},
 
-  explanationEl.style.display = 'block';
-  explanationEl.textContent = current.explanation || '';
+      { type:'mc', q:'Quem ficou como príncipe regente quando Dom João voltou a Portugal?', 
+        choices:['Dom Pedro I','José Bonifácio','Joachim Lebreton','Napoleão'],
+        correct:0,
+        explanation:'Dom Pedro I ficou como príncipe regente conforme o texto.'},
 
-  // store
-  state.userAnswers[state.idx] = {selected: origIndex, correct: correctIndex, isCorrect, question: current.q};
+      { type:'tf', q:'Verdadeiro ou falso: O "Dia do Fico" foi quando Dom Pedro decidiu voltar para Portugal.', 
+        choices:['Verdadeiro','Falso'], correct:1,
+        explanation:'Falso — o "Dia do Fico" é quando Dom Pedro decidiu ficar no Brasil.'},
 
-  // show next
-  nextBtn.style.display = 'block';
-}
+      { type:'mc', q:'O documento relaciona o "Dia do Fico" com:', 
+        choices:['A decisão de Dom Pedro de permanecer no Brasil e se aproximar do povo','A volta imediata de Dom Pedro para Portugal','A assinatura da Constituição portuguesa','A abolição da escravatura'],
+        correct:0,
+        explanation:'O "Dia do Fico" marcou a permanência de Dom Pedro e sua aproximação a figuras como José Bonifácio.'},
 
-function showSummary(){
-  cardEl.style.display = 'none';
-  progressLabel.style.display = 'none';
-  progressBarWrap.style.display = 'none';
-  summaryEl.style.display = 'block';
+      { type:'mc', q:'Quem foi citado como aliado de Dom Pedro no processo que levou à independência?', 
+        choices:['José Bonifácio','Joachim Lebreton','Napoleão Bonaparte','O rei da Inglaterra'],
+        correct:0,
+        explanation:'O documento cita José Bonifácio como uma figura importante aliada de Dom Pedro.'},
 
-  const total = state.order.length;
-  const correctCount = state.userAnswers.filter(a=>a && a.isCorrect).length;
-  scoreEl.textContent = `Você acertou ${correctCount} de ${total} perguntas.`;
+      { type:'mc', q:'O Grito da Independência está relacionado a qual período do documento?', 
+        choices:['Emancipação da colônia e independência','Missão artística francesa','Criação do Banco do Brasil','Revolução Pernambucana apenas'],
+        correct:0,
+        explanation:'O Grito da Independência faz parte do capítulo sobre emancipação da colônia e independência.'},
 
-  summaryList.innerHTML = '';
-  state.order.forEach((qIdx,i)=>{
-    const q = state.questions[qIdx];
-    const ua = state.userAnswers[i];
-    const ok = ua && ua.isCorrect;
-    const userText = ua ? (q.choices[ua.selected] || '—') : '—';
-    const item = document.createElement('div');
-    item.className = 'summary-item';
-    const mark = ok ? '✔' : '✖';
-    item.innerHTML = `<strong>${i+1}. ${q.q}</strong><div style="margin-top:6px">${mark} Sua resposta: <em>${userText}</em></div><div style="margin-top:6px;color:#374151">Resposta correta: <strong>${q.choices[q.a]}</strong></div><div class="explanation">Explicação: ${q.explanation || ''}</div>`;
-    summaryList.appendChild(item);
-  });
-}
+      { type:'mc', q:'Segundo o documento, a corte no Brasil fez transformações para tornar o Rio de Janeiro:', 
+        choices:['Digno de ser a nova sede da monarquia portuguesa','Menos atraente para estrangeiros','Uma capital republicana imediata','Uma cidade sem portos'],
+        correct:0,
+        explanation:'Com a chegada da corte, medidas foram tomadas para que o Rio fosse sede da monarquia.'},
 
-</script>
+      { type:'mc', q:'Os tratados mencionados no documento datam de qual ano (conforme escrito no arquivo)?', 
+        choices:['1910 (conforme texto)','1810','1822','1808'],
+        correct:0,
+        explanation:'O documento menciona "tratados de 1910" — possivelmente uma referência textual no arquivo.'},
+
+      { type:'tf', q:'Verdadeiro ou falso: O documento afirma que os tratados com a Inglaterra agradaram a todos na colônia.', 
+        choices:['Verdadeiro','Falso'], correct:1,
+        explanation:'Falso — esses tratados desagradaram a colônia por aumentar dependência de produtos ingleses.'},
+
+      { type:'mc', q:'A paisagem americana chamou a atenção de quem, segundo o texto?', 
+        choices:['Artistas e pesquisadores franceses','Somente artistas portugueses','Somente viajantes brasileiros','Soldados ingleses'],
+        correct:0,
+        explanation:'A paisagem chamou atenção de artistas e pesquisadores, motivo da missão francesa.'},
+
+      { type:'mc', q:'A missão artística francesa incorporou qual elemento à arte local?', 
+        choices:['Modelo neoclássico','Arte barroca','Expressionismo','Impressionismo'],
+        correct:0,
+        explanation:'O texto menciona que foi incorporado o modelo neoclássico.'},
+
+      { type:'mc', q:'O que o documento indica sobre a estrutura social após chegada da corte?', 
+        choices:['Manutenção de desigualdades, patriarcalismo e elite fundiária','Rápida igualdade de direitos','Fim da escravidão','Redução das terras concentradas'],
+        correct:0,
+        explanation:'O documento fala em manutenção de patriarcalismo, elite fundiária e escravismo.'},
+
+      { type:'mc', q:'A expressão "elite fundiária" está ligada a:', 
+        choices:['Importância da terra para produção agrícola e lucro','Indústria urbana forte','Educação universal','Agricultura coletiva'],
+        correct:0,
+        explanation:'A terra era central para produção agrícola e lucro, sendo concentrada em poucas mãos.'},
+
+      { type:'tf', q:'Verdadeiro ou falso: O documento descreve que a escravidão foi substituída imediatamente por trabalho assalariado.', 
+        choices:['Verdadeiro','Falso'], correct:1,
+        explanation:'Falso — o documento explica que a escravização de africanos foi utilizada após o genocídio indígena.'},
+
+      { type:'mc', q:'Qual impacto cultural a presença da corte trouxe, segundo o texto?', 
+        choices:['Atração de missões científicas e artísticas','Fechamento de instituições culturais','Expulsão de pesquisadores','Proibição de arte estrangeira'],
+        correct:0,
+        explanation:'A presença da corte atraiu artistas e pesquisadores, incluindo a missão francesa.'},
+
+      { type:'mc', q:'Qual foi um dos objetivos da missão artística francesa?', 
+        choices:['Documentar e incorporar modelos artísticos europeus','Converter o Brasil em província francesa','Impor a língua francesa como oficial','Fechar bibliotecas brasileiras'],
+        correct:0,
+        explanation:'A missão buscou estudar a colônia e incorporar o modelo neoclássico.'},
+
+      { type:'mc', q:'A queixa dos artesãos e comerciantes citada no texto estava relacionada a:', 
+        choices:['Dependência do comércio de produtos ingleses','Aumento de impostos internos','Invasão direta por França','Proibição de manufaturas locais'],
+        correct:0,
+        explanation:'Os tratados fizeram o comércio local depender de produtos ingleses, prejudicando artesãos e comerciantes.'},
+
+      { type:'mc', q:'O que o documento sugere sobre os tratados assinados (ex.: Tratado de Aliança e Amizade)?', 
+        choices:['Tornaram o Brasil dependente da Inglaterra','Garantiram completa autonomia industrial','Aboliram o pacto colonial sem efeitos','Foram completamente rejeitados pela corte'],
+        correct:0,
+        explanation:'O documento afirma que os tratados tornaram o Brasil dependente de produtos ingleses.'},
+
+      { type:'tf', q:'Verdadeiro ou falso: Segundo o texto, a corte trouxe imediata igualdade entre homem e mulher.', 
+        choices:['Verdadeiro','Falso'], correct:1,
+        explanation:'Falso — o patriarcalismo foi mantido.'},
+
+      { type:'mc', q:'Qual foi uma consequência política da permanência da corte no Brasil para Portugal?', 
+        choices:['Portugal exigiu o retorno de Dom João e redução de poderes','Portugal tornou-se independente do Brasil','Portugal adotou a monarquia brasileira','Portugal foi absorvido pela França'],
+        correct:0,
+        explanation:'A Revolução Liberal do Porto exigiu que Dom João voltasse e tivesse poderes reduzidos.'},
+
+      { type:'mc', q:'O documento associa o aumento da autonomia local a qual medida da corte?', 
+        choices:['Abertura dos portos','Fechamento das fronteiras','Repressão cultural','Redistribuição de terras'],
+        correct:0,
+        explanation:'A abertura dos portos é mencionada como causa de maior autonomia.'},
+
+      { type:'mc', q:'A quem o texto atribui parte do processo de independência do Brasil (liderança local)?', 
+        choices:['Dom Pedro e aliados como José Bonifácio','Somente Napoleão','Somente a França','A Inglaterra diretamente'],
+        correct:0,
+        explanation:'O documento cita Dom Pedro e José Bonifácio entre os protagonistas.'},
+
+      { type:'tf', q:'Verdadeiro ou falso: O documento descreve que a Revolução Pernambucana imediatamente criou uma república permanente.', 
+        choices:['Verdadeiro','Falso'], correct:1,
+        explanation:'Falso — a revolução proclamou uma república, mas tropas portuguesas restabeleceram o controle.'},
+
+      { type:'mc', q:'Que fator do mundo externo influenciou as revoltas citadas no documento?', 
+        choices:['Exemplos das Treze Colônias e ideias iluministas','Guerras no Pacífico','Industrialização japonesa','Colonização africana'],
+        correct:0,
+        explanation:'O texto aponta influência das revoluções americanas e do iluminismo.'},
+
+      { type:'mc', q:'Qual cidade foi preparada para ser sede da monarquia?', 
+        choices:['Rio de Janeiro','São Paulo','Salvador','Recife'],
+        correct:0,
+        explanation:'O Rio de Janeiro foi preparado para ser a nova sede da monarquia portuguesa.'},
+
+      { type:'mc', q:'Qual das seguintes foi uma transformação administrativa citada?', 
+        choices:['Criação de instituições como o Banco do Brasil','Abolição do Senado','Criação de uma república imediata','Fechamento de portos'],
+        correct:0,
+        explanation:'O documento cita criação do Banco do Brasil e da Real Biblioteca, entre outras instituições.'},
+
+      { type:'tf', q:'Verdadeiro ou falso: O documento menciona que a missão francesa teve papel científico e artístico.', 
+        choices:['Verdadeiro','Falso'], correct:0,
+        explanation:'Verdadeiro — ela trouxe artistas e pesquisadores para estudar a colônia.'},
+
+      { type:'mc', q:'Qual modelo artístico a missão francesa introduziu principalmente?', 
+        choices:['Neoclassicismo','Barroco','Cubismo','Expressionismo'],
+        correct:0,
+        explanation:'O modelo neoclássico foi incorporado à arte local pela missão.'},
+
+      { type:'mc', q:'No contexto do documento, o que foi o “pacto colonial”?', 
+        choices:['Sistema que vinculava o comércio colonial a Portugal','Uma aliança militar','Uma instituição educacional','Um tratado com a França'],
+        correct:0,
+        explanation:'O pacto colonial vinculava o comércio colonial à metrópole; sua quebra veio com a abertura dos portos.'},
+
+      { type:'mc', q:'O documento indica que a dependência de produtos ingleses afetou principalmente:', 
+        choices:['Artesãos, comerciantes e a economia local','Exclusivamente a coroa portuguesa','Somente os proprietários de terras','A Igreja Católica'],
+        correct:0,
+        explanation:'Artesãos e comerciantes sentiram-se prejudicados pela dependência de produtos ingleses.'},
+
+      { type:'tf', q:'Verdadeiro ou falso: O texto afirma que a chegada da corte levou à imediata igualdade social.', 
+        choices:['Verdadeiro','Falso'], correct:1,
+        explanation:'Falso — o texto fala em manutenção de desigualdades como elite fundiária e patriarcalismo.'},
+
+      { type:'mc', q:'Qual foi um motivo para enviar a missão francesa ao Brasil, segundo o documento?', 
+        choices:['Interesse artístico e científico pela paisagem americana','Expansão territorial','Forçar a independência','Impor o idioma francês'],
+        correct:0,
+        explanation:'Houve interesse artístico e científico pela paisagem americana.'},
+
+      { type:'mc', q:'De acordo com o documento, a aproximação de Dom Pedro com o povo ocorreu após:', 
+        choices:['O Dia do Fico, quando ele optou por ficar','Sua viagem de volta a Portugal','A missão francesa','A assinatura da Constituição portuguesa'],
+        correct:0,
+        explanation:'O "Dia do Fico" marca a decisão de Dom Pedro de permanecer no Brasil e se aproximar do povo.'},
+
+      { type:'mc', q:'A quem o texto atribui parte da causa das revoltas e insatisfações?', 
+        choices:['Privilegios de membros da corte e dependências econômicas','Clima tropical','Ataques indígenas','Crises de alimentação apenas'],
+        correct:0,
+        explanation:'O descontentamento vinha por privilégios de membros da corte e medidas econômicas.'},
+
+      { type:'tf', q:'Verdadeiro ou falso: O documento afirma que a missão francesa trouxe escultores que construíram monumentos dos ingleses.', 
+        choices:['Verdadeiro','Falso'], correct:1,
+        explanation:'Falso — o documento não menciona monumentos ingleses; fala em missão artística e neoclassicismo.'},
+
+      { type:'mc', q:'Qual foi uma consequência cultural positiva citada pela presença de artistas e pesquisadores?', 
+        choices:['Incorporação de novos estilos artísticos e estudo da paisagem','Esquecimento da arte local','Proibição da pintura','Nenhuma mudança cultural'],
+        correct:0,
+        explanation:'A missão levou incorporação do neoclassicismo e atenção à paisagem americana.'}
+    ];
+
+    // --- helper: duplicate logic to reach exactly 50 questions ---
+    // The source text provided roughly 40+ clear facts; to reach 50, we'll add variations and reinforce key points while staying faithful.
+    // We'll create some additional T/F and MC variations based on the same document facts.
+    const extraQuestions = [
+      { type:'tf', q:'Verdadeiro ou falso: O documento diz que a Inglaterra governou provisoriamente Portugal após a fuga da corte.', choices:['Verdadeiro','Falso'], correct:0,
+        explanation:'O texto menciona que, com a corte no Brasil, Portugal ficou sem membros da família real e a Inglaterra governou provisoriamente, o que desagradou os portugueses.'},
+
+      { type:'mc', q:'O documento relaciona a vinda da corte ao Brasil com qual acontecimento europeu?', choices:['Domínio de Napoleão Bonaparte','Revolução Industrial na Inglaterra','Unificação da Alemanha','Descobrimento da América'], correct:0,
+        explanation:'A fuga da corte se deu com o domínio napoleônico na Península Ibérica.'},
+
+      { type:'mc', q:'Segundo o texto, a viagem da corte contou com aproximadamente quantas pessoas?', choices:['Mais de 10 mil','Cerca de 100','Aproximadamente 500','Cerca de 1.000.000'], correct:0,
+        explanation:'O documento registra mais de 10 mil pessoas na viagem.'},
+
+      { type:'tf', q:'Verdadeiro ou falso: O documento afirma que o Banco do Brasil foi criado após a chegada da corte.', choices:['Verdadeiro','Falso'], correct:0,
+        explanation:'Verdadeiro — o texto cita a criação do Banco do Brasil como uma das instituições.'},
+
+      { type:'mc', q:'A manutenção do patriarcalismo significa:', choices:['Homem no poder e mulher nas tarefas domésticas','Sociedade igualitária de gênero','Matriarcado predominante','Governo democrático imediato'], correct:0,
+        explanation:'Patriarcalismo é descrito como homem no poder e mulher nas tarefas domésticas.'},
+
+      { type:'mc', q:'O documento diz que a abertura dos portos beneficiou principalmente:', choices:['Países exportadores e deu mais autonomia à colônia','Somente a metrópole','Somente produtores africanos','Somente a Inglaterra'],
+        correct:0, explanation:'A abertura dos portos foi aos países exportadores e quebrou o pacto colonial.'},
+
+      { type:'tf', q:'Verdadeiro ou falso: Os tratados tornaram o Brasil independente da Inglaterra.', choices:['Verdadeiro','Falso'], correct:1,
+        explanation:'Falso — os tratados tornaram o Brasil dependente de produtos ingleses.'},
+
+      { type:'mc', q:'A reação contra a dependência aos ingleses atingiu principalmente:', choices:['Artesãos e comerciantes locais','A família real exclusivamente','Os pesquisadores franceses','Os navios portugueses'], correct:0,
+        explanation:'Artesãos e comerciantes foram prejudicados pela dependência de produtos ingleses.'},
+
+      { type:'mc', q:'Um dos impactos sociais citados foi:', choices:['Desigualdade baseada na concentração de terras','Ampla reforma agrária imediata','Propriedade comunal','Fim das elites'], correct:0,
+        explanation:'O documento descreve a elite fundiária e desigualdades pela concentração da terra.'},
+
+      { type:'tf', q:'Verdadeiro ou falso: O documento apresenta a Missão Francesa como elemento que afastou a estética europeia do Brasil.', choices:['Verdadeiro','Falso'], correct:1,
+        explanation:'Falso — a missão incorporou modelos europeus (neoclássicos) ao espaço americano.'}
+    ];
+
+    // Merge arrays and ensure we have exactly 50
+    while (questions.length + extraQuestions.length < 50){
+      // if somehow short, duplicate some questions with small rephrasing
+      extraQuestions.push(...extraQuestions.slice(0,1));
+    }
+    const allQuestions = questions.concat(extraQuestions).slice(0,50);
+
+    // --- Utility functions ---
+    function shuffleArray(arr){
+      for(let i=arr.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [arr[i],arr[j]]=[arr[j],arr[i]];
+      }
+      return arr;
+    }
+
+    // Prepare quiz state
+    let current = 0;
+    const userAnswers = new Array(allQuestions.length).fill(null);
+    const summaryData = [];
+
+    const qNumberEl = document.getElementById('qNumber');
+    const questionTextEl = document.getElementById('questionText');
+    const choicesEl = document.getElementById('choices');
+    const nextBtn = document.getElementById('nextBtn');
+    const progressEl = document.getElementById('progress');
+    const progressText = document.getElementById('progressText');
+    const summarySection = document.getElementById('summarySection');
+    const summaryList = document.getElementById('summaryList');
+    const scoreText = document.getElementById('scoreText');
+
+    // For each question, we'll keep a shuffled version of choices with mapping to original correct index
+    const prepared = allQuestions.map(q=>{
+      if(q.type==='mc' || q.type==='tf'){
+        const items = q.choices.map((c,i)=>({text:c, originalIndex:i}));
+        const shuffled = shuffleArray(items.slice());
+        const correctOriginalIndex = q.correct;
+        // find where original correct ended up
+        const correctShuffledIndex = shuffled.findIndex(it=>it.originalIndex===correctOriginalIndex);
+        return {
+          ...q,
+          shuffledChoices: shuffled.map(s=>s.text),
+          correctShuffledIndex
+        };
+      } else return q;
+    });
+
+    function renderQuestion(index){
+      const q = prepared[index];
+      qNumberEl.textContent = `Questão ${index+1} de ${prepared.length}`;
+      questionTextEl.textContent = q.q;
+      choicesEl.innerHTML = '';
+      nextBtn.classList.remove('show');
+      nextBtn.style.visibility = 'hidden';
+
+      // create choice buttons
+      q.shuffledChoices.forEach((choiceText, i)=>{
+        const btn = document.createElement('button');
+        btn.className = 'choice-btn';
+        btn.type = 'button';
+        btn.innerText = choiceText;
+        btn.dataset.index = i;
+        btn.onclick = () => handleChoiceClick(btn, i);
+        choicesEl.appendChild(btn);
+      });
+
+      // update progress
+      const pct = Math.round((index / prepared.length) * 100);
+      progressEl.style.width = pct + '%';
+      progressText.textContent = pct + '% concluído';
+    }
+
+    function handleChoiceClick(btn, chosenIndex){
+      const q = prepared[current];
+
+      // prevent double clicks if already answered
+      if(userAnswers[current] !== null) return;
+
+      // mark user's answer
+      userAnswers[current] = chosenIndex;
+
+      // disable all buttons
+      const buttons = Array.from(choicesEl.querySelectorAll('button.choice-btn'));
+      buttons.forEach(b=>b.disabled = true);
+
+      // visual feedback
+      const correctIndex = q.correctShuffledIndex;
+      buttons.forEach((b, idx)=>{
+        if(idx === correctIndex){
+          b.classList.add('choice-correct');
+        }
+        if(idx === chosenIndex && idx !== correctIndex){
+          b.classList.add('choice-wrong');
+        }
+      });
+
+      // show Next button
+      nextBtn.style.visibility = 'visible';
+      nextBtn.classList.add('show');
+
+      // store summary data for later
+      const wasCorrect = (chosenIndex === correctIndex);
+      summaryData[current] = {
+        question: q.q,
+        chosenText: q.shuffledChoices[chosenIndex],
+        correctText: q.shuffledChoices[correctIndex],
+        correct: wasCorrect,
+        explanation: q.explanation
+      };
+    }
+
+    nextBtn.addEventListener('click', ()=>{
+      // if last question, show summary
+      if(current === prepared.length - 1){
+        showSummary();
+        return;
+      }
+      current++;
+      renderQuestion(current);
+    });
+
+    function showSummary(){
+      // progress 100%
+      progressEl.style.width = '100%';
+      progressText.textContent = '100% concluído';
+      // hide quiz card
+      document.getElementById('quizCard').style.display = 'none';
+      summarySection.style.display = 'block';
+
+      // compute score
+      const correctCount = summaryData.filter(s=>s && s.correct).length;
+      scoreText.textContent = `Pontuação: ${correctCount} / ${prepared.length}`;
+
+      // list each question
+      summaryList.innerHTML = '';
+      prepared.forEach((q, i)=>{
+        const data = summaryData[i] || {
+          question: q.q,
+          chosenText: 'Sem resposta',
+          correctText: q.shuffledChoices[q.correctShuffledIndex],
+          correct: false,
+          explanation: q.explanation
+        };
+        const li = document.createElement('li');
+        li.className = 'summary-item';
+        const mark = data.correct ? '✔' : '✖';
+        li.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+            <div style="font-weight:600;">${i+1}. ${escapeHtml(data.question)}</div>
+            <div style="font-size:20px;">${data.correct ? '<span style="color:var(--success)">'+mark+'</span>' : '<span style="color:var(--danger)">'+mark+'</span>'}</div>
+          </div>
+          <div style="margin-top:8px">
+            <div><strong>Sua resposta:</strong> ${escapeHtml(data.chosenText)}</div>
+            <div><strong>Resposta correta:</strong> ${escapeHtml(data.correctText)}</div>
+            <div class="explain"><strong>Explicação:</strong> ${escapeHtml(data.explanation)}</div>
+          </div>`;
+        summaryList.appendChild(li);
+      });
+
+      // scroll to summary
+      summarySection.scrollIntoView({behavior:'smooth'});
+    }
+
+    // simple escape to avoid injection when showing text
+    function escapeHtml(text){
+      return String(text).replace(/[&<>"'`=\/]/g, function (s) {
+        return ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;',
+          '/': '&#x2F;',
+          '`': '&#x60;',
+          '=': '&#x3D;'
+        })[s];
+      });
+    }
+
+    // initialize first question
+    renderQuestion(0);
+
+    // Allow keyboard navigation: numbers 1-4 select, Enter next (if Next visible)
+    document.addEventListener('keydown', (e)=>{
+      const buttons = Array.from(choicesEl.querySelectorAll('button.choice-btn'));
+      if(e.key >= '1' && e.key <= String(Math.min(9, buttons.length))){
+        const idx = Number(e.key) - 1;
+        if(buttons[idx] && !buttons[idx].disabled) buttons[idx].click();
+      } else if(e.key === 'Enter'){
+        if(nextBtn.classList.contains('show')) nextBtn.click();
+      }
+    });
+
+  </script>
 </body>
 </html>
