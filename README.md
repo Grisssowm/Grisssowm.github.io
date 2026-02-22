@@ -1,79 +1,1118 @@
 # Grisssowm.github.io
 <!doctype html>
-<html><head><meta charset='utf-8'><title>Revisão - 70 Questões</title>
-<style>body{font-family:Arial,Helvetica,sans-serif;padding:20px} .q{margin-bottom:18px} .num{font-weight:700} textarea{width:100%;height:60px}</style>
-</head><body>
-<h1>Revisão de Matemática — 70 Questões</h1>
-<p>Baseadas no material enviado pelo usuário (arquivo PDF).</p>
-<form>
-<div class='q'><div class='num'>Questão 1.</div><div class='texto'>(Resposta curta) Calcule o volume de um cubo de aresta 5 cm.</div><textarea name='q1' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 2.</div><div class='texto'>(Resposta curta) Um paralelepípedo tem 8 cm × 10 cm × 12 cm. Qual seu volume em cm³?</div><textarea name='q2' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 3.</div><div class='texto'>(MCQ única) Qual a fórmula do volume do cilindro?<br>A) π r² h<br>B) 2π r h<br>C) π r h<br>D) π r²</div><div><label><input type='radio' name='q3' value='A'> A</label> <label><input type='radio' name='q3' value='B'> B</label> <label><input type='radio' name='q3' value='C'> C</label> <label><input type='radio' name='q3' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 4.</div><div class='texto'>(VF) V ou F: A capacidade de 1 m³ equivale a 1000 litros.</div><select name='q4'><option value=''>--Escolha--</option><option value='V'>Verdadeiro</option><option value='F'>Falso</option></select></div>
-<div class='q'><div class='num'>Questão 5.</div><div class='texto'>(Resposta curta) Uma lata cilíndrica tem raio 7 cm e altura 20 cm. Calcule o volume (π = 3,14).</div><textarea name='q5' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 6.</div><div class='texto'>(MCQ única) Um tanque cilíndrico com raio 1,5 m e altura 4 m tem volume em m³ igual a:<br>A) 9π<br>B) 6π<br>C) 3π<br>D) 18π</div><div><label><input type='radio' name='q6' value='A'> A</label> <label><input type='radio' name='q6' value='B'> B</label> <label><input type='radio' name='q6' value='C'> C</label> <label><input type='radio' name='q6' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 7.</div><div class='texto'>(Resposta curta) Converta 0,8 m³ em litros.</div><textarea name='q7' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 8.</div><div class='texto'>(Resposta curta) Qual a capacidade em litros de uma caixa de 30×20×10 cm?</div><textarea name='q8' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 9.</div><div class='texto'>(MCQ única) Se um cilindro está 40% cheio, falta para encher:<br>A) 40% do volume<br>B) 60% do volume<br>C) 30% do volume<br>D) 50% do volume</div><div><label><input type='radio' name='q9' value='A'> A</label> <label><input type='radio' name='q9' value='B'> B</label> <label><input type='radio' name='q9' value='C'> C</label> <label><input type='radio' name='q9' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 10.</div><div class='texto'>(Multipla escolha) Quais fórmulas correspondem a prismas e pirâmides, respectivamente?<br>A) Base·altura; (Base·altura)/3<br>B) (Base·altura)/3; Base·altura<br>C) 2·Base; Base/3<br>D) Base+altura; Base·altura</div><div><label><input type='checkbox' name='q10' value='A'> A</label> <label><input type='checkbox' name='q10' value='B'> B</label> <label><input type='checkbox' name='q10' value='C'> C</label> <label><input type='checkbox' name='q10' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 11.</div><div class='texto'>(Resposta curta) Calcule o volume de um cone com raio 3 m e altura 6 m (π=3,14).</div><textarea name='q11' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 12.</div><div class='texto'>(MCQ única) Princípio multiplicativo: se A tem 3 opções e B tem 4, o número de pares ordenados é:<br>A) 7<br>B) 12<br>C) 1<br>D) 24</div><div><label><input type='radio' name='q12' value='A'> A</label> <label><input type='radio' name='q12' value='B'> B</label> <label><input type='radio' name='q12' value='C'> C</label> <label><input type='radio' name='q12' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 13.</div><div class='texto'>(MCQ única) Princípio aditivo: se A tem 5 opções, B tem 3 e são mutuamente exclusivos, total é:<br>A) 8<br>B) 15<br>C) 2<br>D) 60</div><div><label><input type='radio' name='q13' value='A'> A</label> <label><input type='radio' name='q13' value='B'> B</label> <label><input type='radio' name='q13' value='C'> C</label> <label><input type='radio' name='q13' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 14.</div><div class='texto'>(Resposta curta) Quantas senhas de 3 dígitos podem ser formadas com {2,4,5,7,8} se repetição é permitida?</div><textarea name='q14' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 15.</div><div class='texto'>(Resposta curta) Quantos números de 4 algarismos podem ser formados com 1,3,5,7 sem repetição?</div><textarea name='q15' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 16.</div><div class='texto'>(MCQ única) Um dado é lançado. Probabilidade de sair 6 em porcentagem:</div><div><label><input type='radio' name='q16' value='A'> A</label> <label><input type='radio' name='q16' value='B'> B</label> <label><input type='radio' name='q16' value='C'> C</label> <label><input type='radio' name='q16' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 17.</div><div class='texto'>(Resposta curta) Em uma urna com 6V,4B,10Az, probabilidade de retirar branca (fração).</div><textarea name='q17' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 18.</div><div class='texto'>(Resposta curta) Probabilidade em % da questão anterior.</div><textarea name='q18' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 19.</div><div class='texto'>(MCQ única) Ao lançar dois dados, a soma 9 tem probabilidade:<br>A) 1/9<br>B) 1/6<br>C) 1/12<br>D) 1/8</div><div><label><input type='radio' name='q19' value='A'> A</label> <label><input type='radio' name='q19' value='B'> B</label> <label><input type='radio' name='q19' value='C'> C</label> <label><input type='radio' name='q19' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 20.</div><div class='texto'>(Resposta curta) Ao lançar uma moeda duas vezes, probabilidade de obter cara e coroa (em qualquer ordem).</div><textarea name='q20' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 21.</div><div class='texto'>(Resposta curta) Quantos anagramas (permutação) existem para as letras A,B,C,D,E?</div><textarea name='q21' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 22.</div><div class='texto'>(Resposta curta) 5! é igual a:</div><textarea name='q22' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 23.</div><div class='texto'>(MCQ única) Número de resultados ao lançar 3 dados (todos distintos ordenados):<br>A) 216<br>B) 36<br>C) 64<br>D) 6</div><div><label><input type='radio' name='q23' value='A'> A</label> <label><input type='radio' name='q23' value='B'> B</label> <label><input type='radio' name='q23' value='C'> C</label> <label><input type='radio' name='q23' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 24.</div><div class='texto'>(Resposta curta) Probabilidade de tirar um número par ao sortear de 1 a 8.</div><textarea name='q24' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 25.</div><div class='texto'>(VF) V ou F: Eventos independentes não influenciam a probabilidade um do outro.</div><select name='q25'><option value=''>--Escolha--</option><option value='V'>Verdadeiro</option><option value='F'>Falso</option></select></div>
-<div class='q'><div class='num'>Questão 26.</div><div class='texto'>(Resposta curta) Em um experimento com 2 moedas e 1 dado, quantos resultados equiprováveis existem?</div><textarea name='q26' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 27.</div><div class='texto'>(MCQ única) Ao escolher um número entre 1 e 20, probabilidade de ser múltiplo de 3:</div><div><label><input type='radio' name='q27' value='A'> A</label> <label><input type='radio' name='q27' value='B'> B</label> <label><input type='radio' name='q27' value='C'> C</label> <label><input type='radio' name='q27' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 28.</div><div class='texto'>(Resposta curta) Volume de cubo de aresta 9 cm.</div><textarea name='q28' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 29.</div><div class='texto'>(Resposta curta) Se cubo tem volume 64 m³, sua aresta mede:</div><textarea name='q29' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 30.</div><div class='texto'>(MCQ única) Em um ventilador com 5 pás, ângulo central de cada uma é:<br>A) 72°<br>B) 60°<br>C) 90°<br>D) 45°</div><div><label><input type='radio' name='q30' value='A'> A</label> <label><input type='radio' name='q30' value='B'> B</label> <label><input type='radio' name='q30' value='C'> C</label> <label><input type='radio' name='q30' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 31.</div><div class='texto'>(Resposta curta) Um reservatório cilindrico: raio 3 m, altura 5 m. Volume em litros (π=3,14).</div><textarea name='q31' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 32.</div><div class='texto'>(Resposta curta) Probabilidade de tirar número maior que 4 em um dado.</div><textarea name='q32' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 33.</div><div class='texto'>(MCQ única) Em uma roleta 1-12, probabilidade de sair divisível por 4:</div><div><label><input type='radio' name='q33' value='A'> A</label> <label><input type='radio' name='q33' value='B'> B</label> <label><input type='radio' name='q33' value='C'> C</label> <label><input type='radio' name='q33' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 34.</div><div class='texto'>(Resposta curta) Quantos números de 4 algarismos podem ser formados com dígitos 1,2,3,4 repetindo?</div><textarea name='q34' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 35.</div><div class='texto'>(Resposta curta) Volume de um prisma com base 30 cm² e altura 9 cm.</div><textarea name='q35' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 36.</div><div class='texto'>(Resposta curta) Área total de paralelepípedo 8,10,12 (cm):</div><textarea name='q36' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 37.</div><div class='texto'>(MCQ única) Um cone com volume 84 m³ e altura 7 m (π=3): raio é:<br>A) 3 m<br>B) 2 m<br>C) 4 m<br>D) 1 m</div><div><label><input type='radio' name='q37' value='A'> A</label> <label><input type='radio' name='q37' value='B'> B</label> <label><input type='radio' name='q37' value='C'> C</label> <label><input type='radio' name='q37' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 38.</div><div class='texto'>(Resposta curta) Um cilindro com volume 150,72 m³ e raio 3,6 m: altura (π=3,14).</div><textarea name='q38' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 39.</div><div class='texto'>(Resposta curta) Em urna com 5 amarelas,8 verdes,7 azuis: probabilidade de azul.</div><textarea name='q39' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 40.</div><div class='texto'>(MCQ única) Tipos de eventos: mutuamente exclusivos são:<br>A) Não podem ocorrer juntos<br>B) Sempre ocorrem juntos<br>C) Independentes<br>D) Complementares</div><div><label><input type='radio' name='q40' value='A'> A</label> <label><input type='radio' name='q40' value='B'> B</label> <label><input type='radio' name='q40' value='C'> C</label> <label><input type='radio' name='q40' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 41.</div><div class='texto'>(Resposta curta) Probabilidade complementária: se P(A)=0.3, P(A^c) =</div><textarea name='q41' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 42.</div><div class='texto'>(MCQ única) Ao lançar dois dados, probabilidade de soma 7 é:<br>A) 1/6<br>B) 1/12<br>C) 1/9<br>D) 1/8</div><div><label><input type='radio' name='q42' value='A'> A</label> <label><input type='radio' name='q42' value='B'> B</label> <label><input type='radio' name='q42' value='C'> C</label> <label><input type='radio' name='q42' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 43.</div><div class='texto'>(Resposta curta) Um cilindro: área base 50 cm², altura 12 cm =&gt; volume?</div><textarea name='q43' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 44.</div><div class='texto'>(VF) V ou F: Probabilidade expressa por fração e por porcentagem são equivalentes.</div><select name='q44'><option value=''>--Escolha--</option><option value='V'>Verdadeiro</option><option value='F'>Falso</option></select></div>
-<div class='q'><div class='num'>Questão 45.</div><div class='texto'>(Resposta curta) Número de permutações de 4 algarismos sem repetição (1,3,5,7).</div><textarea name='q45' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 46.</div><div class='texto'>(Resposta curta) Em 70% de um reservatório de raio 1,8 m e altura 4,2 m (π=3,14), quantos litros há dentro?</div><textarea name='q46' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 47.</div><div class='texto'>(MCQ única) Probabilidade com porcentagem: 25% em fração é:<br>A) 1/4<br>B) 1/3<br>C) 1/5<br>D) 1/2</div><div><label><input type='radio' name='q47' value='A'> A</label> <label><input type='radio' name='q47' value='B'> B</label> <label><input type='radio' name='q47' value='C'> C</label> <label><input type='radio' name='q47' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 48.</div><div class='texto'>(Resposta curta) Em um grupo de 50 alunos: 30 vôlei, 20 basquete, 10 ambos. Quantos apenas vôlei?</div><textarea name='q48' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 49.</div><div class='texto'>(Resposta curta) Volume de cilindro raio 0,8 m altura 2,5 m (π=3,14).</div><textarea name='q49' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 50.</div><div class='texto'>(Resposta curta) Um paralelepípedo 30×20×10 cm =&gt; volume em litros.</div><textarea name='q50' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 51.</div><div class='texto'>(MCQ única) Um dado e uma moeda simultaneamente: total de resultados:</div><div><label><input type='radio' name='q51' value='A'> A</label> <label><input type='radio' name='q51' value='B'> B</label> <label><input type='radio' name='q51' value='C'> C</label> <label><input type='radio' name='q51' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 52.</div><div class='texto'>(Resposta curta) Probabilidade de tirar uma bola defeituosa em caixa com 12 boas e 3 defeituosas.</div><textarea name='q52' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 53.</div><div class='texto'>(Resposta curta) Volume de uma piscina 6×12×2 m em litros.</div><textarea name='q53' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 54.</div><div class='texto'>(Resposta curta) Um prisma triangular base 24 cm² e altura 15 cm =&gt; volume.</div><textarea name='q54' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 55.</div><div class='texto'>(MCQ única) Quantos fatores tem 6! (valor de 6!)<br>A) 720<br>B) 120<br>C) 7200<br>D) 36</div><div><label><input type='radio' name='q55' value='A'> A</label> <label><input type='radio' name='q55' value='B'> B</label> <label><input type='radio' name='q55' value='C'> C</label> <label><input type='radio' name='q55' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 56.</div><div class='texto'>(Resposta curta) Probabilidade de tirar um número ímpar em roleta 1-10.</div><textarea name='q56' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 57.</div><div class='texto'>(Resposta curta) Um cilindro com raio 4 cm e volume 200,96 cm³: altura (π=3,14).</div><textarea name='q57' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 58.</div><div class='texto'>(VF) V ou F: Para calcular volume de pirâmide usamos base·altura·1/3.</div><select name='q58'><option value=''>--Escolha--</option><option value='V'>Verdadeiro</option><option value='F'>Falso</option></select></div>
-<div class='q'><div class='num'>Questão 59.</div><div class='texto'>(Resposta curta) Em uma urna 4 brancas e 6 pretas: probabilidade de branca.</div><textarea name='q59' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 60.</div><div class='texto'>(Resposta curta) Quantos resultados ao lançar 2 dados (pares ordenados)?</div><textarea name='q60' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 61.</div><div class='texto'>(MCQ única) Probabilidade expressa como &#x27;probabilidade da probabilidade&#x27; (ex: P(P(A))) — é normalmente:<br>A) Não usual mas pode ser aplicada a distribuições<br>B) Sempre zero<br>C) Sempre 1<br>D) Igual a P(A)</div><div><label><input type='radio' name='q61' value='A'> A</label> <label><input type='radio' name='q61' value='B'> B</label> <label><input type='radio' name='q61' value='C'> C</label> <label><input type='radio' name='q61' value='D'> D</label> </div></div>
-<div class='q'><div class='num'>Questão 62.</div><div class='texto'>(Resposta curta) Um cilindro com volume 282,6 cm³ e raio 3 cm =&gt; altura (π=3,14).</div><textarea name='q62' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 63.</div><div class='texto'>(Resposta curta) Em translação: ponto (2,1) transladado 4 left e 3 up =&gt; novas coordenadas.</div><textarea name='q63' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 64.</div><div class='texto'>(Resposta curta) Rotação 90° anti-horário de E(-4,2) =&gt; E&#x27; ?</div><textarea name='q64' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 65.</div><div class='texto'>(Extra) Questão 65: Calcule 3!.</div><textarea name='q65' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 66.</div><div class='texto'>(Extra) Questão 66: Calcule 3!.</div><textarea name='q66' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 67.</div><div class='texto'>(Extra) Questão 67: Calcule 3!.</div><textarea name='q67' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 68.</div><div class='texto'>(Extra) Questão 68: Calcule 3!.</div><textarea name='q68' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 69.</div><div class='texto'>(Extra) Questão 69: Calcule 3!.</div><textarea name='q69' placeholder='Digite sua resposta aqui'></textarea></div>
-<div class='q'><div class='num'>Questão 70.</div><div class='texto'>(Extra) Questão 70: Calcule 3!.</div><textarea name='q70' placeholder='Digite sua resposta aqui'></textarea></div>
-<button type='submit'>Enviar (não salva automaticamente)</button></form></body></html>
+<html lang="pt-BR" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Effects Studio</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'JetBrains Mono', monospace; }
+    body { background: #0a0e27; }
+    
+    .preview-container {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      aspect-ratio: 4/3;
+      background: linear-gradient(45deg, #1a1f3a 0%, #2d1b4e 100%);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #canvas {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .slider-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: #1a1f3a;
+      border-radius: 8px;
+      border: 1px solid #2d3561;
+    }
+
+    .slider-label {
+      color: #a0aec0;
+      font-size: 12px;
+      min-width: 100px;
+      text-transform: uppercase;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #667eea;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(102, 126, 234, 0.6);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #667eea;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 0 10px rgba(102, 126, 234, 0.6);
+    }
+
+    .value-display {
+      color: #667eea;
+      font-weight: 600;
+      min-width: 45px;
+      text-align: right;
+    }
+
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-secondary {
+      background: #2d1b4e;
+      border: 1px solid #667eea;
+      color: #667eea;
+    }
+
+    .btn-secondary:hover {
+      background: #3d2b5e;
+      box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+    }
+
+    .toggle-btn {
+      padding: 8px 16px;
+      font-size: 11px;
+      background: #2d1b4e;
+      border: 2px solid #667eea;
+      color: #a0aec0;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .toggle-btn.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-color: #667eea;
+      box-shadow: 0 0 15px rgba(102, 126, 234, 0.6);
+    }
+
+    .section-title {
+      color: #667eea;
+      font-size: 13px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+
+    .effect-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 10px rgba(102, 126, 234, 0.5); }
+      50% { text-shadow: 0 0 20px rgba(102, 126, 234, 1); }
+    }
+
+    h1 {
+      animation: glow 2s ease-in-out infinite;
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div class="h-full overflow-auto p-6">
+   <div class="max-w-6xl mx-auto">
+    <!-- Título -->
+    <div class="text-center mb-8">
+     <h1 class="text-4xl md:text-5xl font-bold text-transparent bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 bg-clip-text mb-2">🎨 IMAGE EFFECTS STUDIO</h1>
+     <p class="text-gray-400 text-sm">Aplique efeitos incríveis em tempo real</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8">
+     <!-- Coluna Esquerda - Preview -->
+     <div class="flex flex-col gap-4">
+      <div class="preview-container" id="previewContainer">
+       <canvas id="canvas"></canvas>
+       <div id="explosionContainer" style="position: absolute; inset: 0;"></div>
+      </div>
+      <div class="flex gap-2">
+       <button onclick="resetAllEffects()" class="flex-1 btn-secondary">🔄 Reset</button> <button onclick="downloadImage()" class="flex-1">⬇️ Download</button>
+      </div><input type="file" id="imageInput" accept="image/*" style="display: none;"> <button onclick="document.getElementById('imageInput').click()" class="w-full">📤 Carregar Imagem</button>
+     </div><!-- Coluna Direita - Controles -->
+     <div class="space-y-4 overflow-y-auto max-h-screen pr-4">
+      <!-- Upload Info -->
+      <div class="bg-purple-900/20 border border-purple-500 p-4 rounded-lg">
+       <p class="text-purple-300 text-sm">Carregue uma imagem para começar! 50+ efeitos de distorção e forma aguardando...</p>
+      </div><!-- DISTORÇÕES BÁSICAS -->
+      <div>
+       <div class="section-title">
+        🌀 Distorções Básicas
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Olho Peixe</span> <input type="range" id="fisheye" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="fisheyeValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Turbilhão</span> <input type="range" id="whirl" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="whirlValue">0°</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Onda H</span> <input type="range" id="waveH" min="0" max="50" value="0" oninput="updateEffects()"> <span class="value-display" id="waveHValue">0px</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Onda V</span> <input type="range" id="waveV" min="0" max="50" value="0" oninput="updateEffects()"> <span class="value-display" id="waveVValue">0px</span>
+       </div>
+      </div><!-- DEFORMAÇÕES -->
+      <div>
+       <div class="section-title">
+        🎪 Deformações
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Alongamento X</span> <input type="range" id="stretchX" min="50" max="150" value="100" oninput="updateEffects()"> <span class="value-display" id="stretchXValue">100%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Alongamento Y</span> <input type="range" id="stretchY" min="50" max="150" value="100" oninput="updateEffects()"> <span class="value-display" id="stretchYValue">100%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Compressão</span> <input type="range" id="squeeze" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="squeezeValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Cisalhamento</span> <input type="range" id="shear" min="-30" max="30" value="0" oninput="updateEffects()"> <span class="value-display" id="shearValue">0°</span>
+       </div>
+      </div><!-- EFEITOS DE FORMA -->
+      <div>
+       <div class="section-title">
+        📐 Transformações
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Espiral</span> <input type="range" id="spiral" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="spiralValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Vórtice</span> <input type="range" id="vortex" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="vortexValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Fractal</span> <input type="range" id="fractal" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="fractalValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Fragmentação</span> <input type="range" id="fragment" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="fragmentValue">0%</span>
+       </div>
+      </div><!-- EFEITOS RADICAIS -->
+      <div>
+       <div class="section-title">
+        💥 Efeitos Radicais
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Derretimento</span> <input type="range" id="melt" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="meltValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Pixelização</span> <input type="range" id="pixelate" min="0" max="50" value="0" oninput="updateEffects()"> <span class="value-display" id="pixelateValue">0px</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Riples</span> <input type="range" id="ripple" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="rippleValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Reflexo</span> <input type="range" id="mirror" min="0" max="3" value="0" step="1" oninput="updateEffects()"> <span class="value-display" id="mirrorValue">Off</span>
+       </div>
+      </div><!-- EFEITOS GEOMÉTRICOS -->
+      <div>
+       <div class="section-title">
+        🔷 Efeitos Geométricos
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Kaleidoscópio</span> <input type="range" id="kaleidoscope" min="3" max="12" value="3" step="1" oninput="updateEffects()"> <span class="value-display" id="kaleidoscopeValue">3</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Mosaico</span> <input type="range" id="mosaic" min="0" max="50" value="0" oninput="updateEffects()"> <span class="value-display" id="mosaicValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Lentes</span> <input type="range" id="lens" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="lensValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Cristal</span> <input type="range" id="crystal" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="crystalValue">0%</span>
+       </div>
+      </div><!-- EFEITOS ORGÂNICOS -->
+      <div>
+       <div class="section-title">
+        🌊 Efeitos Orgânicos
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Turbulência</span> <input type="range" id="turbulence" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="turbulenceValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Curvatura</span> <input type="range" id="curve" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="curveValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Torsão</span> <input type="range" id="twist" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="twistValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Compactação</span> <input type="range" id="compact" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="compactValue">0%</span>
+       </div>
+      </div><!-- EFEITOS AVANÇADOS -->
+      <div>
+       <div class="section-title">
+        ✨ Efeitos Avançados
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Inversão Radial</span> <input type="range" id="inversion" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="inversionValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Projeção Polar</span> <input type="range" id="polar" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="polarValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Distorção de Fase</span> <input type="range" id="phase" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="phaseValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Efeito Lava</span> <input type="range" id="lava" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="lavaValue">0%</span>
+       </div>
+      </div><!-- EFEITOS EXTREMOS -->
+      <div>
+       <div class="section-title">
+        ⚡ Efeitos Extremos
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Fragmentação Aleatória</span> <input type="range" id="randomFrag" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="randomFragValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Glitch Temporal</span> <input type="range" id="glitch" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="glitchValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Distorção Quântica</span> <input type="range" id="quantum" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="quantumValue">0%</span>
+       </div>
+       <div class="slider-container">
+        <span class="slider-label">Efeito Buraco Negro</span> <input type="range" id="blackhole" min="0" max="100" value="0" oninput="updateEffects()"> <span class="value-display" id="blackholeValue">0%</span>
+       </div>
+      </div><!-- BOTÕES DE AÇÃO -->
+      <div style="margin-top: 20px;">
+       <div class="flex gap-2 mb-3">
+        <button onclick="resetAllEffects()" class="flex-1 btn-secondary">🔄 Resetar</button> <button onclick="downloadImage()" class="flex-1">⬇️ Download</button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const imageInput = document.getElementById('imageInput');
+    
+    let originalImage = null;
+    let effects = {
+      fisheye: 0, whirl: 0, waveH: 0, waveV: 0,
+      stretchX: 100, stretchY: 100, squeeze: 0, shear: 0,
+      spiral: 0, vortex: 0, fractal: 0, fragment: 0,
+      melt: 0, pixelate: 0, ripple: 0, mirror: 0,
+      kaleidoscope: 3, mosaic: 0, lens: 0, crystal: 0,
+      turbulence: 0, curve: 0, twist: 0, compact: 0,
+      inversion: 0, polar: 0, phase: 0, lava: 0,
+      randomFrag: 0, glitch: 0, quantum: 0, blackhole: 0
+    };
+
+    imageInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const img = new Image();
+          img.onload = () => {
+            originalImage = img;
+            canvas.width = img.width;
+            canvas.height = img.height;
+            updateEffects();
+          };
+          img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    function updateEffects() {
+      if (!originalImage) return;
+
+      // Atualizar valores dos sliders
+      Object.keys(effects).forEach(key => {
+        const elem = document.getElementById(key);
+        if (elem) effects[key] = parseFloat(elem.value);
+      });
+
+      // Atualizar labels
+      Object.keys(effects).forEach(key => {
+        const valueElem = document.getElementById(key + 'Value');
+        if (valueElem) {
+          if (key === 'kaleidoscope') valueElem.textContent = Math.round(effects[key]);
+          else if (key === 'mirror') valueElem.textContent = ['Off', 'H', 'V', 'Both'][Math.round(effects[key])];
+          else if (key.includes('stretch') || key === 'stretchX' || key === 'stretchY') valueElem.textContent = effects[key].toFixed(0) + '%';
+          else valueElem.textContent = effects[key].toFixed(0) + (key.includes('stretch') || key.includes('squeeze') || key.includes('compact') ? '%' : key.includes('shear') ? '°' : key.includes('intensity') ? '%' : key.includes('pixelate') ? 'px' : '%');
+        }
+      });
+
+      drawImage();
+    }
+
+    function drawImage() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(originalImage, 0, 0);
+
+      // Aplicar efeitos em sequência
+      if (effects.pixelate > 0) applyPixelation(effects.pixelate);
+      if (effects.fisheye > 0) applyFisheye(effects.fisheye);
+      if (effects.whirl > 0) applyWhirl(effects.whirl);
+      if (effects.waveH > 0 || effects.waveV > 0) applyWaves();
+      if (effects.stretchX !== 100 || effects.stretchY !== 100) applyStretch();
+      if (effects.squeeze > 0) applySqueeze();
+      if (effects.shear !== 0) applyShear();
+      if (effects.spiral > 0) applySpiral();
+      if (effects.vortex > 0) applyVortex();
+      if (effects.fractal > 0) applyFractal();
+      if (effects.fragment > 0) applyFragmentation();
+      if (effects.melt > 0) applyMelt();
+      if (effects.ripple > 0) applyRipple();
+      if (effects.mirror > 0) applyMirror();
+      if (effects.kaleidoscope > 3) applyKaleidoscope();
+      if (effects.mosaic > 0) applyMosaic();
+      if (effects.lens > 0) applyLens();
+      if (effects.crystal > 0) applyCrystal();
+      if (effects.turbulence > 0) applyTurbulence();
+      if (effects.curve > 0) applyCurve();
+      if (effects.twist > 0) applyTwist();
+      if (effects.compact > 0) applyCompact();
+      if (effects.inversion > 0) applyInversion();
+      if (effects.polar > 0) applyPolar();
+      if (effects.phase > 0) applyPhase();
+      if (effects.lava > 0) applyLava();
+      if (effects.randomFrag > 0) applyRandomFrag();
+      if (effects.glitch > 0) applyGlitch();
+      if (effects.quantum > 0) applyQuantum();
+      if (effects.blackhole > 0) applyBlackhole();
+    }
+
+    // ===== EFEITOS BÁSICOS =====
+    function applyPixelation(pixelSize) {
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = Math.max(1, canvas.width / pixelSize);
+      tempCanvas.height = Math.max(1, canvas.height / pixelSize);
+      const tempCtx = tempCanvas.getContext('2d');
+      tempCtx.drawImage(canvas, 0, 0, tempCanvas.width, tempCanvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.imageSmoothingEnabled = false;
+      ctx.drawImage(tempCanvas, 0, 0, canvas.width, canvas.height);
+      ctx.imageSmoothingEnabled = true;
+    }
+
+    function applyFisheye(intensity) {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const cx = w / 2, cy = h / 2;
+      const str = intensity / 100 * 0.5;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const dx = (x - cx) / cx, dy = (y - cy) / cy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const angle = Math.atan2(dy, dx);
+          const distorted = dist * (1 + str * dist);
+          const sx = Math.round(cx + Math.cos(angle) * distorted * cx);
+          const sy = Math.round(cy + Math.sin(angle) * distorted * cy);
+          if (sx >= 0 && sx < w && sy >= 0 && sy < h) {
+            const si = (sy * w + sx) * 4, di = (y * w + x) * 4;
+            newData[di] = data[si]; newData[di+1] = data[si+1]; newData[di+2] = data[si+2]; newData[di+3] = data[si+3];
+          }
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyWhirl(angle) {
+      const cx = canvas.width / 2, cy = canvas.height / 2;
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate((angle * Math.PI) / 180);
+      ctx.translate(-cx, -cy);
+      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      ctx.restore();
+      ctx.putImageData(imgData, 0, 0);
+    }
+
+    function applyWaves() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const newData = new Uint8ClampedArray(data);
+      const wH = effects.waveH, wV = effects.waveV;
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const sx = Math.round(x + Math.sin(y * 0.05) * wH);
+          const sy = Math.round(y + Math.cos(x * 0.05) * wV);
+          if (sx >= 0 && sx < w && sy >= 0 && sy < h) {
+            const si = (sy * w + sx) * 4, di = (y * w + x) * 4;
+            newData[di] = data[si]; newData[di+1] = data[si+1]; newData[di+2] = data[si+2]; newData[di+3] = data[si+3];
+          }
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    // ===== DEFORMAÇÕES =====
+    function applyStretch() {
+      const sx = effects.stretchX / 100, sy = effects.stretchY / 100;
+      const cx = canvas.width / 2, cy = canvas.height / 2;
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.scale(sx, sy);
+      ctx.translate(-cx, -cy);
+      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      ctx.restore();
+      ctx.putImageData(imgData, 0, 0);
+    }
+
+    function applySqueeze() {
+      const intensity = effects.squeeze / 100;
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const cx = w / 2, cy = h / 2;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const dx = (x - cx) / cx, dy = (y - cy) / cy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const factor = 1 - intensity * dist;
+          const sx = Math.round(cx + dx * cx / (factor || 0.1));
+          const sy = Math.round(cy + dy * cy / (factor || 0.1));
+          if (sx >= 0 && sx < w && sy >= 0 && sy < h) {
+            const si = (sy * w + sx) * 4, di = (y * w + x) * 4;
+            newData[di] = data[si]; newData[di+1] = data[si+1]; newData[di+2] = data[si+2]; newData[di+3] = data[si+3];
+          }
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyShear() {
+      const shear = effects.shear / 100;
+      ctx.save();
+      ctx.transform(1, shear, shear, 1, 0, 0);
+      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      ctx.restore();
+      ctx.putImageData(imgData, 0, 0);
+    }
+
+    // ===== TRANSFORMAÇÕES =====
+    function applySpiral() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const cx = w / 2, cy = h / 2;
+      const intensity = effects.spiral / 100 * 10;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const dx = x - cx, dy = y - cy;
+          const angle = Math.atan2(dy, dx);
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const newAngle = angle + dist * intensity;
+          const sx = Math.round(cx + Math.cos(newAngle) * dist);
+          const sy = Math.round(cy + Math.sin(newAngle) * dist);
+          if (sx >= 0 && sx < w && sy >= 0 && sy < h) {
+            const si = (sy * w + sx) * 4, di = (y * w + x) * 4;
+            newData[di] = data[si]; newData[di+1] = data[si+1]; newData[di+2] = data[si+2]; newData[di+3] = data[si+3];
+          }
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyVortex() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const cx = w / 2, cy = h / 2;
+      const intensity = effects.vortex / 100 * 0.1;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const dx = x - cx, dy = y - cy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const angle = Math.atan2(dy, dx) + dist * intensity;
+          const sx = Math.round(cx + Math.cos(angle) * dist);
+          const sy = Math.round(cy + Math.sin(angle) * dist);
+          if (sx >= 0 && sx < w && sy >= 0 && sy < h) {
+            const si = (sy * w + sx) * 4, di = (y * w + x) * 4;
+            newData[di] = data[si]; newData[di+1] = data[si+1]; newData[di+2] = data[si+2]; newData[di+3] = data[si+3];
+          }
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyFractal() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const intensity = effects.fractal / 100;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let i = 0; i < data.length; i += 4) {
+        const idx = Math.floor(Math.random() * (data.length - 4) / 4) * 4;
+        newData[i] = data[idx] * (1 - intensity) + data[i] * intensity;
+        newData[i+1] = data[idx+1] * (1 - intensity) + data[i+1] * intensity;
+        newData[i+2] = data[idx+2] * (1 - intensity) + data[i+2] * intensity;
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyFragmentation() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const intensity = effects.fragment / 100 * 20;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const offset = Math.round((Math.random() - 0.5) * intensity);
+          const sx = Math.max(0, Math.min(w - 1, x + offset));
+          const sy = Math.max(0, Math.min(h - 1, y + offset));
+          const si = (sy * w + sx) * 4, di = (y * w + x) * 4;
+          newData[di] = data[si]; newData[di+1] = data[si+1]; newData[di+2] = data[si+2]; newData[di+3] = data[si+3];
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    // ===== EFEITOS RADICAIS =====
+    function applyMelt() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const intensity = effects.melt / 100;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 1; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const offset = Math.round(Math.random() * intensity * 20);
+          const sy = Math.min(h - 1, y + offset);
+          const si = (sy * w + x) * 4, di = (y * w + x) * 4;
+          newData[di] = data[si]; newData[di+1] = data[si+1]; newData[di+2] = data[si+2]; newData[di+3] = data[si+3];
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyRipple() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const intensity = effects.ripple / 100 * 15;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const wave = Math.sin(y * 0.1) * intensity + Math.cos(x * 0.1) * intensity;
+          const sx = Math.max(0, Math.min(w - 1, x + Math.round(wave)));
+          const sy = Math.max(0, Math.min(h - 1, y + Math.round(wave)));
+          const si = (sy * w + sx) * 4, di = (y * w + x) * 4;
+          newData[di] = data[si]; newData[di+1] = data[si+1]; newData[di+2] = data[si+2]; newData[di+3] = data[si+3];
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyMirror() {
+      const mirrorType = Math.round(effects.mirror);
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+
+      if (mirrorType === 1 || mirrorType === 3) { // Horizontal
+        for (let y = 0; y < h; y++) {
+          for (let x = 0; x < w / 2; x++) {
+            const i1 = (y * w + x) * 4;
+            const i2 = (y * w + (w - 1 - x)) * 4;
+            [data[i1], data[i2]] = [data[i2], data[i1]];
+            [data[i1+1], data[i2+1]] = [data[i2+1], data[i1+1]];
+            [data[i1+2], data[i2+2]] = [data[i2+2], data[i1+2]];
+          }
+        }
+      }
+      if (mirrorType === 2 || mirrorType === 3) { // Vertical
+        for (let y = 0; y < h / 2; y++) {
+          for (let x = 0; x < w; x++) {
+            const i1 = (y * w + x) * 4;
+            const i2 = ((h - 1 - y) * w + x) * 4;
+            [data[i1], data[i2]] = [data[i2], data[i1]];
+            [data[i1+1], data[i2+1]] = [data[i2+1], data[i1+1]];
+            [data[i1+2], data[i2+2]] = [data[i2+2], data[i1+2]];
+          }
+        }
+      }
+      ctx.putImageData(imageData, 0, 0);
+    }
+
+    // ===== EFEITOS GEOMÉTRICOS =====
+    function applyKaleidoscope() {
+      const sections = Math.round(effects.kaleidoscope);
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      const tempCtx = tempCanvas.getContext('2d');
+      tempCtx.drawImage(canvas, 0, 0);
+
+      const cx = canvas.width / 2, cy = canvas.height / 2;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < sections; i++) {
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate((i * Math.PI * 2) / sections);
+        ctx.translate(-cx, -cy);
+        ctx.drawImage(tempCanvas, 0, 0);
+        ctx.restore();
+      }
+    }
+
+    function applyMosaic() {
+      const tileSize = effects.mosaic > 0 ? Math.ceil(effects.mosaic / 5) + 2 : 1;
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y += tileSize) {
+        for (let x = 0; x < w; x += tileSize) {
+          let r = 0, g = 0, b = 0, a = 0, count = 0;
+          for (let ty = 0; ty < tileSize && y + ty < h; ty++) {
+            for (let tx = 0; tx < tileSize && x + tx < w; tx++) {
+              const i = ((y + ty) * w + (x + tx)) * 4;
+              r += data[i]; g += data[i+1]; b += data[i+2]; a += data[i+3];
+              count++;
+            }
+          }
+          r /= count; g /= count; b /= count; a /= count;
+          for (let ty = 0; ty < tileSize && y + ty < h; ty++) {
+            for (let tx = 0; tx < tileSize && x + tx < w; tx++) {
+              const i = ((y + ty) * w + (x + tx)) * 4;
+              newData[i] = r; newData[i+1] = g; newData[i+2] = b; newData[i+3] = a;
+            }
+          }
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyLens() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const cx = w / 2, cy = h / 2;
+      const maxDist = Math.sqrt(cx * cx + cy * cy);
+      const intensity = effects.lens / 100 * 0.3;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const dx = x - cx, dy = y - cy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const normalized = dist / maxDist;
+          const zoom = 1 + Math.sin(normalized * Math.PI) * intensity;
+          const sx = Math.round(cx + dx / zoom);
+          const sy = Math.round(cy + dy / zoom);
+          if (sx >= 0 && sx < w && sy >= 0 && sy < h) {
+            const si = (sy * w + sx) * 4, di = (y * w + x) * 4;
+            newData[di] = data[si]; newData[di+1] = data[si+1]; newData[di+2] = data[si+2]; newData[di+3] = data[si+3];
+          }
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyCrystal() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const crystalSize = Math.ceil(effects.crystal / 10) + 1;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y += crystalSize) {
+        for (let x = 0; x < w; x += crystalSize) {
+          const rx = Math.floor(Math.random() * crystalSize);
+          const ry = Math.floor(Math.random() * crystalSize);
+          const sx = Math.min(w - 1, x + rx);
+          const sy = Math.min(h - 1, y + ry);
+          const si = (sy * w + sx) * 4;
+          const color = [data[si], data[si+1], data[si+2], data[si+3]];
+
+          for (let ty = 0; ty < crystalSize && y + ty < h; ty++) {
+            for (let tx = 0; tx < crystalSize && x + tx < w; tx++) {
+              const di = ((y + ty) * w + (x + tx)) * 4;
+              newData[di] = color[0]; newData[di+1] = color[1]; newData[di+2] = color[2]; newData[di+3] = color[3];
+            }
+          }
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    // ===== EFEITOS ORGÂNICOS =====
+    function applyTurbulence() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const intensity = effects.turbulence / 100 * 30;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const noise = Math.sin(x * 0.02 + y * 0.03) * Math.cos(x * 0.01);
+          const sx = Math.max(0, Math.min(w - 1, x + Math.round(noise * intensity)));
+          const sy = Math.max(0, Math.min(h - 1, y + Math.round(noise * intensity)));
+          const si = (sy * w + sx) * 4, di = (y * w + x) * 4;
+          newData[di] = data[si]; newData[di+1] = data[si+1]; newData[di+2] = data[si+2]; newData[di+3] = data[si+3];
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyCurve() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const intensity = effects.curve / 100 * 20;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const curve = Math.sin(x * 0.05) * intensity;
+          const sy = Math.max(0, Math.min(h - 1, y + Math.round(curve)));
+          const si = (sy * w + x) * 4, di = (y * w + x) * 4;
+          newData[di] = data[si]; newData[di+1] = data[si+1]; newData[di+2] = data[si+2]; newData[di+3] = data[si+3];
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyTwist() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const cx = w / 2, cy = h / 2;
+      const intensity = effects.twist / 100 * 10;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const dx = x - cx, dy = y - cy;
+          const angle = Math.atan2(dy, dx);
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const maxDist = Math.sqrt(cx * cx + cy * cy);
+          const twist = (1 - dist / maxDist) * intensity;
+          const newAngle = angle + twist;
+          const sx = Math.round(cx + Math.cos(newAngle) * dist);
+          const sy = Math.round(cy + Math.sin(newAngle) * dist);
+          if (sx >= 0 && sx < w && sy >= 0 && sy < h) {
+            const si = (sy * w + sx) * 4, di = (y * w + x) * 4;
+            newData[di] = data[si]; newData[di+1] = data[si+1]; newData[di+2] = data[si+2]; newData[di+3] = data[si+3];
+          }
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyCompact() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const cx = w / 2, cy = h / 2;
+      const maxDist = Math.sqrt(cx * cx + cy * cy);
+      const intensity = effects.compact / 100;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const dx = x - cx, dy = y - cy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const factor = 1 - (dist / maxDist) * intensity;
+          const sx = Math.round(cx + dx * factor);
+          const sy = Math.round(cy + dy * factor);
+          if (sx >= 0 && sx < w && sy >= 0 && sy < h) {
+            const si = (sy * w + sx) * 4, di = (y * w + x) * 4;
+            newData[di] = data[si]; newData[di+1] = data[si+1]; newData[di+2] = data[si+2]; newData[di+3] = data[si+3];
+          }
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    // ===== EFEITOS AVANÇADOS =====
+    function applyInversion() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const cx = w / 2, cy = h / 2;
+      const maxDist = Math.sqrt(cx * cx + cy * cy);
+      const intensity = effects.inversion / 100;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const dx = x - cx, dy = y - cy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 1) dist = 1;
+          const inverted = (maxDist * maxDist) / dist;
+          const factor = inverted / maxDist;
+          const angle = Math.atan2(dy, dx);
+          const sx = Math.round(cx + Math.cos(angle) * Math.min(maxDist, inverted) * intensity + dx * (1 - intensity));
+          const sy = Math.round(cy + Math.sin(angle) * Math.min(maxDist, inverted) * intensity + dy * (1 - intensity));
+          if (sx >= 0 && sx < w && sy >= 0 && sy < h) {
+            const si = (sy * w + sx) * 4, di = (y * w + x) * 4;
+            newData[di] = data[si]; newData[di+1] = data[si+1]; newData[di+2] = data[si+2]; newData[di+3] = data[si+3];
+          }
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyPolar() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const cx = w / 2, cy = h / 2;
+      const intensity = effects.polar / 100;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const dx = x - cx, dy = y - cy;
+          const angle = Math.atan2(dy, dx);
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const sx = Math.round(cx + angle * w / Math.PI * intensity + dx * (1 - intensity));
+          const sy = Math.round(cy + dist * intensity + dy * (1 - intensity));
+          if (sx >= 0 && sx < w && sy >= 0 && sy < h) {
+            const si = (sy * w + sx) * 4, di = (y * w + x) * 4;
+            newData[di] = data[si]; newData[di+1] = data[si+1]; newData[di+2] = data[si+2]; newData[di+3] = data[si+3];
+          }
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyPhase() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const intensity = effects.phase / 100 * 20;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const phase = Math.sin(x * 0.02 + y * 0.02) * intensity;
+          const sx = Math.max(0, Math.min(w - 1, x + Math.round(phase)));
+          const sy = Math.max(0, Math.min(h - 1, y + Math.round(phase)));
+          const si = (sy * w + sx) * 4, di = (y * w + x) * 4;
+          newData[di] = data[si]; newData[di+1] = data[si+1]; newData[di+2] = data[si+2]; newData[di+3] = data[si+3];
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyLava() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const intensity = effects.lava / 100;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const lava = Math.sin(x * 0.05 + y * 0.05) * 50 * intensity;
+          const sx = Math.max(0, Math.min(w - 1, x + Math.round(lava)));
+          const sy = Math.max(0, Math.min(h - 1, y));
+          const si = (sy * w + sx) * 4, di = (y * w + x) * 4;
+          newData[di] = data[si]; newData[di+1] = data[si+1]; newData[di+2] = data[si+2]; newData[di+3] = data[si+3];
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    // ===== EFEITOS EXTREMOS =====
+    function applyRandomFrag() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const intensity = Math.round(effects.randomFrag / 100 * (w * h * 0.1));
+      const newData = new Uint8ClampedArray(data);
+
+      for (let i = 0; i < intensity; i++) {
+        const idx = Math.floor(Math.random() * (data.length / 4)) * 4;
+        const randIdx = Math.floor(Math.random() * (data.length / 4)) * 4;
+        newData[idx] = data[randIdx];
+        newData[idx+1] = data[randIdx+1];
+        newData[idx+2] = data[randIdx+2];
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyGlitch() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const intensity = Math.round(effects.glitch / 100 * h * 0.1);
+      const newData = new Uint8ClampedArray(data);
+
+      for (let i = 0; i < intensity; i++) {
+        const y = Math.floor(Math.random() * h);
+        const offset = Math.floor(Math.random() * 50) - 25;
+        for (let x = 0; x < w; x++) {
+          const sx = Math.max(0, Math.min(w - 1, x + offset));
+          const si = (y * w + sx) * 4, di = (y * w + x) * 4;
+          newData[di] = data[si];
+          newData[di+1] = data[si+1];
+          newData[di+2] = data[si+2];
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyQuantum() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const intensity = effects.quantum / 100;
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const rand = Math.random();
+          if (rand < intensity) {
+            const sx = Math.floor(Math.random() * w);
+            const sy = Math.floor(Math.random() * h);
+            const si = (sy * w + sx) * 4, di = (y * w + x) * 4;
+            newData[di] = data[si];
+            newData[di+1] = data[si+1];
+            newData[di+2] = data[si+2];
+            newData[di+3] = data[si+3];
+          } else {
+            const i = (y * w + x) * 4;
+            newData[i] = data[i];
+            newData[i+1] = data[i+1];
+            newData[i+2] = data[i+2];
+            newData[i+3] = data[i+3];
+          }
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function applyBlackhole() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const w = canvas.width, h = canvas.height;
+      const cx = w / 2, cy = h / 2;
+      const maxDist = Math.sqrt(cx * cx + cy * cy);
+      const intensity = effects.blackhole / 100;
+      const eventHorizon = maxDist * (1 - intensity * 0.3);
+      const newData = new Uint8ClampedArray(data);
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const dx = x - cx, dy = y - cy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < eventHorizon * intensity) {
+            newData[(y * w + x) * 4 + 0] = 0;
+            newData[(y * w + x) * 4 + 1] = 0;
+            newData[(y * w + x) * 4 + 2] = 0;
+          } else {
+            const angle = Math.atan2(dy, dx);
+            const pull = 1 + (eventHorizon / (dist + 1)) * intensity;
+            const sx = Math.round(cx + Math.cos(angle) * (dist / pull));
+            const sy = Math.round(cy + Math.sin(angle) * (dist / pull));
+            if (sx >= 0 && sx < w && sy >= 0 && sy < h) {
+              const si = (sy * w + sx) * 4, di = (y * w + x) * 4;
+              newData[di] = data[si];
+              newData[di+1] = data[si+1];
+              newData[di+2] = data[si+2];
+              newData[di+3] = data[si+3];
+            }
+          }
+        }
+      }
+      ctx.putImageData(new ImageData(newData, w, h), 0, 0);
+    }
+
+    function resetAllEffects() {
+      Object.keys(effects).forEach(key => {
+        const elem = document.getElementById(key);
+        if (elem) {
+          if (key === 'kaleidoscope') elem.value = 3;
+          else if (key === 'stretchX' || key === 'stretchY') elem.value = 100;
+          else elem.value = 0;
+        }
+      });
+      effects = {
+        fisheye: 0, whirl: 0, waveH: 0, waveV: 0,
+        stretchX: 100, stretchY: 100, squeeze: 0, shear: 0,
+        spiral: 0, vortex: 0, fractal: 0, fragment: 0,
+        melt: 0, pixelate: 0, ripple: 0, mirror: 0,
+        kaleidoscope: 3, mosaic: 0, lens: 0, crystal: 0,
+        turbulence: 0, curve: 0, twist: 0, compact: 0,
+        inversion: 0, polar: 0, phase: 0, lava: 0,
+        randomFrag: 0, glitch: 0, quantum: 0, blackhole: 0
+      };
+      if (originalImage) updateEffects();
+    }
+
+    function downloadImage() {
+      if (!originalImage) return;
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = 'image-effects.png';
+      link.click();
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d21d6bc5790e2ac',t:'MTc3MTc5ODQ5MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
